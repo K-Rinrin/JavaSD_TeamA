@@ -1,4 +1,4 @@
-package bean;
+package dao;
 
 public class TestListSubjectDao {
 	private String baenSql;
