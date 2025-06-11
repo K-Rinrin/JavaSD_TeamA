@@ -1,4 +1,4 @@
-package acoounts;
+package accounts;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -20,6 +20,7 @@ public class LoginController extends CommonServlet {
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+	    resp.sendRedirect(req.getContextPath() + "/accounts/loginexecute");
 
 	}
 
