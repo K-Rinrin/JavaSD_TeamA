@@ -1,13 +1,13 @@
-package grade;
+package subject;
 
-//学生別成績一覧
+//科目更新
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class GRMR003 extends CommonServlet {
+public class SubjectDeleteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
