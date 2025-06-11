@@ -1,6 +1,6 @@
-package bean;
+package dao;
 
-public class TestListStudentDao {
+public class StudentDao {
 	private String baseSql;
 
 	public String getBaseSql() {
