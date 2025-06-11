@@ -1,13 +1,13 @@
-package subject;
+package grade;
 
-//科目登録完了
+//成績管理一覧
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class SBJM003 extends CommonServlet {
+public class TestListController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

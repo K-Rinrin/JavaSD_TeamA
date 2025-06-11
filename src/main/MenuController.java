@@ -1,13 +1,13 @@
-package grade;
+package main;
 
-//成績参照検索
+//メインメニュー画面
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class GRMR001 extends CommonServlet {
+public class MenuController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

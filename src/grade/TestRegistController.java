@@ -1,13 +1,13 @@
-package acoounts;
+package grade;
 
-//ログアウト機能
+//成績管理一覧
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class LOGO001 extends CommonServlet {
+public class TestRegistController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

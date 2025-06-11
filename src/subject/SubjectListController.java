@@ -1,13 +1,13 @@
-package grade;
+package subject;
 
-//科目別成績一覧
+//科目一覧
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class GRMR002 extends CommonServlet {
+public class SubjectListController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

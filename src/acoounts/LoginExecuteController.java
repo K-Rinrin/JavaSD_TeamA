@@ -1,13 +1,13 @@
-package subject;
+package acoounts;
 
-//科目変更
+//ログイン機能
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class SBJM004 extends CommonServlet {
+public class LoginExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

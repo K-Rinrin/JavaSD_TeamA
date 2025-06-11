@@ -1,13 +1,13 @@
-package main;
+package subject;
 
-//メインメニュー画面
+//科目削除
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class MMNU001 extends CommonServlet {
+public class SubjectUpdateExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

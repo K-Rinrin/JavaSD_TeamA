@@ -1,13 +1,13 @@
 package subject;
 
-//科目削除完了
+//科目登録
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class SBJM007 extends CommonServlet {
+public class SubjectCreateExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
