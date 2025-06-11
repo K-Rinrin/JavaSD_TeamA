@@ -1,11 +1,13 @@
-package grade;
+package student;
+
+//学生変更
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-public class test extends CommonServlet {
+public class STDM004 extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
