@@ -11,7 +11,7 @@ import dao.TeacherDao;
 import tool.CommonServlet;
 
 // このアノテーションにより、/accounts/loginExecute へのリクエストがこのサーブレットにマッピングされます。
-@WebServlet(urlPatterns = { "/accounts/LOGI001" })
+@WebServlet(urlPatterns = { "/main/accounts/loginExecute" })
 public class LoginExecuteController extends CommonServlet {
 
 	@Override

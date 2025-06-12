@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import tool.CommonServlet;
 
 // このアノテーションにより、/accounts/login へのリクエストがこのサーブレットにマッピングされます。
-@WebServlet(urlPatterns = { "/accounts/LOGI001" })
+@WebServlet(urlPatterns = { "/main/accounts/LOGI001" })
 public class LoginController extends CommonServlet {
 
 	@Override
