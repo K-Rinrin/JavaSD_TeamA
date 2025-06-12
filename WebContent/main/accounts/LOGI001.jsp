@@ -27,7 +27,7 @@
 
 
 <main class="form-signin w-100 m-auto" style="max-width: 330px; padding: 1rem;">
-  <form action="logi001" method="post">
+  <form action="LOGI001" method="post">
 
 
     <%-- 画面タイトルの表示 --%>

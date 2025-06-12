@@ -19,7 +19,7 @@
 
 
 	<%-- ログイン画面に遷移 --%>
-	<a href="${pageContext.request.contextPath}/main/accounts/logi001">ログイン</a>
+	<a href="${pageContext.request.contextPath}/main/accounts/LOGI001">ログイン</a>
 
 
 
