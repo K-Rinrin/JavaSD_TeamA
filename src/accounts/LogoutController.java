@@ -1,9 +1,8 @@
 package accounts;
 
+//ログアウト画面表示
+
 import javax.servlet.annotation.WebServlet;
-
-//ログアウト機能
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

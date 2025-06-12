@@ -1,11 +1,14 @@
 package subject;
 
-//科目一覧
+import javax.servlet.annotation.WebServlet;
+
+//科目一覧画面表示
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
+@WebServlet(urlPatterns = { "/accounts/subList" })
 
 public class SubjectListController extends CommonServlet {
 
