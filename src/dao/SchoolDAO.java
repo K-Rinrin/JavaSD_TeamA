@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.School;
-public class SchoolDAO {
+public class SchoolDAO extends DAO {
    private Connection connection;
    public SchoolDAO(Connection connection) {
        this.connection = connection;

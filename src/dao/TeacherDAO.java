@@ -9,7 +9,9 @@ import java.util.List;
 
 import bean.School;
 import bean.Teacher;
-public class TeacherDAO {
+
+
+public class TeacherDAO extends DAO {
    private Connection connection;
    public TeacherDAO(Connection connection) {
        this.connection = connection;

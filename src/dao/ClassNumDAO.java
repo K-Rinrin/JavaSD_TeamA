@@ -10,7 +10,9 @@ import java.util.List;
 
 import bean.ClassNum;
 import bean.School;
-public class ClassNumDAO {
+
+
+public class ClassNumDAO extends DAO {
    private Connection connection;
    public ClassNumDAO(Connection connection) {
        this.connection = connection;

@@ -10,7 +10,7 @@ import java.util.Map;
 
 import bean.TestListSubject;
 
-public class TestListSubjectDAO {
+public class TestListSubjectDAO extends DAO {
    private Connection connection;
    public TestListSubjectDAO(Connection connection) {
        this.connection = connection;

@@ -10,7 +10,9 @@ import java.util.List;
 
 import bean.School;
 import bean.Subject;
-public class SubjectDAO {
+
+
+public class SubjectDAO extends DAO {
    private Connection connection;
    public SubjectDAO(Connection connection) {
        this.connection = connection;
