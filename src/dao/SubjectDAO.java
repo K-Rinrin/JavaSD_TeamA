@@ -1,0 +1,82 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.School;
+import bean.Subject;
+public class SubjectDAO {
+   private Connection connection;
+   public SubjectDAO(Connection connection) {
+       this.connection = connection;
+   }
+   // 科目の追加
+   public void addSubject(Subject subject) throws SQLException {
+       String sql = "INSERT INTO subject (cd, name, school_cd) VALUES (?, ?, ?)";
+       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+           stmt.setString(1, subject.getCd());
+           stmt.setString(2, subject.getName());
+           stmt.setString(3, subject.getSchool().getCd());
+           stmt.executeUpdate();
+       }
+   }
+   // 科目コードで取得
+   public Subject getSubjectByCd(String cd) throws SQLException {
+       String sql = "SELECT * FROM subject WHERE cd = ?";
+       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+           stmt.setString(1, cd);
+           ResultSet rs = stmt.executeQuery();
+           if (rs.next()) {
+               Subject subject = new Subject();
+               subject.setCd(rs.getString("cd"));
+               subject.setName(rs.getString("name"));
+               School school = new School();
+               school.setCd(rs.getString("school_cd"));
+               subject.setSchool(school);
+               return subject;
+           }
+       }
+       return null;
+   }
+   // 全科目の取得
+   public List<Subject> getAllSubjects() throws SQLException {
+       List<Subject> list = new ArrayList<>();
+       String sql = "SELECT * FROM subject";
+       try (Statement stmt = connection.createStatement()) {
+           ResultSet rs = stmt.executeQuery(sql);
+           while (rs.next()) {
+               Subject subject = new Subject();
+               subject.setCd(rs.getString("cd"));
+               subject.setName(rs.getString("name"));
+               School school = new School();
+               school.setCd(rs.getString("school_cd"));
+               subject.setSchool(school);
+               list.add(subject);
+           }
+       }
+       return list;
+   }
+   // 科目の更新
+   public void updateSubject(Subject subject) throws SQLException {
+       String sql = "UPDATE subject SET name = ?, school_cd = ? WHERE cd = ?";
+       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+           stmt.setString(1, subject.getName());
+           stmt.setString(2, subject.getSchool().getCd());
+           stmt.setString(3, subject.getCd());
+           stmt.executeUpdate();
+       }
+   }
+   // 科目の削除
+   public void deleteSubject(String cd) throws SQLException {
+       String sql = "DELETE FROM subject WHERE cd = ?";
+       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+           stmt.setString(1, cd);
+           stmt.executeUpdate();
+       }
+   }
+}

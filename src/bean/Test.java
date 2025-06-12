@@ -3,7 +3,7 @@ package bean;
 public class Test {
 	private Student student;
 	private String classNum;
-	private School cShool;
+	private School School;
 	private int no;
 	private int point;
 	public Student getStudent() {
@@ -19,10 +19,10 @@ public class Test {
 		this.classNum = classNum;
 	}
 	public School getcShool() {
-		return cShool;
+		return School;
 	}
 	public void setcShool(School cShool) {
-		this.cShool = cShool;
+		this.School = cShool;
 	}
 	public int getNo() {
 		return no;
