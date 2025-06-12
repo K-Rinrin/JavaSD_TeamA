@@ -1,11 +1,14 @@
 package grade;
 
-//成績管理一覧
+import javax.servlet.annotation.WebServlet;
+
+//成績参照検索処理
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
+@WebServlet(urlPatterns = { "/accounts/testList" })
 
 public class TestListController extends CommonServlet {
 

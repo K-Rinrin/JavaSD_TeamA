@@ -1,11 +1,14 @@
 package subject;
 
-//科目登録
+import javax.servlet.annotation.WebServlet;
+
+//科目登録処理
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
+@WebServlet(urlPatterns = { "/accounts/subCreateExecute" })
 
 public class SubjectCreateExecuteController extends CommonServlet {
 

@@ -1,11 +1,14 @@
 package subject;
 
-//科目削除
+import javax.servlet.annotation.WebServlet;
+
+//科目更新画面表示
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
+@WebServlet(urlPatterns = { "/accounts/subUpdate" })
 
 public class SubjectUpdateController extends CommonServlet {
 

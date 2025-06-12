@@ -1,13 +1,16 @@
-package acoounts;
+package grade;
 
-//ログイン機能
+import javax.servlet.annotation.WebServlet;
+
+//成績登録処理
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
+@WebServlet(urlPatterns = { "/accounts/testRegistExeucte" })
 
-public class LogoutController extends CommonServlet {
+public class TestRegistExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

@@ -1,11 +1,14 @@
 package subject;
 
-//科目更新
+import javax.servlet.annotation.WebServlet;
+
+//科目削除処理
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
+@WebServlet(urlPatterns = { "/accounts/subDeleteExecute" })
 
 public class SubjectDeleteExecuteController extends CommonServlet {
 
