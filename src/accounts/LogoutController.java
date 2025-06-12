@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/logout" })
+@WebServlet(urlPatterns = { "/main/accounts/LOGO001" })
 
 public class LogoutController extends CommonServlet {
 

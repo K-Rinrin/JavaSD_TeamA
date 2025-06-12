@@ -8,7 +8,7 @@ import java.util.List;
 import bean.School;
 import bean.Student;
 
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAO implements DAO {
     private Connection conn;
 
     public StudentDAOImpl(Connection conn) {
