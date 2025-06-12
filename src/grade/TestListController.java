@@ -1,14 +1,13 @@
 package grade;
 
-import javax.servlet.annotation.WebServlet;
-
 //成績参照検索処理
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/testList" })
+@WebServlet(urlPatterns = { "/main/accounts/GRMR001" })
 
 public class TestListController extends CommonServlet {
 

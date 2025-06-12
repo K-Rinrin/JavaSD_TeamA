@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/testRegist" })
+@WebServlet(urlPatterns = { "/main/accounts/GRMU001" })
 
 public class TestRegistController extends CommonServlet {
 

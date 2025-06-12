@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/testRegistExeucte" })
+@WebServlet(urlPatterns = { "/accounts/GRMU1exe" })
 
 public class TestRegistExecuteController extends CommonServlet {
 

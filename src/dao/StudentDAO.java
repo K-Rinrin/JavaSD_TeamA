@@ -14,6 +14,12 @@ public class StudentDAO {
    private Connection connection;
    public StudentDAO(Connection connection) {
        this.connection = connection;
+
+public class StudentDAO implements DAO {
+    private Connection conn;
+
+    public StudentDAOImpl(Connection conn) {
+        this.conn = conn;
    }
    // 学生の追加
    public void addStudent(Student student) throws SQLException {
