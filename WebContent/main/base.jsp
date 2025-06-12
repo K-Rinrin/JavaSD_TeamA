@@ -15,10 +15,10 @@
 	</head>
 	<body>
 
-	<c:import url="./header.jsp"/>
-	<c:import url="./menu.jsp"/>
+	<c:import url="/main/header.jsp"/>
+	<c:import url="/main/menu.jsp"/>
 	${ param.body }
-	<c:import url="./footer.jsp"/>
+	<c:import url="/main/footer.jsp"/>
 
 	</body>
 </html>
