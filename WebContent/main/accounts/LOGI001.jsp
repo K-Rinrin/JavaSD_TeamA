@@ -27,7 +27,7 @@
 
 
 <main class="form-signin w-100 m-auto" style="max-width: 330px; padding: 1rem;">
-  <form action="LOGI001" method="post">
+  <form action="${pageContext.request.contextPath}/main/accounts/LOGI001exe" method="get">
 
 
     <%-- 画面タイトルの表示 --%>

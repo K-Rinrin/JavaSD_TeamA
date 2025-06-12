@@ -1,7 +1,5 @@
 package accounts;
 
-//ログイン処理c
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,7 +9,7 @@ import dao.TeacherDao;
 import tool.CommonServlet;
 
 // このアノテーションにより、/accounts/loginExecute へのリクエストがこのサーブレットにマッピングされます。
-@WebServlet(urlPatterns = { "/accounts/LOGI001" })
+//@WebServlet(urlPatterns = { "/main/accounts/LOGI001exe" })
 public class LoginExecuteController extends CommonServlet {
 
 	@Override
@@ -51,7 +49,6 @@ public class LoginExecuteController extends CommonServlet {
 				// 認証失敗時：入力されたログインIDをリクエスト属性にセットし、ログイン画面で再表示できるようにします。
 				req.setAttribute("id", id);
 
-				// ログイン画面 (LOGI001.jsp) にフォワードし、ユーザーに入力ミスを修正して再試行を促します。
 				req.getRequestDispatcher("LOGI001.jsp").forward(req, resp);
 
 			// エラーメッセージをリクエスト属性に追加する場合のコメントアウトされたコードです。
