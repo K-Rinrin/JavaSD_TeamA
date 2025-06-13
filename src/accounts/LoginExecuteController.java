@@ -45,6 +45,10 @@ public class LoginExecuteController extends CommonServlet {
 				// これにより、ブラウザは指定されたURLに再度アクセスします。
 				resp.sendRedirect(req.getContextPath() + "/MMNU");
 
+			}else{
+		        req.setAttribute("error", "ログインに失敗しました。IDまたはパスワードが正しくありません。");
+		        req.setAttribute("id",id);
+
 			}
 
 
