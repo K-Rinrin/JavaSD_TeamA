@@ -1,13 +1,13 @@
 package accounts;
 
-//ログイン処理c
+//ログイン処理
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Teacher;
-import dao.TeacherDao;
+import dao.TeacherDAO;
 import tool.CommonServlet;
 
 // このアノテーションにより、/accounts/loginExecute へのリクエストがこのサーブレットにマッピングされます。
@@ -29,7 +29,7 @@ public class LoginExecuteController extends CommonServlet {
 		String password = req.getParameter("password");
 
 		// TeacherDaoのインスタンスを生成し、データベースから教員情報を取得します。
-		TeacherDao dao = new TeacherDao();
+		TeacherDAO dao = new TeacherDAO(null);
 		Teacher teacher = dao.login(id, password); // ログインIDとパスワードで教員情報を検索します。
 
 		try {
@@ -48,14 +48,12 @@ public class LoginExecuteController extends CommonServlet {
 				resp.sendRedirect(req.getContextPath() + "/menu");
 
 			} else {
-				// 認証失敗時：入力されたログインIDをリクエスト属性にセットし、ログイン画面で再表示できるようにします。
-				req.setAttribute("id", id);
 
-				// ログイン画面 (LOGI001.jsp) にフォワードし、ユーザーに入力ミスを修正して再試行を促します。
-				req.getRequestDispatcher("LOGI001.jsp").forward(req, resp);
 
-			// エラーメッセージをリクエスト属性に追加する場合のコメントアウトされたコードです。
-			// req.setAttribute("errorMessage", "ログイン名またはパスワードが違います");
+				// エラー画面 (ERRO001.jsp) にフォワード
+				req.getRequestDispatcher("ERRO001.jsp").forward(req, resp);
+
+
 		}
 	}
 }
