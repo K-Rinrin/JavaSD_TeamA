@@ -35,17 +35,19 @@ public class LoginExecuteController extends CommonServlet {
 
 			// 取得した教員情報がnullでない場合（認証成功）
 			if (teacher != null) {
+
 				// 認証成功時：取得した教員情報をセッションに保存します。
 				// "session_user" という名前でセッションアトリビュートとして設定します。
 				session.setAttribute("session_user", teacher);
 
 				// ログイン成功後、アプリケーションのコンテキストパスに "/menu" を付加したURLへリダイレクトします。
 				// これにより、ブラウザは指定されたURLに再度アクセスします。
-				resp.sendRedirect(req.getContextPath() + "/MMNU");
+				resp.sendRedirect(req.getContextPath() + "/main/MMNU001");
 
 			}else{
 		        req.setAttribute("error", "ログインに失敗しました。IDまたはパスワードが正しくありません。");
 		        req.setAttribute("id",id);
+				req.getRequestDispatcher("/main/accounts/LOGI001.jsp").forward(req, resp);
 
 			}
 
