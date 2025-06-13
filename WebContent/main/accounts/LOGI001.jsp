@@ -27,7 +27,7 @@
 
 
 <main class="form-signin w-100 m-auto" style="max-width: 330px; padding: 1rem;">
-  <form action="${pageContext.request.contextPath}main/accounts/login" method="post">
+  <form action="${pageContext.request.contextPath}main/accounts/loginExecute" method="post">
 
 
 
