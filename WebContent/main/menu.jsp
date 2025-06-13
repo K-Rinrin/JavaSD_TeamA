@@ -13,8 +13,10 @@
 		<%-- 学生管理リンク --%>
 		<li><a href="${pageContext.request.contextPath}/main/student/SBJM001">学生管理</a></li>
 
+
 		<%-- 成績管理 --%>
-		<li><a>成績管理</a>
+		<li class="has-submenu">
+		<a>成績管理</a>
 		<label>
 			<%-- 成績登録リンク --%>
 			<a href="${pageContext.request.contextPath}/main/grade/GRMU001">成績登録</a>

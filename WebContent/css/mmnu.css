@@ -1,0 +1,222 @@
+
+/* --- メイン画面のスタイル --- */
+
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f0f2f5; /* 背景色 */
+    margin: 0;
+}
+
+.page-container {
+    display: flex; /* この指定で中身が横並びになる */
+    flex-grow: 1; /* ヘッダーとフッター以外の高さを埋める */
+}
+
+/* メインコンテンツエリアのスタイル */
+.main-content {
+    flex-grow: 1; /* サイドバー以外の残りの幅をすべて使用する */
+    padding: 30px; /* コンテンツエリアの内側に余白を作る */
+    overflow-y: auto; /* コンテンツが長くなった場合にスクロールさせる */
+}
+
+
+.MMNU001 {
+    max-width: 800px;
+    margin: 0 auto; /* 中央揃え */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden; /* 角丸からはみ出さないように */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 影をつけて立体感を出す */
+}
+
+
+
+/* --- メニューヘッダー --- */
+.menu-header {
+    background-color: #f7f7f7;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.menu-header h1 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+
+
+/* --- 枠全体のデザインを定義 --- */
+.kanri-box {
+    display: flex; /* カードを横並びにする */
+    gap: 20px; /* カード間の隙間 */
+    padding: 20px;
+    background-color: #fff;
+}
+
+
+
+/* --- 共通スタイル --- */
+.kanri {
+    flex: 1; /* 横幅を均等に分ける */
+    padding: 25px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* リンクを縦に並べる */
+    gap: 12px; /* カード内のリンク間の隙間 */
+    text-align: center; /* リンクを中央寄せに */
+}
+
+
+
+/* --- 枠内のリンクのスタイル --- */
+.kanri a {
+    color: #0056b3; /* リンクの文字色 */
+    text-decoration: underline; /* 下線 */
+    font-size: 1em;
+    font-weight: 500;
+}
+
+
+
+
+/* --- 学生管理カード (赤) --- */
+.kanri-student {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    justify-content: center; /* 上下中央に配置 */
+}
+
+
+
+/* --- 成績管理カード (緑) --- */
+.kanri-grades {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+
+
+/* --- 科目管理カード (紫) --- */
+.kanri-subjects {
+    background-color: #d6d8f8;
+    border: 1px solid #c3c6f5;
+    justify-content: center; /* 上下中央に配置 */
+}
+
+
+
+
+
+
+/* --- ヘッダーのスタイル --- */
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between; /* 要素を両端に配置 */
+    align-items: center; /* 要素を上下中央に配置 */
+    padding: 15px 30px;
+    background-color: #e2fdfe; /* ヘッダーの背景色 */
+    border-bottom: 1px solid #d1d9e0;
+    height: 64px; /* ヘッダーの高さを固定 */
+    box-sizing: border-box;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 1.5em; /* 24px */
+    color: #334155;
+    font-weight: 600;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* ユーザー名とログアウトリンクの間隔 */
+}
+
+.header-user .user-name {
+    font-size: 0.9em; /* 14.4px */
+    color: #475569;
+}
+
+.header-user a {
+    font-size: 0.9em;
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.header-user a:hover {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+/* --- フッターのスタイル --- */
+
+.footer {
+    background-color: #e9ecef; /* 背景色 */
+    color: #6c757d;            /* 文字色  */
+    padding: 20px 0;           /* 上下の余白 */
+    text-align: center;        /* テキストを中央揃え */
+    border-top: 1px solid #dee2e6; /* 上の境界線 */
+
+}
+
+
+/* フッター内のpタグの余白を調整 */
+.footer p {
+    margin: 5px 0;
+}
+
+
+
+
+
+
+
+
+/* --- サイドバーメニューのスタイル --- */
+
+.menu {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+/* サイドバー内の全てのリンクの基本スタイル */
+.menu li a {
+    display: block;
+    padding: 8px 25px;
+    color: #0056b3; /* リンクの色を青系に */
+    text-decoration: underline; /* 下線を追加 */
+    font-size: 0.95rem; /* 15.2px */
+}
+
+
+
+/* 「成績管理」スタイル */
+.menu li.has-submenu > a {
+    color: #343a40; /* 文字色を黒系に */
+    text-decoration: none; /* 下線を削除 */
+    font-weight: 600; /* 少し太字に */
+    cursor: default; /* マウスポインターを矢印のままにする */
+}
+
+
+
