@@ -17,7 +17,7 @@
           <table border="1" cellpadding="8" cellspacing="0">
             <thead>
               <tr>
-                <th>科目コード</th>
+                <th>科目cd</th>
                 <th>科目名</th>
                 <th>編集</th>
                 <th>削除</th>
@@ -40,7 +40,6 @@
         </c:otherwise>
       </c:choose>
     </div>
-    ]]>
 
 </c:param>
 </c:import>
