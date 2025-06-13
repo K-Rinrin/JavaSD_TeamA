@@ -18,39 +18,43 @@
 	<h2>学生管理</h2>
 
 
-	<%-- 入学年度の選択 --%>
-      <label>入学年度</label>
-      <select name="f1" required>
-        <option value="">----</option>
+	<form action="${pageContext.request.contextPath}/main/student/STDM001" method="get">
 
-	        <c:forEach var="stu" items="${student}">
-	          <option value="${stu.ent_year}">${stu.ent_year}</option>
-        	</c:forEach>
-      </select>
+		<%-- 入学年度の選択 --%>
+	      <label>入学年度</label>
+	      <select name="f1" required>
+	        <option value="">----</option>
 
-
-	<%-- クラスの選択 --%>
-	<label>クラス</label>
-      <select name="f2" required>
-        <option value="">----</option>
-
-	        <c:forEach var="stu" items="${student}">
-	          <option value="${stu.class_num}">${stu.class_num}</option>
-        	</c:forEach>
-      </select>
+		        <c:forEach var="stu" items="${student}">
+		          <option value="${stu.ent_year}">${stu.ent_year}</option>
+	        	</c:forEach>
+	      </select>
 
 
-	<%-- 在学中のON/OFF --%>
-	<label>在学中</label>
-	<input type="checkbox" name="f3">
+		<%-- クラスの選択 --%>
+		<label>クラス</label>
+	      <select name="f2" required>
+	        <option value="">----</option>
+
+		        <c:forEach var="stu" items="${student}">
+		          <option value="${stu.class_num}">${stu.class_num}</option>
+	        	</c:forEach>
+	      </select>
 
 
-	<%-- 学生登録画面に遷移する --%>
-	<a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
+		<%-- 在学中のON/OFF --%>
+		<label>在学中</label>
+		<input type="checkbox" name="f3">
 
 
-	<%-- 絞り込みボタン --%>
-	<input type="button" value="絞り込み">
+		<%-- 学生登録画面に遷移する --%>
+		<a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
+
+
+		<%-- 絞り込みボタン --%>
+		<button type="submit">絞込み</button>
+
+	</form>
 
 
 
@@ -62,31 +66,41 @@
 
 
 	<%-- DBから学生一覧表を表示する --%>
-	<table border="1">
-		<thead><tr><th>入学年度</th><th>学生番号</th><th>氏名</th><th>クラス</th><th>在学中</th><th></th></tr></thead>
-		<tbody>
-		<c:forEach var="stu" items="${student}">
-			<tr>
-				<td>${stu.entYear}</td>
-				<td>${stu.studentNo}</td>
-				<td>${stu.Name}</td>
-				<td>${stu.classNum}</td>
-				<td>${stu.isAttend}</td>
-				<%-- 学生変更画面に遷移する --%>
-				<td><a href="${pageContext.request.contextPath}/main/student/STDM004">変更</a></td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
+	<c:choose>
+		<%-- studentリストが空でない場合のみテーブルを表示 --%>
+		<c:when test="${not empty student}">
+			<table border="1">
+				<thead><tr>
+					<th>入学年度</th>
+					<th>学生番号</th>
+					<th>氏名</th>
+					<th>クラス</th>
+					<th>在学中</th>
+					<th></th></tr>
+				</thead>
+				<tbody>
+				<c:forEach var="stu" items="${student}">
+					<tr>
+						<td>${stu.entYear}</td>
+						<td>${stu.studentNo}</td>
+						<td>${stu.Name}</td>
+						<td>${stu.classNum}</td>
+						<td>${stu.isAttend}</td>
+						<%-- 学生変更画面に遷移する --%>
+						<td>${stu.isAttend ? '在学' : ''}</td>
+						<td><a href="${pageContext.request.contextPath}/main/student/STDM004? no=${stu.no}">変更</a></td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		</c:when>
 
+		<%-- studentリストが空の場合にメッセージを表示 --%>
+		<c:otherwise>
+			<p>学生情報が存在しませんでした。</p>
+		</c:otherwise>
 
-
-	<%-- エラーメッセージ表示 --%>
-	<%-- 学生情報が存在しない場合「学生情報が存在しませんでした」と表示される --%>
-    <c:if test="${not empty error}">
-      <p style="color: red">${error}</p>
-    </c:if>
-
+	</c:choose>
 
 
 
