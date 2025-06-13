@@ -27,7 +27,8 @@
 
 
 <main class="form-signin w-100 m-auto" style="max-width: 330px; padding: 1rem;">
-  <form action="/main/accounts/LOGI001exe" method="get">
+  <form action="${pageContext.request.contextPath}main/accounts/login" method="post">
+
 
 
     <%-- 画面タイトルの表示 --%>
@@ -56,7 +57,8 @@
 
 
     <!-- ログインボタン -->
-    <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
+    <button class="w-100 btn btn-lg btn-primary" type="button"
+    	onclick="location.href='${pageContext.request.contextPath}/main/MMNU001'">ログイン</button>
 
   </form>
 </main>
