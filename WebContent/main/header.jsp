@@ -19,9 +19,15 @@
 
 	<%-- ログインユーザ名 --%>
 	<div class="header-user">
-		<span class="user-name">${session_user.username}様 </span>
-		<%-- ログアウトリンク --%>
-		<a href="${pageContext.request.contextPath}/main/accounts/LOGO001">ログアウト</a>
+
+	<%-- ログインしている場合（セッションにユーザー情報がある） --%>
+    <c:if test="${not empty session_user}">
+        <span>${session_user.name} 様</span>
+        <a href="${pageContext.request.contextPath}/main/accounts/LOGO001">ログアウト</a>
+    </c:if>
+
+
+
 	</div>
 
 </div>
