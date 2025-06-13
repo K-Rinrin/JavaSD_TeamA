@@ -15,7 +15,7 @@
 
 
 	<%-- 検索 --%>
-	<form action="${pageContext.request.contextPath}" method="get">
+	<form action="${pageContext.request.contextPath}/main/grade/testlist" method="get">
 	<table>
 
 		<tr>
@@ -87,7 +87,7 @@
 		<p>${errorMsg}</p>
 	</c:if>
 
-	<form action="${pageContext.request.contextPath}" method="post">
+	<form action="${pageContext.request.contextPath}/main/grade/testlist" method="post">
 
 		<%-- 検索条件を保持 --%>
 		<input type="hidden" name="f1" value="${param.f1}">
