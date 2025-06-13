@@ -27,12 +27,10 @@ public class LoginExecuteController extends CommonServlet {
 		// リクエストパラメータからログインIDとパスワードを取得します。
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
+		// TeacherDAOのインスタンスを生成し、データベースから教員情報を取得します。
+		TeacherDAO dao = new TeacherDAO(null);
 
 		try {
-
-
-			// TeacherDaoのインスタンスを生成し、データベースから教員情報を取得します。
-			TeacherDAO dao = new TeacherDAO(null);
 			Teacher teacher = dao.login(id, password); // ログインIDとパスワードで教員情報を検索します。
 
 			// 取得した教員情報がnullでない場合（認証成功）
