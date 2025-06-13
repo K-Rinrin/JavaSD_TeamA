@@ -140,9 +140,8 @@
 		</c:forEach>
 		</table>
 
-		<dr>
-			<button type="submit">登録して終了</button>
-		</dr>
+		<br>
+		<button type="submit">登録して終了</button>
 
 	</form>
 	</c:if>
