@@ -18,7 +18,7 @@
 
 
 
-	<form action="${pageContext.request.contextPath}/main/student/STDM003" method="post">
+	<form action="${pageContext.request.contextPath}/main/student/STDM002" method="post">
 
 
 	<%-- 入学年度の選択 --%>
