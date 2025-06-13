@@ -53,7 +53,7 @@ public class LoginExecuteController extends CommonServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 			// エラー画面 (ERRO001.jsp) にフォワード
-			req.getRequestDispatcher("ERRO001.jsp").forward(req, resp);
+			req.getRequestDispatcher("/main/accounts/ERRO001.jsp").forward(req, resp);
 		}
 	}
 
