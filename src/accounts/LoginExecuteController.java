@@ -28,15 +28,13 @@ public class LoginExecuteController extends CommonServlet {
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 
-		// TeacherDaoのインスタンスを生成し、データベースから教員情報を取得します。
-		TeacherDAO dao = new TeacherDAO(null);
-		Teacher teacher = dao.login(id, password); // ログインIDとパスワードで教員情報を検索します。
-
 		try {
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+
+			// TeacherDaoのインスタンスを生成し、データベースから教員情報を取得します。
+			TeacherDAO dao = new TeacherDAO(null);
+			Teacher teacher = dao.login(id, password); // ログインIDとパスワードで教員情報を検索します。
+
 			// 取得した教員情報がnullでない場合（認証成功）
 			if (teacher != null) {
 				// 認証成功時：取得した教員情報をセッションに保存します。
@@ -45,15 +43,16 @@ public class LoginExecuteController extends CommonServlet {
 
 				// ログイン成功後、アプリケーションのコンテキストパスに "/menu" を付加したURLへリダイレクトします。
 				// これにより、ブラウザは指定されたURLに再度アクセスします。
-				resp.sendRedirect(req.getContextPath() + "/menu");
+				resp.sendRedirect(req.getContextPath() + "/MMNU");
 
-			} else {
-
-
-				// エラー画面 (ERRO001.jsp) にフォワード
-				req.getRequestDispatcher("ERRO001.jsp").forward(req, resp);
+			}
 
 
+		} catch (Exception e) {
+			// TODO: handle exception
+			// エラー画面 (ERRO001.jsp) にフォワード
+			req.getRequestDispatcher("ERRO001.jsp").forward(req, resp);
 		}
 	}
+
 }
