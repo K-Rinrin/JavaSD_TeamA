@@ -19,7 +19,7 @@ public class LogoutController extends CommonServlet {
         HttpSession session = req.getSession();
 
         // セッションからユーザー情報と管理者フラグを削除
-        session.removeAttribute("name"); // ログインユーザー情報の削除
+        session.removeAttribute("session_user"); // ログインユーザー情報の削除
         req.getRequestDispatcher("LOGO001.jsp").forward(req, resp);
 	}
 
