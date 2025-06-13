@@ -57,8 +57,7 @@
 
 
     <!-- ログインボタン -->
-    <button class="w-100 btn btn-lg btn-primary" type="button"
-    	onclick="location.href='${pageContext.request.contextPath}/main/MMNU001'">ログイン</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
 
   </form>
 </main>
