@@ -27,12 +27,22 @@
 
 
 <main class="form-signin w-100 m-auto" style="max-width: 330px; padding: 1rem;">
-  <form action="${pageContext.request.contextPath}main/accounts/loginExecute" method="post">
+  <form action="${pageContext.request.contextPath}/main/accounts/loginExecute" method="post">
 
 
 
     <%-- 画面タイトルの表示 --%>
     <h2 class="h3 mb-3 fw-normal">ログイン</h2>
+
+
+    <%-- エラーメッセージ表示エリア --%>
+    <c:if test="${not empty error}">
+      <div class="alert alert-danger" role="alert">
+        ${error}
+      </div>
+    </c:if>
+
+
 
     <%-- ログインID（最大20文字・必須） --%>
     <div class="form-floating mb-2">
