@@ -13,6 +13,9 @@
 	<%-- 画面タイトル --%>
 	<h2>成績管理</h2>
 
+
+	<%-- 検索 --%>
+	<form action="${pageContext.request.contextPath}" method="get">
 	<table>
 
 		<tr>
@@ -72,6 +75,77 @@
 		</tr>
 
 	</table>
+	</form>
+
+	<%-- 検索結果・点数登録 --%>
+	<c:if test="{not empty TestList}">
+	<%--科目と回数の表示 --%>
+	<h2>科目：${subjectName}(${param.f4})</h2>
+
+	<%-- エラーメッセージある場合 --%>
+	<c:if test="${not empty errorMsg }">
+		<p>${errorMsg}</p>
+	</c:if>
+
+	<form action="${pageContext.request.contextPath}" method="post">
+
+		<%-- 検索条件を保持 --%>
+		<input type="hidden" name="f1" value="${param.f1}">
+		<input type="hidden" name="f2" value="${param.f2}">
+		<input type="hidden" name="f3" value="${param.f3}">
+		<input type="hidden" name="f4" value="${param.f4}">
+
+		<table>
+		<tr>
+			<th>入学年度</th>
+			<th>クラス</th>
+			<th>学生番号</th>
+			<th>氏名</th>
+			<th>得点</th>
+		</tr>
+
+		<c:forEach var="score" items="${scorelist}">
+			<tr>
+				<%-- 入学年度 --%>
+				<td>
+					<c:forEach var="stu" items="${student}">
+					 <c:if test="${stu.no == score.studentNo}">
+						${stu.intyear}
+					 </c:if>
+					</c:forEach>
+				</td>
+
+				<!-- クラス -->
+				<td>${score.classnum}</td>
+
+				<!-- 学生番号 -->
+				<td>${score.studentno}</td>
+
+				<!-- 氏名 -->
+				<td>
+				 <c:forEach var="stu" items="${student}">
+				 <c:if test="${stu.no == score.studentno}">
+					${stu.name}
+				 </c:if>
+				 </c:forEach>
+				</td>
+
+				<!-- 点数入力欄 -->
+				<td>
+				 <input type="number" name="point_${score.studentno}"
+				  value="${score.point}" min="0" max="100" required />
+				</td>
+
+			</tr>
+		</c:forEach>
+		</table>
+
+		<dr>
+			<button type="submit">登録して終了</button>
+		</dr>
+
+	</form>
+	</c:if>
 
 </div>
 </c:param>
