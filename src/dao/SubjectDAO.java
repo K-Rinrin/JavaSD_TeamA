@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +47,9 @@ public class SubjectDAO extends DAO {
    // 全科目の取得
    public List<Subject> getAllSubjects() throws SQLException {
        List<Subject> list = new ArrayList<>();
-       String sql = "SELECT * FROM subject";
-       try (Statement stmt = connection.createStatement()) {
+       try (Connection con = getConnection()) {
+    	   String sql = "SELECT * FROM subject";
+    	   PreparedStatement stmt = con.prepareStatement(sql);
            ResultSet rs = stmt.executeQuery(sql);
            while (rs.next()) {
                Subject subject = new Subject();
@@ -60,7 +60,10 @@ public class SubjectDAO extends DAO {
                subject.setSchool(school);
                list.add(subject);
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        return list;
    }
    // 科目の更新
