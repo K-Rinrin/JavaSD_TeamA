@@ -5,11 +5,13 @@
 <c:param name="title" value="得点管理システム" />
 <c:param name="body">
 <div class="GRMR001">
-<%-- ① 画面タイトル --%>
-<h2>成績参照</h2>
-<%-- 共通検索フォームをインポート --%>
-<c:import url="grade-search.jsp" />
-<%-- この画面では結果表示エリアは不要 --%>
+
+	<%-- ① 画面タイトル --%>
+	<h2>成績参照</h2>
+
+	<%-- 共通検索フォームをインポート --%>
+	<c:import url="grade-search.jsp" />
+
 </div>
 </c:param>
 </c:import>
