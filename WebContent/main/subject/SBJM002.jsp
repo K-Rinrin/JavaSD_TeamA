@@ -17,7 +17,7 @@
             <h2>科目情報登録</h2>
 
             <%-- 登録処理を実行するためのフォーム --%>
-            <form action="SubjectCreateExecute.action" method="post">
+            <form action="SBJM002Execute" method="post">
                 <%-- 科目コード入力エリア --%>
                 <div class="form-group">
                     <%-- ② 科目コード ラベル --%>
@@ -39,7 +39,7 @@
             </form>
 
             <%-- ⑦ 戻るリンク --%>
-            <a href="SubjectList.action">戻る</a>
+            <a href="${pageContext.request.contextPath}/main/student/SBJM001">戻る</a>
 
         </div>
     </c:param>
