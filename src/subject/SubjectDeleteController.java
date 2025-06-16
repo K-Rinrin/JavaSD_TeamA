@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/subDelete" })
+@WebServlet(urlPatterns = { "/main/subject/SBJM006" })
 
 public class SubjectDeleteController extends CommonServlet {
 
