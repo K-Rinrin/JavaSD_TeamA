@@ -12,6 +12,7 @@ public class StudentCreateController extends CommonServlet {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
+		//学生登録
 	}
 
 	@Override

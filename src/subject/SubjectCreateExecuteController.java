@@ -22,6 +22,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
+		//学生を登録
 	}
 
 }
