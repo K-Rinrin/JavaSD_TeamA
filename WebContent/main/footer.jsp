@@ -4,12 +4,11 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="footer">
+<footer class="mt-auto bg-light text-center py-3">
+    <div class="container">
 
-	<footer>
+		<p class="mb-0 text-muted">© 2023 TIC</p>
+        <p class="mb-0 text-muted">大原学園</p>
 
-		<p>© 2023 TIC</p>
-		<p>大原学園</p>
-
-	</footer>
-</div>
+    </div>
+</footer>
