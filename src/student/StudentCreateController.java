@@ -10,13 +10,18 @@ import bean.Student;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/create"})//
+@WebServlet(urlPatterns={"/main/student/studentcreate"})//
 public class StudentCreateController extends CommonServlet {
 
 	//学生登録
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+
+
+		/*
+		 * なにこれ
+		 */
 
 		//学生登録
 
