@@ -12,6 +12,8 @@
 
 <div class="container mt-4">
 
+
+
 	<%-- 画面タイトル --%>
 	<header class="mb-4">
 		<h2>メニュー</h2>

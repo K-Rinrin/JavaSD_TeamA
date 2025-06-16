@@ -6,6 +6,7 @@ body {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     background-color: #ffffff; /* 背景色を白に変更 */
     margin: 0;
+
 }
 
 .page-container {
@@ -23,5 +24,6 @@ body {
 }
 
 
-
-
+.container {
+    max-width: 960px; /* この値を変更して幅を調整 */
+}

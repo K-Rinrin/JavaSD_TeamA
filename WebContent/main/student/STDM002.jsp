@@ -12,65 +12,66 @@
 	<%-- ページ本文の内容 --%>
  	<c:param name="body">
 
+	<div class="container mt-4" style="max-width: 700px;">
+		<div class="card border-0">
+			<div class="card-header bg-light border-0">
+				<%-- 画面タイトルを表示 --%>
+				<h2 class="h5 mb-0">学生情報登録</h2>
+			</div>
+			<div class="card-body">
+				<form action="${pageContext.request.contextPath}/main/student/STDM002" method="post">
 
- 	<%-- 画面タイトルを表示 --%>
-	<h2>学生情報登録</h2>
-
-
-
-	<form action="${pageContext.request.contextPath}/main/student/STDM002" method="post">
-
-
-	<%-- 入学年度の選択 --%>
-      <label>入学年度</label><br>
-      <select name="ent_year" required>
-        <option value="">----</option>
-
-	        <c:forEach var="stu" items="${student}">
-	          <option value="${stu.ent_year}">${stu.ent_year}</option>
-        	</c:forEach>
-      </select>
-      <br>
-
-
-
-      <%-- 学生番号の入力（最大文字数10・必須） --%>
-      <label>学生番号</label><br>
-      <input type="text" name="no"  value="${no}" placeholder="学生番号を入力してください" maxlength="10" required>
-       <br>
+					<%-- 入学年度の選択 --%>
+					<div class="mb-3">
+						<label class="form-label">入学年度</label>
+						<select name="ent_year" class="form-select" required>
+							<option value="">--------</option>
+							<c:forEach var="stu" items="${student}">
+							<option value="${stu.ent_year}">${stu.ent_year}</option>
+							</c:forEach>
+						</select>
+					</div>
 
 
-      <%-- 氏名の入力（最大文字数30・必須） --%>
-      <label>氏名</label><br>
-      <input type="text" name="name"  value="${name}" placeholder="氏名を入力してください"  maxlength="30" required>
-       <br>
+					<%-- 学生番号の入力（最大文字数10・必須） --%>
+					<div class="mb-3">
+						<label class="form-label">学生番号</label>
+						<input type="text" name="no"  value="${no}" placeholder="学生番号を入力してください" maxlength="10" required class="form-control">
+					</div>
 
 
-
-       <%-- クラスの選択 --%>
-      <label>クラス</label><br>
-      <select name="class_num" required>
-        <option value="">----</option>
-
-	        <c:forEach var="classNum" items="${classNum}">
-	          <option value="${classNum.classNum}">${classNum.classNum}</option>
-        	</c:forEach>
-      </select>
-      <br>
+					<%-- 氏名の入力（最大文字数30・必須） --%>
+					<div class="mb-3">
+						<label class="form-label">氏名</label>
+						<input type="text" name="name"  value="${name}" placeholder="氏名を入力してください"  maxlength="30" required class="form-control">
+					</div>
 
 
-      <%-- 登録完了画面に遷移 --%>
-	  <button type="submit" name="end">登録して終了 </button>
+					<%-- クラスの選択 --%>
+					<div class="mb-4">
+						<label class="form-label">クラス</label>
+						<select name="class_num" class="form-select" required>
+							<option value="">--------</option>
+							<c:forEach var="classNum" items="${classNum}">
+							<option value="${classNum.classNum}">${classNum.classNum}</option>
+							</c:forEach>
+						</select>
+					</div>
 
 
-	  </form>
+					<%-- 登録完了画面に遷移 --%>
+					<button type="submit" name="end" class="btn btn-secondary">登録して終了</button>
 
+				</form>
 
+				<div class="mt-3">
+					<%-- 学生一覧画面に遷移する --%>
+					<a href="${pageContext.request.contextPath}/main/student/STDM001">戻る</a>
+				</div>
 
-	  <%-- 学生一覧画面に遷移する --%>
-	  <a href="${pageContext.request.contextPath}/main/student/STDM001">戻る</a>
-
-
+			</div>
+		</div>
+	</div>
 
 
 	</c:param>

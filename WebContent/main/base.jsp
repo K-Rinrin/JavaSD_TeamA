@@ -25,16 +25,18 @@
 	</head>
 	<body>
 
-	<c:import url="/main/header.jsp"/>
+		<div class="container">
+			<c:import url="/main/header.jsp"/>
 
-	<div class="page-container">
-		<c:import url="/main/menu.jsp"/>
-		<main class="main-content">
-			${ param.body }
-		</main>
-	</div>
+			<div class="page-container">
+				<c:import url="/main/menu.jsp"/>
+				<main class="main-content">
+					${ param.body }
+				</main>
+			</div>
 
-	<c:import url="/main/footer.jsp"/>
+			<c:import url="/main/footer.jsp"/>
+		</div>
 
 	</body>
 </html>

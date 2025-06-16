@@ -12,18 +12,23 @@
 
  	<%-- ページ本文の内容 --%>
  	<c:param name="body">
+		<div class="card border-0">
+			<div class="card-header bg-light border-0">
+				<%-- 画面タイトルを表示 --%>
+				<h2 class="h5 mb-0">学生情報変更</h2>
+			</div>
+			<div class="card-body">
+				<%-- 完了メッセージの表示 --%>
+				<div class="alert alert-success text-center" role="alert">
+					変更が完了しました
+				</div>
 
- 	<%-- 画面タイトルを表示 --%>
-	<h2>学生情報変更</h2>
-
-	<%-- 完了メッセージの表示 --%>
-    <p><label>変更が完了しました</label></p>
-
-    <%-- 学生一覧画面に遷移する --%>
-	<a href="${pageContext.request.contextPath}/main/student/STDM001">学生一覧</a>
-
-
-
+				<div class="mt-4">
+					<%-- 学生一覧画面に遷移する --%>
+					<a href="${pageContext.request.contextPath}/main/student/STDM001">学生一覧</a>
+				</div>
+			</div>
+		</div>
 
 	</c:param>
 </c:import>
