@@ -26,10 +26,10 @@
             <tbody>
               <c:forEach var="subject" items="${subjectList}">
                 <tr>
-                  <td>${subject.code}</td>
+                  <td>${subject.cd}</td>
                   <td>${subject.name}</td>
-                  <td><a href="subjectEdit.jsp?code=${subject.code}">変更</a></td>
-                  <td><a href="subjectDelete.jsp?code=${subject.code}">削除</a></td>
+                  <td><a href="subjectEdit.jsp?code=${subject.cd}">変更</a></td>
+                  <td><a href="subjectDelete.jsp?code=${subject.cd}">削除</a></td>
                 </tr>
               </c:forEach>
             </tbody>

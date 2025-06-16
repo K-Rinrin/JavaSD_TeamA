@@ -34,9 +34,9 @@ public class SubjectDAO extends DAO {
            ResultSet rs = stmt.executeQuery();
            if (rs.next()) {
                Subject subject = new Subject();
+               School school = new School();
                subject.setCd(rs.getString("cd"));
                subject.setName(rs.getString("name"));
-               School school = new School();
                school.setCd(rs.getString("school_cd"));
                subject.setSchool(school);
                return subject;
@@ -48,14 +48,14 @@ public class SubjectDAO extends DAO {
    public List<Subject> getAllSubjects() throws SQLException {
        List<Subject> list = new ArrayList<>();
        try (Connection con = getConnection()) {
-    	   String sql = "SELECT * FROM subject";
+    	   String sql = "SELECT * FROM subject ORDER BY cd DESC";
     	   PreparedStatement stmt = con.prepareStatement(sql);
            ResultSet rs = stmt.executeQuery(sql);
            while (rs.next()) {
                Subject subject = new Subject();
+               School school = new School();
                subject.setCd(rs.getString("cd"));
                subject.setName(rs.getString("name"));
-               School school = new School();
                school.setCd(rs.getString("school_cd"));
                subject.setSchool(school);
                list.add(subject);

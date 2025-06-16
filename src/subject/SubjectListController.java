@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Subject;
 import dao.SubjectDAO;
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/subList" })
+@WebServlet(urlPatterns = { "/main/subject/SBJM001" })
 
 public class SubjectListController extends CommonServlet {
 
@@ -26,7 +26,7 @@ public class SubjectListController extends CommonServlet {
 			// JSPで使えるようにリクエストスコープにデータを格納
 			req.setAttribute("subjectList", list);
 			// JSPに処理を渡す
-			req.getRequestDispatcher("/main/subjct/SBJM001.jsp").forward(req, resp);
+			req.getRequestDispatcher("/main/subject/SBJM001.jsp").forward(req, resp);
 
 
 		} catch (Exception e) {
