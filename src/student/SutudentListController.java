@@ -1,33 +1,41 @@
 package student;
 
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Student;
+import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/sutudent/list"})//
+@WebServlet(urlPatterns={"/main/student/studentlist"})//
 public class SutudentListController extends CommonServlet {
 
 	//学生一覧
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		//絞り込み条件（未入力ならNULL）
-		int EntYear = Integer.parseInt(req.getParameter("EntYear"));
-		String ClassNum = req.getParameter("ClassNum");
-		boolean Attend =
+		int entyear = Integer.parseInt(req.getParameter("ent_year"));
+		String classnum = req.getParameter("class_num");
+		boolean isattend = Boolean.parseBoolean(req.getParameter("is_attend"));
 
-		//学生情報の取得（全件か絞り込み付か）
-		StudentDAO dao = new StudentDAO();
-		List<Student> list = dao.findAll();
+		//絞り込み条件無しなら全部の情報
+		//ありならそれに応じた情報をDBから取得
+		StudentDAO dao = new StudentDAO(null);
+		List<Student> stu = dao.findStudents(entyear, classnum, isattend);
 
-		req.setAttribute("list", list);
+		req.setAttribute("stu", stu);
+		req.setAttribute("entyear", entyear);
+		req.setAttribute("classnum", classnum);
+		req.setAttribute("isattend", isattend);
 
 
 		//学生一覧と条件をJSPに渡す
 		req.getRequestDispatcher("main/student/STDM001.jsp").forward(req, resp);
 
-		//
+
 	}
 
 	@Override
