@@ -19,11 +19,11 @@
             <div class="actions">
                 <%-- ③ 戻るリンク (イベントID: 41) --%>
                 <%-- 設計書に基づき「科目登録画面」に遷移 --%>
-                <a href="SubjectCreate.action">戻る</a>
+                <a href="${pageContext.request.contextPath}/main/subject/SBJM002">戻る</a>
 
                 <%-- ④ 科目一覧リンク (イベントID: 40) --%>
                 <%-- 設計書に基づき「科目管理一覧画面」に遷移 --%>
-                <a href="SubjectList.action">科目一覧</a>
+                <a href="${pageContext.request.contextPath}/main/subject/SBJM001">科目一覧</a>
             </div>
         </div>
     </c:param>

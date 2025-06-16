@@ -43,19 +43,17 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	        String name = req.getParameter("name");
 
 
-
 	        // Subject インスタンスを作成し、情報をセット
 	        Subject subject = new Subject();
 	        subject.setCd(cd);
 	        subject.setName(name);
 	        subject.setSchool(teacher.getSchool()); // 先生の所属学校をセット
+
+
 	        // DAO を使って科目をDBに登録
 	        SubjectDAO dao = new SubjectDAO(null);
 	        dao.addSubject(subject);
 
-
-
-			resp.sendRedirect(req.getContextPath() + "/main/subject/SBJM003");
 
 
 	    } catch (Exception e) {
@@ -64,7 +62,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 //	        req.setAttribute("error", "科目の登録に失敗しました。");
 //	        req.getRequestDispatcher("/main/subject/SBJM002.jsp").forward(req, resp);
 	    }
-
+		resp.sendRedirect(req.getContextPath() + "/main/subject/SBJM003.jsp");
 	}
 
 }

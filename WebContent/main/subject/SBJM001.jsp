@@ -39,11 +39,11 @@
                     <td><c:out value="${subject.name}" /></td>
                     <%-- ⑧ 科目情報変更リンク --%>
                     <td>
-                        <a href="SubjectUpdate.action?cd=${subject.cd}">変更</a>
+                        <a href="${pageContext.request.contextPath}/main/subject/SBJM004?cd=${subject.cd}">変更</a>
                     </td>
                     <%-- ⑨ 科目情報削除リンク --%>
                     <td>
-                        <a href="SubjectDelete.action?cd=${subject.cd}">削除</a>
+                        <a href="${pageContext.request.contextPath}/main/subject/SBJM006?cd=${subject.cd}">削除</a>
                     </td>
                 </tr>
             </c:forEach>

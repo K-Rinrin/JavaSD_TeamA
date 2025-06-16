@@ -39,7 +39,7 @@
             </form>
 
             <%-- ⑦ 戻るリンク --%>
-            <a href="${pageContext.request.contextPath}/main/student/SBJM001">戻る</a>
+            <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
 
         </div>
     </c:param>
