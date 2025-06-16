@@ -48,7 +48,7 @@
 			</select>
 			</td>
 
-			<!-- 科目セレクトボックス -->
+			<%-- 科目セレクトボックス --%>
 			<td>
 			<select name="f3">
 				<option value="">--------</option>
@@ -58,7 +58,7 @@
 			</select>
 			</td>
 
-			<!-- 回数セレクトボックス -->
+			<%-- 回数セレクトボックス --%>
 			<td>
 			<select name="f4">
 				<option value="">--------</option>
@@ -68,7 +68,7 @@
 			</select>
 			</td>
 
-			<!-- 検索ボタン -->
+			<%-- 検索ボタン --%>
 			<td>
 				<button type="submit">検索</button>
 			</td>
@@ -115,13 +115,13 @@
 					</c:forEach>
 				</td>
 
-				<!-- クラス -->
+				<%-- クラス --%>
 				<td>${score.classnum}</td>
 
-				<!-- 学生番号 -->
+				<%-- 学生番号 --%>
 				<td>${score.studentno}</td>
 
-				<!-- 氏名 -->
+				<%-- 氏名 --%>
 				<td>
 				 <c:forEach var="stu" items="${student}">
 				 <c:if test="${stu.no == score.studentno}">
@@ -130,7 +130,7 @@
 				 </c:forEach>
 				</td>
 
-				<!-- 点数入力欄 -->
+				<%-- 点数入力欄 --%>
 				<td>
 				 <input type="number" name="point_${score.studentno}"
 				  value="${score.point}" min="0" max="100" required />

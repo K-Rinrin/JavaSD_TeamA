@@ -1,4 +1,3 @@
-
 <%-- 科目管理一覧画面 --%>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -9,37 +8,55 @@
 <c:param name="body">
 
 <div class="SBJM001">
-<h2>科目管理</h2>
-      <a href="${pageContext.request.contextPath}/main/subject/SBJM002">新規登録</a>
 
-      <c:choose>
-        <c:when test="${not empty subjectList}">
-          <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-              <tr>
-                <th>科目cd</th>
-                <th>科目名</th>
-                <th>編集</th>
-                <th>削除</th>
-              </tr>
-            </thead>
-            <tbody>
-              <c:forEach var="subject" items="${subjectList}">
-                <tr>
-                  <td>${subject.cd}</td>
-                  <td>${subject.name}</td>
-                  <td><a href="subjectEdit.jsp?code=${subject.cd}">変更</a></td>
-                  <td><a href="subjectDelete.jsp?code=${subject.cd}">削除</a></td>
-                </tr>
-              </c:forEach>
-            </tbody>
-          </table>
-        </c:when>
-        <c:otherwise>
-          <p>科目は登録されていません。</p>
-        </c:otherwise>
-      </c:choose>
+    <%-- 画面上部のヘッダー部分 (タイトルと新規登録リンク) --%>
+    <div class="main-header">
+        <%-- ① 画面タイトル --%>
+        <h2>科目管理</h2>
+        <%-- ② 新規登録リンク --%>
+        <a href="SubjectCreate.action">新規登録</a>
     </div>
 
+    <%-- ③ 科目一覧テーブル --%>
+    <table class="subject-table">
+        <thead>
+            <tr>
+                <%-- ④ ヘッダ（科目コード） --%>
+                <th>科目コード</th>
+                <%-- ⑤ ヘッダ（科目名） --%>
+                <th>科目名</th>
+                <%-- 変更・削除リンク用のヘッダ --%>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%-- コントローラーから渡された科目リスト(subjects)をループ表示 --%>
+            <c:forEach var="subject" items="${subjects}">
+                <tr>
+                    <%-- ⑥ 科目情報（科目コード） --%>
+                    <td><c:out value="${subject.cd}" /></td>
+                    <%-- ⑦ 科目情報（科目名） --%>
+                    <td><c:out value="${subject.name}" /></td>
+                    <%-- ⑧ 科目情報変更リンク --%>
+                    <td>
+                        <a href="SubjectUpdate.action?cd=${subject.cd}">変更</a>
+                    </td>
+                    <%-- ⑨ 科目情報削除リンク --%>
+                    <td>
+                        <a href="SubjectDelete.action?cd=${subject.cd}">削除</a>
+                    </td>
+                </tr>
+            </c:forEach>
+
+            <%-- 科目が一件も登録されていない場合の表示 --%>
+            <c:if test="${empty subjects}">
+                <tr>
+                    <td colspan="4" class="no-data">科目が登録されていません。</td>
+                </tr>
+            </c:if>
+        </tbody>
+    </table>
+
+</div>
 </c:param>
 </c:import>

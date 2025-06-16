@@ -11,50 +11,45 @@
 <div class="SBJM004">
 
     <%-- ① 画面タイトル --%>
-    <h2 class="h2">科目情報変更</h2>
+    <h2>科目情報変更</h2>
 
-    <%-- 変更フォーム --%>
+    <%-- 変更処理を実行するためのフォーム --%>
     <form action="SubjectUpdateExecute.action" method="post">
-
-        <%-- 科目コード（変更不可） --%>
+        <%-- 科目コード表示エリア --%>
         <div class="form-group">
-            <%-- ② 科目コード ラベル --%>
+            <%-- ② 項目タイトル（科目コード） --%>
             <label for="subject-cd">科目コード</label>
-
-            <%-- ③ 科目コード表示テキスト --%>
-            <input type="text" id="subject-cd" name="cd" class="form-control" value="${code}" readonly>
+            <%--
+                ③ 科目コード (編集不可)
+                readonly属性で編集を禁止します。
+                更新対象を特定するため、name="cd"で値をサーバーに送信します。
+            --%>
+            <input type="text" id="subject-cd" name="cd" value="<c:out value="${subject.cd}"/>" readonly>
         </div>
 
-        <%-- (追加) 対象科目削除済みエラーの表示エリア --%>
-        <%-- コントローラから "errors" Map の "global" キーでメッセージが渡された場合に表示 --%>
-        <c:if test="${not empty errors.global}">
-            <div class="error-message">${errors.global}</div>
-        </c:if>
-
-        <%-- 科目名（変更可能） --%>
+        <%-- 科目名入力エリア --%>
         <div class="form-group">
-            <%-- ④ 科目名 ラベル --%>
+            <%-- ④ 項目タイトル（科目名） --%>
             <label for="subject-name">科目名</label>
+            <%--
+                ⑤ 科目名入力テキスト
+                初期値として選択された科目の名前を表示します。
+                エラーで再表示された場合も入力内容が保持されます。
+            --%>
+            <input type="text" id="subject-name" name="name" value="<c:out value="${subject.name}"/>">
 
-            <%-- 科目名未入力エラーの表示エリア --%>
-            <%-- コントローラから "errors" Map の "name" キーでメッセージが渡された場合に表示 --%>
+            <%-- バリデーションエラーメッセージの表示領域（例） --%>
             <c:if test="${not empty errors.name}">
-                <div class="error-message">${errors.name}</div>
+                <div class="error-message"><c:out value="${errors.name}" /></div>
             </c:if>
-
-            <%-- ⑤ 科目名入力テキスト --%>
-            <input type="text" id="subject-name" name="name" class="form-control" value="${name}" maxlength="80">
         </div>
 
-        <%-- 操作ボタンエリア --%>
-        <div class="actions">
-            <%-- ⑥ 変更ボタン --%>
-            <button type="submit" class="btn btn-primary">変更</button>
-
-            <%-- ⑦ 戻るリンク --%>
-            <a href="SubjectList.action">戻る</a>
-        </div>
+        <%-- ⑥ 変更ボタン --%>
+        <input type="submit" value="変更">
     </form>
+
+    <%-- ⑦ 戻るリンク --%>
+    <a href="SubjectList.action">戻る</a>
 
 </div>
 </c:param>
