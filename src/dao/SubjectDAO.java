@@ -48,9 +48,9 @@ public class SubjectDAO extends DAO {
    public List<Subject> getAllSubjects() throws SQLException {
        List<Subject> list = new ArrayList<>();
        try (Connection con = getConnection()) {
-    	   String sql = "SELECT * FROM subject ORDER BY cd DESC";
+    	   String sql = "SELECT * FROM subject ORDER BY cd";
     	   PreparedStatement stmt = con.prepareStatement(sql);
-           ResultSet rs = stmt.executeQuery(sql);
+           ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
                Subject subject = new Subject();
                School school = new School();
