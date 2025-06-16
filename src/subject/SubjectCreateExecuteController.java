@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Subject;
+import dao.SubjectDAO;
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/main/subject/SBJM002aaaaaasa" })
+@WebServlet(urlPatterns = { "/main/subject/SBJM002Execute" })
 
 
 public class SubjectCreateExecuteController extends CommonServlet {
@@ -22,6 +24,17 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+		try {
+			Subject subject = new Subject();
+			subject.setCd(req.getParameter("cd"));
+			subject.setName(req.getParameter("name"));
+
+			SubjectDAO dao = new SubjectDAO(null);
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 	}
 
