@@ -23,7 +23,7 @@
 
 		<%-- 学生管理リンク --%>
 		<div class="kanri kanri-student">
-			<a href="${pageContext.request.contextPath}/student/SBJM001">学生管理</a>
+			<a href="${pageContext.request.contextPath}/main/student/STDM001">学生管理</a>
 		</div>
 
 
@@ -31,15 +31,15 @@
 		<div class="kanri kanri-grades">
 			<a>成績管理</a>
 			<%-- 成績登録リンク --%>
-			<a href="${pageContext.request.contextPath}/grade/GRMU001">成績登録</a>
+			<a href="${pageContext.request.contextPath}/main/grade/GRMU001">成績登録</a>
 			<%-- 成績参照リンク --%>
-			<a href="${pageContext.request.contextPath}/grade/GRMR001">成績参照</a>
+			<a href="${pageContext.request.contextPath}/main/grade/GRMR001">成績参照</a>
 		</div>
 
 
 		<%-- 科目管理リンク --%>
 		<div class="kanri kanri-subjects">
-			<a href="${pageContext.request.contextPath}/subject/SBJM001">科目管理</a>
+			<a href="${pageContext.request.contextPath}/main/subject/SBJM001">科目管理</a>
 		</div>
 	</main>
 </div>
