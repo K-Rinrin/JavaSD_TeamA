@@ -33,7 +33,7 @@
                     <%-- ③ 科目コード入力テキスト --%>
                     <%-- value="${cd}" でエラー時にサーバーから返された値を再表示 --%>
                     <input type="text" id="subject-cd" name="cd" class="form-control"
-                           placeholder="科目コードを入力してください" value="${cd}" maxlength="2">
+                           placeholder="科目コードを入力してください" value="${cd}" maxlength="3">
                 </div>
 
                 <%-- 科目名の入力エリア --%>
