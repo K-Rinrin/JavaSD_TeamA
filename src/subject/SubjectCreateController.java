@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.SubjectDAO;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/main/subject/SBJM002" })
 
@@ -14,15 +13,13 @@ public class SubjectCreateController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
-		SubjectDAO dao = new SubjectDAO(null);
 		req.getRequestDispatcher("SBJM002.jsp").forward(req, resp);
+
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
-		get(req, resp);
 
 	}
 

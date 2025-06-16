@@ -14,7 +14,7 @@
         <%-- ① 画面タイトル --%>
         <h2>科目管理</h2>
         <%-- ② 新規登録リンク --%>
-        <a href="SubjectCreate.action">新規登録</a>
+        <a href="${pageContext.request.contextPath}/main/subject/SBJM002">新規登録</a>
     </div>
 
     <%-- ③ 科目一覧テーブル --%>
