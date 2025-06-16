@@ -19,7 +19,7 @@ public class SubjectListController extends CommonServlet {
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-		SubjectDAO dao = new SubjectDAO(null);
+		SubjectDAO dao = new SubjectDAO();
 		List<Subject> list = dao.getAllSubjects();
 		req.setAttribute("subjects", list);
 		// JSPに処理を渡す

@@ -12,14 +12,11 @@ import bean.Subject;
 
 
 public class SubjectDAO extends DAO {
-   private Connection connection;
-   public SubjectDAO(Connection connection) {
-       this.connection = connection;
-   }
+
    // 科目の追加
    public void addSubject(Subject subject) throws SQLException {
-       String sql = "INSERT INTO subject (cd, name, school_cd) VALUES (?, ?, ?)";
        try (Connection con = getConnection()) {
+    	   String sql = "INSERT INTO subject (cd, name, school_cd) VALUES (?, ?, ?)";
     	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, subject.getCd());
            stmt.setString(2, subject.getName());

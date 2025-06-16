@@ -28,19 +28,12 @@ public class SubjectCreateExecuteController extends CommonServlet {
 		// TODO 自動生成されたメソッド・スタブ
 
 		try {
-	        // ログイン中の先生（sessionの"user"）を取得
-	        Teacher teacher = (Teacher) req.getSession().getAttribute("user");
-
-//	        if (teacher == null) {
-//	            // ログインしていない場合の処理
-//	            resp.sendRedirect(req.getContextPath() +"/main/accounts/LOGI001");
-//	            return;
-//	        }
-
-
 	        // フォームから取得した科目コードと名前を取得
 	        String cd = req.getParameter("cd");
 	        String name = req.getParameter("name");
+	     // ログイン中の先生（sessionの"user"）を取得
+	        Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
+
 
 
 	        // Subject インスタンスを作成し、情報をセット
@@ -51,7 +44,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 
 
 	        // DAO を使って科目をDBに登録
-	        SubjectDAO dao = new SubjectDAO(null);
+	        SubjectDAO dao = new SubjectDAO();
 	        dao.addSubject(subject);
 
 
