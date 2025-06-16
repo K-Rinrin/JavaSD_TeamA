@@ -10,12 +10,12 @@ import bean.Student;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/studentlist"})//
-public class SutudentListController extends CommonServlet {
+@WebServlet(urlPatterns={"/studentlist"})//
+public class StudentListController extends CommonServlet {
 
-	//学生一覧
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		// TODO 自動生成されたメソッド・スタブ
 		//絞り込み条件（未入力ならNULL）
 		int entyear = Integer.parseInt(req.getParameter("ent_year"));
 		String classnum = req.getParameter("class_num");
@@ -36,12 +36,14 @@ public class SutudentListController extends CommonServlet {
 		req.getRequestDispatcher("main/student/STDM001.jsp").forward(req, resp);
 
 
+
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 		get(req, resp); // POST → GETと同じ処理に委譲
+
 	}
 
 }

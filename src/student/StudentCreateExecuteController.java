@@ -25,6 +25,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 
 		/*
 		 * なにこれ
+		 * ぜったいちがうじゃん
 		 */
 
 		//学生登録
@@ -36,7 +37,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 			stu.setClassNum(req.getParameter("class_num"));
 			stu.setAttend(Boolean.parseBoolean(req.getParameter("is_attend")));
 
-			StudentDAO dao = new StudentDAO();
+			StudentDAO dao = new StudentDAO(null);
 			dao.addStudent(stu);
 
 		}catch (Exception e) {
