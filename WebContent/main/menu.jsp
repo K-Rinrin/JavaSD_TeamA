@@ -10,7 +10,7 @@
 
 
 		<%-- メイン画面リンク --%>
-		<li class="h5 mb-0"><a href="${pageContext.request.contextPath}/main/MMNU001">メニュー</a></li>
+		<li class="mb-2"><a href="${pageContext.request.contextPath}/main/MMNU001">メニュー</a></li>
 
 		<%-- 学生管理リンク --%>
 		<li class="mb-2"><a href="${pageContext.request.contextPath}/main/student/SBJM001">学生管理</a></li>
