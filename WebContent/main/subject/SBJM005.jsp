@@ -10,9 +10,16 @@
 <div class="SBJM005">
 
 
+ <%-- ① 画面タイトル --%>
+            <h2 class="h3 mb-3 fw-normal bg-light py-2 px-4">科目情報変更</h2>
 
+            <%-- ② 完了メッセージ --%>
+            <p class="alert alert-success" role="alert">
+                変更が完了しました
+            </p>
 
-
+            <%-- ③ 科目一覧へリンク --%>
+            <a href="SubjectList.action">科目一覧へ</a>
 
 </div>
 </c:param>
