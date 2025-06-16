@@ -39,7 +39,7 @@ public class SubjectListController extends CommonServlet {
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
-		get(req, resp);
+//		get(req, resp);
 
 	}
 
