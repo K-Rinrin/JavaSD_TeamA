@@ -12,6 +12,9 @@
 	<%-- 共通検索フォームをインポート --%>
 	<c:import url="grade-search.jsp" />
 
+	<hr>
+	<p class="guidance-message">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+
 </div>
 </c:param>
 </c:import>
