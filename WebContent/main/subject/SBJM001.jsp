@@ -10,7 +10,7 @@
 
 <div class="SBJM001">
 <h2>科目管理</h2>
-      <a href="subjectRegister.jsp">新規登録</a>
+      <a href="${pageContext.request.contextPath}/main/subject/SBJM002">新規登録</a>
 
       <c:choose>
         <c:when test="${not empty subjectList}">

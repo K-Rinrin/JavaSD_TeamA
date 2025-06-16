@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/main/SBJM002" })
+@WebServlet(urlPatterns = { "/main/subject/SBJM002" })
 
 public class SubjectCreateController extends CommonServlet {
 

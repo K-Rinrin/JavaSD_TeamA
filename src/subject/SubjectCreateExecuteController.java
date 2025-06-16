@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
-@WebServlet(urlPatterns = { "/accounts/subCreateExecute" })
+@WebServlet(urlPatterns = { "/main/subject/SBJM002" })
 
 public class SubjectCreateExecuteController extends CommonServlet {
 

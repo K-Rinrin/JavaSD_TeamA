@@ -17,7 +17,7 @@
 
             <%-- 登録フォーム --%>
             <%-- action属性には登録処理を行うサーバー側プログラムのURLを指定します --%>
-            <form action="SubjectCreateExecute.action" method="post">
+            <form action="SBJM002" method="post">
 
                 <%-- 科目コードの入力エリア --%>
                 <div class="form-group">
@@ -57,7 +57,7 @@
                     <button type="submit" class="btn btn-primary">登録</button>
 
                     <%-- ⑦ 戻るリンク --%>
-                    <a href="SubjectList.action">戻る</a>
+                    <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
                 </div>
 
             </form>
