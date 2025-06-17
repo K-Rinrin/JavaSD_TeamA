@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Subject;
 import dao.SubjectDAO;
-import bean.School;
-import bean.Subject;
-import bean.Teacher; // Teacherクラスのインポート
-import dao.SubjectDAO;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/main/subject/SBJM004" })
 
