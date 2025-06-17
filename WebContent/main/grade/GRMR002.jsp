@@ -14,12 +14,13 @@
 
 	<%-- 共通検索フォームをインポート --%>
 	<c:import url="grade-search.jsp" />
+
 	<hr>
 		<%-- 結果表示エリア --%>
 		<div class="result-section">
 
 			<div class="result-header">
-				<%-- ① 科目情報 --%>
+				<%--科目情報 --%>
 				科目：${subject.name}
 			</div>
 		<c:choose>
@@ -27,12 +28,12 @@
 		<%-- 結果が存在する場合 --%>
 		<c:when test="${not empty results}">
 
-		<%-- ② 成績一覧テーブル --%>
+		<%-- 成績一覧テーブル --%>
 		<table class="result-table">
 
 		<thead>
 		<tr>
-			<%-- ③～⑧ ヘッダー --%>
+			<%-- ヘッダー --%>
 			<th>入学年度</th>
 			<th>クラス</th>
 			<th>学生番号</th>
@@ -45,7 +46,7 @@
 		<tbody>
 		<c:forEach var="test" items="${results}">
 		<tr>
-			<%-- ⑨～⑫ 成績情報 --%>
+			<%-- 成績情報 --%>
 			<td>${test.student.entYear}</td>
 			<td>${test.student.classNum}</td>
 			<td>${test.student.no}</td>
