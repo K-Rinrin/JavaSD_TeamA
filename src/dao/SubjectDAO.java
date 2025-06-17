@@ -16,11 +16,11 @@ public class SubjectDAO extends DAO {
    // 科目の追加
    public void addSubject(Subject subject) throws SQLException {
        try (Connection con = getConnection()) {
-    	   String sql = "INSERT INTO subject (cd, name, school_cd) VALUES (?, ?, ?)";
+    	   String sql = "INSERT INTO subject (school_cd,cd,name) VALUES (?, ?, ?)";
     	   PreparedStatement stmt = con.prepareStatement(sql);
-           stmt.setString(1, subject.getCd());
-           stmt.setString(2, subject.getName());
-           stmt.setString(3, subject.getSchool().getCd());
+           stmt.setString(1, subject.getSchool().getCd());
+           stmt.setString(2, subject.getCd());
+           stmt.setString(3, subject.getName());
            stmt.executeUpdate();
        } catch (Exception e) {
 		// TODO 自動生成された catch ブロック

@@ -23,7 +23,8 @@
                     <%-- ② 科目コード ラベル --%>
                     <label for="subject-cd">科目コード</label>
                     <%-- ③ 科目コード入力テキスト --%>
-                    <input type="text" id="subject-cd" name="cd" value="<c:out value="${cd}"/>" placeholder="科目コードを入力してください">
+					<input type="text" id="subject-cd" name="cd" maxlength="3" required
+					       value="<c:out value='${cd}'/>" placeholder="科目コードを入力してください">
                 </div>
 
                 <%-- 科目名入力エリア --%>
@@ -31,7 +32,8 @@
                     <%-- ④ 科目名 ラベル --%>
                     <label for="subject-name">科目名</label>
                     <%-- ⑤ 科目名入力テキスト --%>
-                    <input type="text" id="subject-name" name="name" value="<c:out value="${name}"/>" placeholder="科目名を入力してください">
+                    <input type="text" id="subject-name" name="name" required
+                    	value="<c:out value="${name}"/>" placeholder="科目名を入力してください">
                 </div>
 
                 <%-- ⑥ 登録ボタン --%>

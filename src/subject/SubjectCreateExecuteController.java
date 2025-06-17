@@ -28,6 +28,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 		// TODO 自動生成されたメソッド・スタブ
 
 		try {
+
 	        // フォームから取得した科目コードと名前を取得
 	        String cd = req.getParameter("cd");
 	        String name = req.getParameter("name");
@@ -35,12 +36,18 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	        Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
 
 
+//	        if (teacher == null) {
+//	            System.out.println("teacher is null (not logged in?)");
+//	        }
+
+
 
 	        // Subject インスタンスを作成し、情報をセット
 	        Subject subject = new Subject();
+	        subject.setSchool(teacher.getSchool()); // 先生の所属学校をセット
 	        subject.setCd(cd);
 	        subject.setName(name);
-	        subject.setSchool(teacher.getSchool()); // 先生の所属学校をセット
+
 
 
 	        // DAO を使って科目をDBに登録
