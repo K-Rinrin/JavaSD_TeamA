@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +12,12 @@ import bean.Student;
 
 
 public class StudentDAO extends DAO {
-   private Connection connection;
-   public StudentDAO(Connection connection) {
-       this.connection = connection;
-   }
+
    // 学生追加
    public void addStudent(Student student) throws SQLException {
-       String sql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) VALUES (?, ?, ?, ?, ?, ?)";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+       try (Connection con = getConnection()) {
+           String sql = "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) VALUES (?, ?, ?, ?, ?, ?)";
+           PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, student.getNo());
            stmt.setString(2, student.getName());
            stmt.setInt(3, student.getEntYear());
@@ -28,36 +25,58 @@ public class StudentDAO extends DAO {
            stmt.setBoolean(5, student.isAttend());
            stmt.setString(6, student.getSchool().getCd());
            stmt.executeUpdate();
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
    }
+
+
+
    // 学生番号で取得
    public Student getStudentByNo(String no) throws SQLException {
-       String sql = "SELECT * FROM student WHERE no = ?";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+       try (Connection con = getConnection()) {
+    	   String sql = "SELECT * FROM student WHERE no = ?";
+    	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, no);
            ResultSet rs = stmt.executeQuery();
            if (rs.next()) {
                return mapResultSetToStudent(rs);
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        return null;
    }
+
+
+/*
    // 全学生取得
    public List<Student> getAllStudents() throws SQLException {
-       List<Student> list = new ArrayList<>();
-       String sql = "SELECT * FROM student";
-       try (Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)) {
-           while (rs.next()) {
-               list.add(mapResultSetToStudent(rs));
-           }
-       }
-       return list;
+      List<Student> list = new ArrayList<>();
+      try(Connection con = getConnection()) {
+    	  String sql = "SELECT * FROM student";
+    	  PreparedStatement stmt = con.prepareStatement(sql);
+    	  ResultSet rs = stmt.executeQuery();
+    	  while (rs.next()) {
+             list.add(student);
+          }
+      } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	  }
+	  return list
    }
+   */
+
+
    // 学生更新
    public void updateStudent(Student student) throws SQLException {
-       String sql = "UPDATE student SET name = ?, ent_year = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+       try (Connection con = getConnection()) {
+    	   String sql = "UPDATE student SET name = ?, ent_year = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
+    	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, student.getName());
            stmt.setInt(2, student.getEntYear());
            stmt.setString(3, student.getClassNum());
@@ -65,34 +84,34 @@ public class StudentDAO extends DAO {
            stmt.setString(5, student.getSchool().getCd());
            stmt.setString(6, student.getNo());
            stmt.executeUpdate();
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
    }
-   // 学生削除
-   public void deleteStudent(String no) throws SQLException {
-       String sql = "DELETE FROM student WHERE no = ?";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-           stmt.setString(1, no);
-           stmt.executeUpdate();
-       }
-   }
+
+
+
    // ★ 入学年度、クラス番号、在学状態で絞り込み
    public List<Student> findStudents(Integer entYear, String classNum, Boolean isAttend) throws SQLException {
        List<Student> list = new ArrayList<>();
-       StringBuilder sql = new StringBuilder("SELECT * FROM student WHERE 1=1");
+       String sql = "SELECT * FROM student WHERE 1=1";
        List<Object> params = new ArrayList<>();
        if (entYear != null) {
-           sql.append(" AND ent_year = ?");
+           sql += " AND ent_year = ?";
            params.add(entYear);
        }
        if (classNum != null && !classNum.isEmpty()) {
-           sql.append(" AND class_num = ?");
+           sql += " AND class_num = ?";
            params.add(classNum);
        }
        if (isAttend != null) {
-           sql.append(" AND is_attend = ?");
+           sql+= " AND is_attend = ?";
            params.add(isAttend);
        }
-       try (PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+       try (Connection con = getConnection()) {
+    	   PreparedStatement stmt = con.prepareStatement(sql);
+           System.out.println("connection：" + stmt);
            for (int i = 0; i < params.size(); i++) {
                stmt.setObject(i + 1, params.get(i));
            }
@@ -100,7 +119,10 @@ public class StudentDAO extends DAO {
            while (rs.next()) {
                list.add(mapResultSetToStudent(rs));
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        return list;
    }
    // 結果セットから Student を作るヘルパー
