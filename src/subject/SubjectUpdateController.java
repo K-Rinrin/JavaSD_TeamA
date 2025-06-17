@@ -94,4 +94,5 @@ public class SubjectUpdateController extends CommonServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/main/subject/SBJM005.jsp"); // 仮のパス
         dispatcher.forward(req, resp);
     }
+
 }
