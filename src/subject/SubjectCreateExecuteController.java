@@ -36,9 +36,26 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	        Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
 
 
-//	        if (teacher == null) {
-//	            System.out.println("teacher is null (not logged in?)");
-//	        }
+	     // 入力チェック：科目コードが3文字でない場合
+	        if (cd == null || cd.length() != 3) {
+	            req.setAttribute("cd", cd);
+	            req.setAttribute("name", name);
+	            req.setAttribute("error", "科目コードはちょうど3文字で入力してください。");
+	            req.getRequestDispatcher("/main/subject/SBJM002.jsp").forward(req, resp);
+	            return;
+	        }
+
+	     // 同じコードの科目がすでに存在する場合
+
+	        SubjectDAO dao = new SubjectDAO();
+	        Subject existing = dao.getSubjectByCd(cd);
+	        if (existing != null && existing.getCd() != null) {
+	            req.setAttribute("cd", cd);
+	            req.setAttribute("name", name);
+	            req.setAttribute("error", "その科目コードはすでに登録されています。別のコードを入力してください。");
+	            req.getRequestDispatcher("/main/subject/SBJM002.jsp").forward(req, resp);
+	            return;
+	        }
 
 
 
@@ -51,7 +68,6 @@ public class SubjectCreateExecuteController extends CommonServlet {
 
 
 	        // DAO を使って科目をDBに登録
-	        SubjectDAO dao = new SubjectDAO();
 	        dao.addSubject(subject);
 
 
@@ -60,7 +76,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	        e.printStackTrace();
 	        // エラー画面や元の画面に戻すなど
 //	        req.setAttribute("error", "科目の登録に失敗しました。");
-//	        req.getRequestDispatcher("/main/subject/SBJM002.jsp").forward(req, resp);
+	        req.getRequestDispatcher("/main/subject/ERRO001.jsp").forward(req, resp);
 	    }
 		resp.sendRedirect(req.getContextPath() + "/main/subject/SBJM003.jsp");
 	}
