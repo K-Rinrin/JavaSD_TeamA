@@ -16,6 +16,7 @@
 		<p>登録が完了しました</p>
 	</label>
 
+	<hr>
 	<a href="${pageContext.request.contextPath}/main/grade/GRMU001">戻る</a>
 	<a href="${pageContext.request.contextPath}/main/grade/GRMR001">成績参照</a>
 

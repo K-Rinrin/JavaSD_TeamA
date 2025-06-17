@@ -7,20 +7,23 @@
  - f1, f2, f3, f4: 検索条件の保持用
  - errors: エラーメッセージのマップ
 --%>
+
 <c:if test="${not empty errors.condition_error}">
 	<div class="error-message">${errors.condition_error}</div>
 </c:if>
+
+
 
 <form action="" method="post">
 
 	<%-- 科目情報による検索セクション --%>
 	<div class="search-section subject-search">
 
-	<%-- ② 科目情報ラベル --%>
+	<%-- 科目情報ラベル --%>
 	<div class="section-label">科目情報</div>
 	<div class="controls">
 
-	<%-- ③ 入学年度 --%>
+	<%-- 入学年度 --%>
 	<label>入学年度</label>
 
 	<select name="f1">
@@ -30,7 +33,7 @@
 			</c:forEach>
 	</select>
 
-	<%-- ④ クラス --%>
+	<%-- クラス --%>
 	<label>クラス</label>
 	<select name="f2">
 		<option value="">-------</option>
@@ -39,7 +42,7 @@
 		</c:forEach>
 	</select>
 
-	<%-- ⑤ 科目 --%>
+	<%--  科目 --%>
 	<label>科目</label>
 	<select name="f3">
 		<option value="">-------</option>
@@ -48,8 +51,15 @@
 		</c:forEach>
 	</select>
 
-	<%-- ⑨ 検索ボタン (科目) --%>
-	<button type="submit" name="event" value="31">検索</button>
+	<%-- 検索ボタン (科目) --%>
+	<button type="submit">検索</button>
+
+	<c:if test="${not empty errors.subject_search_error}">
+		<div class="error-message subject-error-area">
+			<%-- コントローラーがセットしたメッセージがここに表示される --%>
+			<span>${errors.subject_search_error}</span>
+		</div>
+	</c:if>
 
 	</div>
 	</div>
@@ -57,21 +67,21 @@
 	<%-- 学生情報による検索セクション --%>
 	<div class="search-section student-search">
 
-		<%-- ⑩ 学生情報ラベル --%>
+		<%-- 学生情報ラベル --%>
 		<div class="section-label">学生情報</div>
 		<div class="controls">
 
-		<%-- ⑪ 学生番号ヘッダー --%>
+		<%--  学生番号ヘッダー --%>
 		<label>学生番号</label>
 
-		<%-- ⑫ 学生番号入力テキスト --%>
+		<%-- 学生番号入力テキスト --%>
 		<input type="text" name="f4" value="${f4}" placeholder="学生番号を入力してください" maxlength="10">
 		<c:if test="${not empty errors.f4}">
 			<span class="error-message-inline">${errors.f4}</span>
 		</c:if>
 
-		<%-- ⑬ 検索ボタン (学生) --%>
-		<button type="submit" name="event" value="32">検索</button>
+		<%-- 検索ボタン (学生) --%>
+		<button type="submit">検索</button>
 		</div>
 	</div>
 
