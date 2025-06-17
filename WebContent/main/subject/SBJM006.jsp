@@ -15,7 +15,7 @@
             <h2>科目情報削除</h2>
 
             <%-- 削除処理を実行するためのフォーム --%>
-            <form action="SubjectDeleteExecute.action" method="post">
+            <form action="${pageContext.request.contextPath}/main/subject/SBJM006Execute" method="post">
 
                 <%-- ② 確認メッセージ --%>
                 <%-- コントローラーから渡される科目オブジェクト(subject)の情報を表示 --%>
@@ -32,7 +32,7 @@
 
             <%-- ④ 戻るリンク --%>
             <%-- 科目管理一覧画面へ遷移する想定 --%>
-            <a href="SubjectList.action">戻る</a>
+            <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
 
 
 

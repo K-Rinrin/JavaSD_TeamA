@@ -34,15 +34,15 @@ public class SubjectDAO extends DAO {
     	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, cd);
            ResultSet rs = stmt.executeQuery();
+           Subject subject = new Subject();
+           School school = new School();
            if (rs.next()) {
-               Subject subject = new Subject();
-               School school = new School();
+               school.setCd(rs.getString("school_cd"));
                subject.setCd(rs.getString("cd"));
                subject.setName(rs.getString("name"));
-               school.setCd(rs.getString("school_cd"));
                subject.setSchool(school);
-               return subject;
            }
+           return subject;
        } catch (Exception e) {
 		// TODO 自動生成された catch ブロック
 		e.printStackTrace();

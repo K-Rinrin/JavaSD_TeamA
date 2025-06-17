@@ -23,7 +23,7 @@
     </p>
 
     <%-- ③ 科目一覧リンク (a) --%>
-    <a href="SubjectList.action">科目一覧</a>
+    <a href="${pageContext.request.contextPath}/main/subject/SBJM001">科目一覧</a>
 
 
 
