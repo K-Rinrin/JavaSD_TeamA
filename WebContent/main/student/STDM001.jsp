@@ -85,13 +85,13 @@
 					<tbody>
 					<c:forEach var="stu" items="${student}">
 						<tr>
-							<td>${stu.entYear}</td>
-							<td>${stu.studentNo}</td>
-							<td>${stu.Name}</td>
-							<td>${stu.classNum}</td>
-							<td>${stu.isAttend}</td>
+							<td>${stu.ent_year}</td>
+							<td>${stu.no}</td>
+							<td>${stu.name}</td>
+							<td>${stu.class_num}</td>
+							<td>${stu.is_attend}</td>
 							<%-- 学生変更画面に遷移する --%>
-							<td>${stu.isAttend ? '在学' : ''}</td>
+							<td>${stu.is_attend ? '在学' : ''}</td>
 							<td><a href="${pageContext.request.contextPath}/main/student/STDM004? no=${stu.no}">変更</a></td>
 						</tr>
 					</c:forEach>
