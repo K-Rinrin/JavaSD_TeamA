@@ -19,7 +19,7 @@
             </p>
 
             <%-- ③ 科目一覧へリンク --%>
-            <a href="SubjectList.action">科目一覧へ</a>
+            <a href="${pageContext.request.contextPath}/main/subject/SBJM001">科目一覧へ</a>
 
 </div>
 </c:param>

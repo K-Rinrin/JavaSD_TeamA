@@ -14,14 +14,38 @@ public class SubjectUpdateExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+
 
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+		try {
+			// パラメータ取得
+			String cd = req.getParameter("cd");
+			String name = req.getParameter("name");
+
+			// セッションから先生情報を取得（所属学校用）
+			bean.Teacher teacher = (bean.Teacher) req.getSession().getAttribute("session_user");
+
+			// Subject を作成して値をセット
+			bean.Subject subject = new bean.Subject();
+			subject.setCd(cd);
+			subject.setName(name);
+			subject.setSchool(teacher.getSchool());
+
+			// DAO で更新
+			dao.SubjectDAO dao = new dao.SubjectDAO();
+			dao.updateSubject(subject);
+
+			// 更新後、一覧ページにリダイレクト
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// エラーページに転送も可能
+			// req.getRequestDispatcher("/error.jsp").forward(req, resp);
+		}
+		resp.sendRedirect(req.getContextPath() + "/main/subject/SBJM005.jsp");
 
 	}
-
 }

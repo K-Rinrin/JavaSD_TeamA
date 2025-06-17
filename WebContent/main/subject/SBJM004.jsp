@@ -14,7 +14,7 @@
     <h2>科目情報変更</h2>
 
     <%-- 変更処理を実行するためのフォーム --%>
-    <form action="SubjectUpdateExecute.action" method="post">
+    <form action="${pageContext.request.contextPath}/main/subject/SBJM004Execute" method="post">
         <%-- 科目コード表示エリア --%>
         <div class="form-group">
             <%-- ② 項目タイトル（科目コード） --%>
@@ -24,7 +24,7 @@
                 readonly属性で編集を禁止します。
                 更新対象を特定するため、name="cd"で値をサーバーに送信します。
             --%>
-            <input type="text" id="subject-cd" name="cd" value="<c:out value="${subject.cd}"/>" readonly>
+			<input type="text" id="subject-cd" name="cd" value="<c:out value='${subject.cd}'/>" readonly>
         </div>
 
         <%-- 科目名入力エリア --%>
@@ -49,7 +49,7 @@
     </form>
 
     <%-- ⑦ 戻るリンク --%>
-    <a href="SubjectList.action">戻る</a>
+    <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
 
 </div>
 </c:param>
