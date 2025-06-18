@@ -17,7 +17,7 @@
 	    <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
 	        <div class="col-md-8 col-lg-6">
 
-	            <%-- cardコンポーネントでフォームを囲む --%>
+
 	            <div class="card shadow-sm">
 
 	                <%-- タイトルの表示 --%>
