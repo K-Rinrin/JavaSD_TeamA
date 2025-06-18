@@ -10,7 +10,7 @@
 
 <div class="GRMR003">
 
-<h2>成績一覧（学生）</h2>
+<h2 class="p-2 mb-4 bg-body-secondary border fw-bold">成績一覧（学生）</h2>
 
 	<%-- 共通検索フォームをインポート --%>
 	<c:import url="grade-search.jsp" />

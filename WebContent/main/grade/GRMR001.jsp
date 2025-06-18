@@ -11,13 +11,13 @@
 <div class="GRMR001">
 
 	<%-- 画面タイトル --%>
-	<h2>成績参照</h2>
+	<h2 class="p-2 mb-4 bg-body-secondary border fw-bold">成績参照</h2>
 
 	<%-- 共通検索フォームをインポート --%>
 	<c:import url="grade-search.jsp" />
 
-	<hr>
-	<p class="guidance-message">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+
+	<p class="class=mt-4 mb-3 text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
 
 </div>
 </c:param>

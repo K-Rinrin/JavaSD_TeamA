@@ -10,19 +10,21 @@
 
 <div class="GRMR002">
 
-	<h2>成績一覧（科目）</h2>
+	<h2 class="p-2 mb-4 bg-body-secondary border fw-bold">成績一覧（科目）</h2>
 
 	<%-- 共通検索フォームをインポート --%>
 	<c:import url="grade-search.jsp" />
 
-	<hr>
 		<%-- 結果表示エリア --%>
-		<div class="result-section">
+		<div class="mt-4">
 
-			<div class="result-header">
-				<%--科目情報 --%>
-				科目：${subject.name}
-			</div>
+			<c:if test="${not empty subject }">
+				<div class="mb-3 fw-bold">
+					<%--科目情報 --%>
+					科目：${subject.name}
+				</div>
+			</c:if>
+
 		<c:choose>
 
 		<%-- 結果が存在する場合 --%>
@@ -31,7 +33,7 @@
 		<%-- 成績一覧テーブル --%>
 		<table class="result-table">
 
-		<thead>
+		<thead class="table-light">
 		<tr>
 			<%-- ヘッダー --%>
 			<th>入学年度</th>
@@ -63,7 +65,7 @@
 
 		<%-- 結果が存在しない場合 --%>
 		<c:otherwise>
-			<p class="no-data-message">学生情報が存在しませんでした</p>
+			<p class="mt-3">学生情報が存在しませんでした</p>
 		</c:otherwise>
 		</c:choose>
 		</div>
