@@ -24,25 +24,29 @@ public class StudentUpdateExecuteController extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
-		StudentDAO dao = new StudentDAO();
+		//学生情報をもらう
+		String name= req.getParameter("name");
+		String classNum = req.getParameter("classNum");
+		Boolean isAttend = Boolean.parseBoolean(req.getParameter("isAttend"));
+		String no = req.getParameter("no");
 
-		//学生情報の更新
 		try{
-			Student stu = new Student();
-			stu.setName(req.getParameter("name"));
-			stu.setClassNum(req.getParameter("classNum"));
-			stu.setAttend(Boolean.parseBoolean(req.getParameter("isAttend")));
+			//情報をDAOに渡す
+			Student student = new Student();
+			student.setName(name);
+			student.setClassNum(classNum);
+			student.setAttend(isAttend);
+			student.setNo(no);
 
-			dao.updateStudent(stu);
+			StudentDAO dao = new StudentDAO();
+			dao.updateStudent(student);
 
+			//フォワード
 			req.getRequestDispatcher("/main/student/STDM005.jsp").forward(req, resp);
-		}catch (Exception e) {
-			// TODO: handle exception
-			req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
-		}
 
-
-
+			} catch (Exception e) {
+				//登録に失敗した場合
+				req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
+			}
 	}
-
 }

@@ -1,5 +1,7 @@
 package student;
 
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,8 @@ public class StudentUpdateController extends CommonServlet {
 		//学生情報をもらう
 		StudentDAO dao = new StudentDAO();
 		Student student = dao.getStudentByNo(no);
+		//クラス番号の一覧をもらう
+		List<Student> allclass = dao.getAllClassNum();
 
 		//確認
 		if (student != null) {
@@ -38,6 +42,7 @@ public class StudentUpdateController extends CommonServlet {
 
 		//学生情報をわたす
 		req.setAttribute("student", student);
+		req.setAttribute("allclass", allclass);
 
 		req.getRequestDispatcher("/main/student/STDM004.jsp").forward(req, resp);
 

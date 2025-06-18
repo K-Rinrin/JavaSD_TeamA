@@ -58,6 +58,24 @@ public class StudentDAO extends DAO {
        return student;
    }
 
+   // クラス番号を取得
+   public List<Student> getAllClassNum() throws SQLException{
+	   List<Student> list = new ArrayList<>();
+	   try(Connection con = getConnection()){
+		   String sql = "select class_num from student group by class_num";
+		   PreparedStatement stmt = con.prepareStatement(sql);
+		   ResultSet rs = stmt.executeQuery();
+		   while (rs.next()) {
+			   Student student = new Student();
+			   student.setClassNum(rs.getString("class_num"));
+	           list.add(student);
+	          }
+	   } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	} return list;
+   }
+
 
 /*
    // 全学生取得
