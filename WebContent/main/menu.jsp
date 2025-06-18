@@ -19,7 +19,7 @@
             <%-- 学生管理リンク --%>
             <li class="mb-2"><a href="${pageContext.request.contextPath}/main/student/SBJM001">学生管理</a></li>
 
-            <%-- 成績管理 --%>
+            <%-- 成績管理リンク --%>
             <li class="mb-2">
                 <h6 class="text-dark fw-bold mb-1">成績管理</h6>
                 <div class="ps-3">

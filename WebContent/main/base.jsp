@@ -1,5 +1,5 @@
 
-<%-- ベース --%>
+<%-- 共通レイアウトを定義 --%>
 
 
 <%@page contentType="text/html; charset=UTF-8"%>
