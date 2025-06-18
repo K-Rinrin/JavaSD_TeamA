@@ -23,15 +23,15 @@
 				<a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
 			</div>
 			<div class="card-body">
-				<form action="${pageContext.request.contextPath}/main/student/STDM001" method="get" class="d-flex align-items-end flex-wrap gap-3">
+				<form action="${pageContext.request.contextPath}/main/student/StudentListController" method="get" class="d-flex align-items-end flex-wrap gap-3">
 
 					<%-- 入学年度の選択 --%>
 					<div>
 						<label class="form-label">入学年度</label>
-						<select name="f1" class="form-select" style="width: 180px;">
+						<select name="entYear" class="form-select" style="width: 180px;">
 							<option value="">----</option>
 							<c:forEach var="stu" items="${student}">
-								<option value="${stu.ent_year}">${stu.ent_year}</option>
+								<option value="${stu.entYear}">${stu.entYear}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -39,17 +39,17 @@
 					<%-- クラスの選択 --%>
 					<div>
 						<label class="form-label">クラス</label>
-						<select name="f2" class="form-select" style="width: 180px;">
+						<select name="classNum" class="form-select" style="width: 180px;">
 							<option value="">----</option>
 							<c:forEach var="stu" items="${student}">
-								<option value="${stu.class_num}">${stu.class_num}</option>
+								<option value="${stu.classNum}">${stu.classNum}</option>
 							</c:forEach>
 						</select>
 					</div>
 
 					<%-- 在学中のON/OFF --%>
 					<div class="form-check mb-2">
-						<input type="checkbox" name="f3" class="form-check-input" id="is-attend-check">
+						<input type="checkbox" name="isAttend" class="form-check-input" id="is-attend-check">
 						<label class="form-check-label" for="is-attend-check">在学中</label>
 					</div>
 
@@ -85,13 +85,13 @@
 					<tbody>
 					<c:forEach var="stu" items="${student}">
 						<tr>
-							<td>${stu.ent_year}</td>
+							<td>${stu.entYear}</td>
 							<td>${stu.no}</td>
 							<td>${stu.name}</td>
-							<td>${stu.class_num}</td>
-							<td>${stu.is_attend}</td>
+							<td>${stu.classNum}</td>
+							<td>${stu.isAttend}</td>
 							<%-- 学生変更画面に遷移する --%>
-							<td>${stu.is_attend ? '在学' : ''}</td>
+							<td>${stu.isAttend ? '在学' : ''}</td>
 							<td><a href="${pageContext.request.contextPath}/main/student/STDM004? no=${stu.no}">変更</a></td>
 						</tr>
 					</c:forEach>

@@ -31,12 +31,18 @@ public class Student {
 	public void setClassNum(String classNum) {
 		this.classNum = classNum;
 	}
+
+
+
 	public boolean isAttend() {
 		return isAttend;
 	}
 	public void setAttend(boolean isAttend) {
 		this.isAttend = isAttend;
 	}
+
+
+
 	public School getSchool() {
 		return school;
 	}
