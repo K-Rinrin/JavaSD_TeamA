@@ -134,6 +134,7 @@ public class StudentDAO extends DAO {
                sql+= " AND is_attend = ?";
                params.add(isAttend);
            }
+           sql += "order by no";
     	   PreparedStatement stmt = con.prepareStatement(sql);
            System.out.println("connection：" + stmt);
            for (int i = 0; i < params.size(); i++) {

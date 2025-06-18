@@ -27,7 +27,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
 		//学生情報をもらう
 		String name= req.getParameter("name");
 		String classNum = req.getParameter("classNum");
-		Boolean isAttend = Boolean.parseBoolean(req.getParameter("isAttend"));
+		Boolean isAttend = req.getParameter("isAttend") != null;
 		String no = req.getParameter("no");
 
 		try{

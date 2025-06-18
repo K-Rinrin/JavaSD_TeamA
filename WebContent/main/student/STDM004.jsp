@@ -32,7 +32,7 @@
 					<%-- 学生番号の表示（読み取り） --%>
 					<div class="mb-3">
 						<label class="form-label">学生番号</label>
-						<input type="text" value="${student.no}" readonly class="form-control">
+						<input type="text" name="no" value="${student.no}" readonly class="form-control">
 					</div>
 
 					<%-- 氏名の入力 --%>
@@ -42,12 +42,11 @@
 					</div>
 
 
-<%-- クラス番号だけを受け取りたい --%>
 					<%-- クラスの選択 --%>
 					<%-- ログインユーザの学校コードに該当する「クラス番号テーブル」の「クラス番号」を表示 --%>
 					<div class="mb-3">
 						<label class="form-label">クラス</label>
-						<select name="class_num" class="form-select" required>
+						<select name="classNum" class="form-select" required>
 						<option value="">----</option>
 							<c:forEach var="allclass" items="${allclass}">
 								<%-- DBから取得した現在のクラスが選択された状態にする --%>
@@ -58,7 +57,7 @@
 
 					<%-- 在学中の有無について判定チェック --%>
 					<div class="form-check mb-4">
-						<input type="checkbox" name="is_attend" value="true" class="form-check-input" id="is_attend_check" ${student.attend ? 'checked' : ''}>
+						<input type="checkbox" name="isAttend" value="true" class="form-check-input" id="is_attend_check" ${student.attend ? 'checked' : ''}>
 						<label class="form-check-label" for="is_attend_check">在学中</label>
 					</div>
 
