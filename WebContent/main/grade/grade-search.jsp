@@ -15,77 +15,101 @@
 </c:if>
 
 
-
+<div class="p-3 mb-4 rounded border">
 <form action="" method="post">
 
 	<%-- 科目情報による検索セクション --%>
-	<div class="search-section subject-search">
+	<div class="row align-items-center ">
 
 	<%-- 科目情報ラベル --%>
-	<div class="section-label">科目情報</div>
-	<div class="controls">
+	<div class="col-md-2 fw-bold">科目情報</div>
 
-	<%-- 入学年度 --%>
-	<label>入学年度</label>
+	<div class="col-md-10">
 
-	<select name="f1">
-		<option value="">-------</option>
-			<c:forEach var="year" items="${entYears}">
-				<option value="${year}" <c:if test="${f1 == year}">selected</c:if>>${year}</option>
-			</c:forEach>
-	</select>
+	<div class="row g-3 align-items-end">
 
-	<%-- クラス --%>
-	<label>クラス</label>
-	<select name="f2">
-		<option value="">-------</option>
-		<c:forEach var="classItem" items="${classNums}">
-			<option value="${classItem.cd}" <c:if test="${f2 == classItem.cd}">selected</c:if>>${classItem.name}</option>
-		</c:forEach>
-	</select>
+		<%-- 入学年度 --%>
+		<div class="col-md">
+		<label for="f1-select" class="form-label">入学年度</label>
+			<select name="f1" id="f1-select" class="form-select">
+				<option value="">-------</option>
+				<c:forEach var="year" items="${entYears}">
+					<option value="${year}" <c:if test="${f1 == year}">selected</c:if>>${year}</option>
+				</c:forEach>
+			</select>
+		</div>
 
-	<%--  科目 --%>
-	<label>科目</label>
-	<select name="f3">
-		<option value="">-------</option>
-		<c:forEach var="subjectItem" items="${subjects}">
-			<option value="${subjectItem.cd}" <c:if test="${f3 == subjectItem.cd}">selected</c:if>>${subjectItem.name}</option>
-		</c:forEach>
-	</select>
+		<%-- クラス --%>
+		<div class="col-md">
+		<label for="f2-select" class="form-label">クラス</label>
+			<select name="f2" id="f2-select" class="form-select">
+				<option value="">-------</option>
+				<c:forEach var="classItem" items="${classNums}">
+					<option value="${classItem.cd}" <c:if test="${f2 == classItem.cd}">selected</c:if>>${classItem.name}</option>
+				</c:forEach>
+			</select>
+		</div>
+
+		<%-- 科目 --%>
+		<div class="col-md">
+		<label for="f3-select" class="form-label">科目</label>
+			<select name="f3" id="f3-select" class="form-select">
+				<option value="">-------</option>
+				<c:forEach var="subjectItem" items="${subjects}">
+					<option value="${subjectItem.cd}" <c:if test="${f3 == subjectItem.cd}">selected</c:if>>${subjectItem.name}</option>
+				</c:forEach>
+			</select>
+		</div>
 
 	<%-- 検索ボタン (科目) --%>
-	<button type="submit">検索</button>
+	<div class="col-md-auto">
+		<button type="submit" class="btn btn-secondary">検索</button>
+	</div>
 
 	<c:if test="${not empty errors.subject_search_error}">
-		<div class="error-message subject-error-area">
-			<%-- コントローラーがセットしたメッセージがここに表示される --%>
+		<div class="text-warning">
 			<span>${errors.subject_search_error}</span>
+
 		</div>
 	</c:if>
 
+
 	</div>
 	</div>
+
+	<hr class="my-2">
 
 	<%-- 学生情報による検索セクション --%>
-	<div class="search-section student-search">
+	<div class="row align-items-center">
 
 		<%-- 学生情報ラベル --%>
-		<div class="section-label">学生情報</div>
-		<div class="controls">
+		<div class="col-md-2 fw-bold">学生情報</div>
+		<div class="col-md-10">
 
 		<%--  学生番号ヘッダー --%>
-		<label>学生番号</label>
+		<label for="f4-input" class="form-label">学生番号</label>
 
 		<%-- 学生番号入力テキスト --%>
-		<input type="text" name="f4" value="${f4}" placeholder="学生番号を入力してください" maxlength="10">
-		<c:if test="${not empty errors.f4}">
-			<span class="error-message-inline">${errors.f4}</span>
-		</c:if>
+		<div class="row g-2">
+			<%-- ⑫ 学生番号入力欄 --%>
+			<div class="col">
+				<input type="text" name="f4" id="f4-input" value="${f4}" placeholder="学生番号を入力してください" maxlength="10"
+                 class="form-control ${not empty errors.f4 ? 'is-invalid' : ''}">
+				<c:if test="${not empty errors.f4}">
 
-		<%-- 検索ボタン (学生) --%>
-		<button type="submit">検索</button>
+					<div class="invalid-feedback d-block">${errors.f4}</div>
+				</c:if>
+			</div>
+
+			<%-- 検索ボタン (学生) --%>
+			<div class="col-md-auto">
+				<button type="submit" class="btn btn-secondary">検索</button>
+			</div>
 		</div>
 	</div>
+</div>
+</div>
 
 </form>
+</div>
 

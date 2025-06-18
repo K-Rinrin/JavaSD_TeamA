@@ -23,11 +23,6 @@ public class StudentCreateExecuteController extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
-		/*
-		 * なにこれ
-		 * ぜったいちがうじゃん
-		 */
-
 		//学生登録
 		try{
 			Student stu = new Student();
@@ -37,16 +32,18 @@ public class StudentCreateExecuteController extends CommonServlet {
 			stu.setClassNum(req.getParameter("class_num"));
 			stu.setAttend(Boolean.parseBoolean(req.getParameter("is_attend")));
 
-			StudentDAO dao = new StudentDAO(null);
+			StudentDAO dao = new StudentDAO();
 			dao.addStudent(stu);
+
+			req.getRequestDispatcher("main/student/STDM003.jsp").forward(req, resp);
 
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			req.getRequestDispatcher("main/student/STDM003.jsp").forward(req, resp);
+			req.getRequestDispatcher("main/ERRO001.jsp").forward(req, resp);
 		}
 
-		req.getRequestDispatcher("main/ERRO001.jsp").forward(req, resp);
+
 	}
 
 }

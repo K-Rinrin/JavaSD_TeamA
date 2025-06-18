@@ -35,19 +35,27 @@ public class StudentDAO extends DAO {
 
    // 学生番号で取得
    public Student getStudentByNo(String no) throws SQLException {
+
+	   Student student = null;
+
        try (Connection con = getConnection()) {
     	   String sql = "SELECT * FROM student WHERE no = ?";
     	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, no);
            ResultSet rs = stmt.executeQuery();
            if (rs.next()) {
-               return mapResultSetToStudent(rs);
+        	   student = new Student();
+               student.setNo(rs.getString("no"));
+               student.setName(rs.getString("name"));
+               student.setEntYear(rs.getInt("ent_year"));
+               student.setClassNum(rs.getString("class_num"));
+               student.setAttend(rs.getBoolean("is_attend"));
            }
        } catch (Exception e) {
 		// TODO 自動生成された catch ブロック
 		e.printStackTrace();
 	}
-       return null;
+       return student;
    }
 
 
@@ -75,14 +83,12 @@ public class StudentDAO extends DAO {
    public void updateStudent(Student student) throws SQLException {
 
        try (Connection con = getConnection()) {
-    	   String sql = "UPDATE student SET name = ?, ent_year = ?, class_num = ?, is_attend = ?, school_cd = ? WHERE no = ?";
+    	   String sql = "UPDATE student SET name = ?, class_num = ?, is_attend = ? WHERE no = ?";
     	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, student.getName());
-           stmt.setInt(2, student.getEntYear());
-           stmt.setString(3, student.getClassNum());
-           stmt.setBoolean(4, student.isAttend());
-           stmt.setString(5, student.getSchool().getCd());
-           stmt.setString(6, student.getNo());
+           stmt.setString(2, student.getClassNum());
+           stmt.setBoolean(3, student.isAttend());
+           stmt.setString(4, student.getNo());
            stmt.executeUpdate();
        } catch (Exception e) {
 		// TODO 自動生成された catch ブロック
@@ -134,20 +140,6 @@ public class StudentDAO extends DAO {
 	}
        return list;
    }
-
-
-
-   // 結果セットから Student を作るヘルパー
-   private Student mapResultSetToStudent(ResultSet rs) throws SQLException {
-       Student student = new Student();
-       student.setNo(rs.getString("no"));
-       student.setName(rs.getString("name"));
-       student.setEntYear(rs.getInt("ent_year"));
-       student.setClassNum(rs.getString("class_num"));
-       student.setAttend(rs.getBoolean("is_attend"));
-       School school = new School();
-       school.setCd(rs.getString("school_cd"));
-       student.setSchool(school);
-       return student;
-   }
 }
+
+
