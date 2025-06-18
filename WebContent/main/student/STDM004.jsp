@@ -26,13 +26,13 @@
 					<%-- 入学年度の表示（読み取り） --%>
 					<div class="mb-3">
 						<label class="form-label">入学年度</label>
-						<input type="text" value="${ent_year}" readonly class="form-control">
+						<input type="text" value="${student.entYear}" readonly class="form-control">
 					</div>
 
 					<%-- 学生番号の表示（読み取り） --%>
 					<div class="mb-3">
 						<label class="form-label">学生番号</label>
-						<input type="text" value="${no}" readonly class="form-control">
+						<input type="text" value="${student.no}" readonly class="form-control">
 					</div>
 
 					<%-- 氏名の入力 --%>
