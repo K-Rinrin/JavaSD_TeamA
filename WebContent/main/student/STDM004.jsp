@@ -50,7 +50,7 @@
 						<option value="">----</option>
 							<c:forEach var="allclass" items="${allclass}">
 								<%-- DBから取得した現在のクラスが選択された状態にする --%>
-								<option value="${allclass.classNum}" ${allclass.classNum == allclass.classNum ? 'selected' : ''}>${allclass.classNum}</option>
+								<option value="${allclass.classNum}" ${allclass.classNum == student.classNum ? 'selected' : ''}>${allclass.classNum}</option>
 							</c:forEach>
 						</select>
 					</div>
