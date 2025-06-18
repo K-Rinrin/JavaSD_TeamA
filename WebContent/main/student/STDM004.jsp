@@ -21,7 +21,7 @@
 
 
 			<div class="card-body">
-				<form action="${pageContext.request.contextPath}/main/student/STDM004" method="post">
+				<form action="${pageContext.request.contextPath}/main/student/studentupdateexecute" method="post">
 
 					<%-- 入学年度の表示（読み取り） --%>
 					<div class="mb-3">

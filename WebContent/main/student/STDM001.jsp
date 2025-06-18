@@ -91,7 +91,7 @@
 							<td>${stu.classNum}</td>
 							<%-- 学生変更画面に遷移する --%>
 							<td>${stu.attend ? '在学' : ''}</td>
-							<td><a href="${pageContext.request.contextPath}/main/student/STDM004? no=${stu.no}">変更</a></td>
+							<td><a href="${pageContext.request.contextPath}/main/student/studentupdate? no=${stu.no}">変更</a></td>
 						</tr>
 					</c:forEach>
 					</tbody>
