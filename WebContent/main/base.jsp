@@ -1,5 +1,5 @@
 
-<%-- ベース --%>
+<%-- 共通レイアウトを定義 --%>
 
 
 <%@page contentType="text/html; charset=UTF-8"%>
@@ -30,9 +30,9 @@
 
 			<div class="page-container">
 				<c:import url="/main/menu.jsp"/>
-				<main class="main-content">
-					${ param.body }
-				</main>
+					<main class="main-content">
+						${ param.body }
+					</main>
 			</div>
 
 			<c:import url="/main/footer.jsp"/>
