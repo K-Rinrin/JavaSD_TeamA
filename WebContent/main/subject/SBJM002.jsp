@@ -27,6 +27,7 @@
 					       value="<c:out value='${cd}'/>" placeholder="科目コードを入力してください">
                 </div>
 
+
                 <%-- 科目名入力エリア --%>
                 <div class="form-group">
                     <%-- ④ 科目名 ラベル --%>
