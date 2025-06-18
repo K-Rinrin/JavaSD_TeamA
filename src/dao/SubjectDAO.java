@@ -73,18 +73,17 @@ public class SubjectDAO extends DAO {
    }
    // 科目の更新
    public void updateSubject(Subject subject) throws SQLException {
-       String sql = "UPDATE subject SET name = ?, school_cd = ? WHERE cd = ?";
-       try (Connection con = getConnection()) {
-    	   PreparedStatement stmt = con.prepareStatement(sql);
-           stmt.setString(1, subject.getName());
-           stmt.setString(2, subject.getSchool().getCd());
-           stmt.setString(3, subject.getCd());
-           stmt.executeUpdate();
-       } catch (Exception e) {
-		// TODO 自動生成された catch ブロック
-		e.printStackTrace();
+	    try (Connection con = getConnection()) {
+	    	String sql = "UPDATE subject SET name = ? WHERE cd = ?";
+	        PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setString(1, subject.getName());       // 正しくnameをセット
+	        stmt.setString(2, subject.getCd());         // WHERE条件にcdを使う
+	        stmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
-   }
+
    // 科目の削除
    public void deleteSubject(String cd) throws SQLException {
        String sql = "DELETE FROM subject WHERE cd = ?";
