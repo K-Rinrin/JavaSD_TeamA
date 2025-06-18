@@ -17,7 +17,7 @@
             <h2>科目情報登録</h2>
 
             <%-- 登録処理を実行するためのフォーム --%>
-            <form action="${pageContext.request.contextPath}/main/subject/SBJM002" method="post">
+            <form action="${pageContext.request.contextPath}/main/subject/SBJM002Execute" method="post">
                 <%-- 科目コード入力エリア --%>
                 <div class="form-group">
                     <%-- ② 科目コード ラベル --%>
