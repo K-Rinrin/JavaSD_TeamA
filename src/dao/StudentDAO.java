@@ -119,21 +119,21 @@ public class StudentDAO extends DAO {
    // ★ 入学年度、クラス番号、在学状態で絞り込み
    public List<Student> findStudents(Integer entYear, String classNum, Boolean isAttend) throws SQLException {
        List<Student> list = new ArrayList<>();
-       String sql = "SELECT * FROM student WHERE 1=1";
-       List<Object> params = new ArrayList<>();
-       if (entYear != null) {
-           sql += " AND ent_year = ?";
-           params.add(entYear);
-       }
-       if (classNum != null && !classNum.isEmpty()) {
-           sql += " AND class_num = ?";
-           params.add(classNum);
-       }
-       if (isAttend != null) {
-           sql+= " AND is_attend = ?";
-           params.add(isAttend);
-       }
        try (Connection con = getConnection()) {
+    	   String sql = "SELECT * FROM student WHERE 1=1";
+           List<Object> params = new ArrayList<>();
+           if (entYear != null) {
+               sql += " AND ent_year = ?";
+               params.add(entYear);
+           }
+           if (classNum != null && !classNum.isEmpty()) {
+               sql += " AND class_num = ?";
+               params.add(classNum);
+           }
+           if (isAttend != null) {
+               sql+= " AND is_attend = ?";
+               params.add(isAttend);
+           }
     	   PreparedStatement stmt = con.prepareStatement(sql);
            System.out.println("connection：" + stmt);
            for (int i = 0; i < params.size(); i++) {
