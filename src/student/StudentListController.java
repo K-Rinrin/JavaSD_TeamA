@@ -10,7 +10,7 @@ import bean.Student;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/studentlist"})//
+@WebServlet(urlPatterns={"/main/student/studentlist"})//
 public class StudentListController extends CommonServlet {
 
 	@Override
@@ -18,14 +18,14 @@ public class StudentListController extends CommonServlet {
 		// TODO 自動生成されたメソッド・スタブ
 
 		//絞り込み条件（未入力ならNULL）
-		String entYearParam = req.getParameter("ent_year");
+		String entYearParam = req.getParameter("entYear");
 		Integer entYear = (entYearParam != null && !entYearParam.isEmpty()) ? Integer.parseInt(entYearParam) : null;
 
 
-		String classNum = req.getParameter("class_num");
+		String classNum = req.getParameter("classNum");
 		if (classNum == null) classNum = "";
 
-		String isAttendParam = req.getParameter("is_attend");
+		String isAttendParam = req.getParameter("isAttend");
 		Boolean isAttend = (isAttendParam != null) ? true : null;
 
 
@@ -40,14 +40,9 @@ public class StudentListController extends CommonServlet {
 		req.setAttribute("isAttend", isAttend);
 		req.setAttribute("件数", student.size());
 
-		System.out.println("studentList size = " + student.size());
-		for (Student s : student) {
-		    System.out.println("Student name = " + s.getName());
-		}
-
 
 		//学生一覧と条件をJSPに渡す
-		req.getRequestDispatcher("main/student/STDM001.jsp").forward(req, resp);
+		req.getRequestDispatcher("/main/student/STDM001.jsp").forward(req, resp);
 
 
 
