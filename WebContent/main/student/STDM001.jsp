@@ -16,13 +16,19 @@
 	<div class="container mt-4">
 		<%-- 画面タイトルと検索フォームをカードで囲む --%>
 		<div class="card border-0">
-			<div class="card-header bg-light d-flex justify-content-between align-items-center border-0">
-				<%-- 画面タイトルを表示 --%>
-				<h2 class="h5 mb-0">学生管理</h2>
-				<%-- 学生登録画面に遷移する --%>
-				<a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
-			</div>
+			<div class="card-header bg-light border-0">
+                    <h2 class="h5 mb-0">学生管理</h2>
+            </div>
+
 			<div class="card-body">
+
+				<div class="text-end mb-3">
+					<%-- 学生登録画面に遷移する --%>
+					<a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
+				</div>
+
+
+			<div class="border p-3 rounded">
 				<form action="${pageContext.request.contextPath}/main/student/studentlist" method="get" class="d-flex align-items-end flex-wrap gap-3">
 
 					<%-- 入学年度の選択 --%>
@@ -34,7 +40,16 @@
 								<option value="${stu.entYear}">${stu.entYear}</option>
 							</c:forEach>
 						</select>
+
+						<%-- 未選択の場合エラーが表示される --%>
+						<c:if test="${not empty error.entYear}">
+                			<div class="invalid-feedback d-block">
+                    			${error.entYear}
+							</div>
+						</c:if>
 					</div>
+
+
 
 					<%-- クラスの選択 --%>
 					<div>
@@ -47,11 +62,13 @@
 						</select>
 					</div>
 
+
 					<%-- 在学中のON/OFF --%>
 					<div class="form-check mb-2">
 						<input type="checkbox" name="isAttend" class="form-check-input" id="is-attend-check">
 						<label class="form-check-label" for="is-attend-check">在学中</label>
 					</div>
+
 
 					<%-- 絞り込みボタン --%>
 					<div>
@@ -60,6 +77,8 @@
 				</form>
 			</div>
 		</div>
+	</div>
+</div>
 
 
 
@@ -73,7 +92,7 @@
 			<%-- 検索結果の件数を表示 --%>
 			<div id="検索結果">検索結果: ${件数}件</div>
 
-				<table border="1">
+				<table class="table table-striped table-hover mt-4">
 					<thead><tr>
 						<th>入学年度</th>
 						<th>学生番号</th>
