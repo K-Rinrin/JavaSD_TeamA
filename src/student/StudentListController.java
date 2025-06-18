@@ -19,24 +19,31 @@ public class StudentListController extends CommonServlet {
 
 		//絞り込み条件（未入力ならNULL）
 		String entYearParam = req.getParameter("ent_year");
-		int ent_year = (entYearParam != null && !entYearParam.isEmpty()) ? Integer.parseInt(entYearParam) : 0;
+		Integer entYear = (entYearParam != null && !entYearParam.isEmpty()) ? Integer.parseInt(entYearParam) : null;
 
-		String class_num = req.getParameter("class_num");
-		if (class_num == null) class_num = "";
+
+		String classNum = req.getParameter("class_num");
+		if (classNum == null) classNum = "";
 
 		String isAttendParam = req.getParameter("is_attend");
-		boolean is_attend = (isAttendParam != null) ? Boolean.parseBoolean(isAttendParam) : false;
+		Boolean isAttend = (isAttendParam != null) ? true : null;
 
 
 		//絞り込み条件無しなら全部の情報
 		//ありならそれに応じた情報をDBから取得
 		StudentDAO dao = new StudentDAO();
-		List<Student> student = dao.findStudents(ent_year, class_num, is_attend);
+		List<Student> student = dao.findStudents(entYear, classNum, isAttend);
 
 		req.setAttribute("student", student);
-		req.setAttribute("ent_year", ent_year);
-		req.setAttribute("class_num", class_num);
-		req.setAttribute("is_attend", is_attend);
+		req.setAttribute("entYear", entYear);
+		req.setAttribute("classNum", classNum);
+		req.setAttribute("isAttend", isAttend);
+		req.setAttribute("件数", student.size());
+
+		System.out.println("studentList size = " + student.size());
+		for (Student s : student) {
+		    System.out.println("Student name = " + s.getName());
+		}
 
 
 		//学生一覧と条件をJSPに渡す

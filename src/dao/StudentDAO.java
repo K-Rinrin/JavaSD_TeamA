@@ -117,7 +117,16 @@ public class StudentDAO extends DAO {
            }
            ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
-               list.add(mapResultSetToStudent(rs));
+        	   Student student = new Student();
+               student.setNo(rs.getString("no"));
+               student.setName(rs.getString("name"));
+               student.setEntYear(rs.getInt("ent_year"));
+               student.setClassNum(rs.getString("class_num"));
+               student.setAttend(rs.getBoolean("is_attend"));
+               School school = new School();
+               school.setCd(rs.getString("school_cd"));
+               student.setSchool(school);
+               list.add(student);
            }
        } catch (Exception e) {
 		// TODO 自動生成された catch ブロック
@@ -125,6 +134,9 @@ public class StudentDAO extends DAO {
 	}
        return list;
    }
+
+
+
    // 結果セットから Student を作るヘルパー
    private Student mapResultSetToStudent(ResultSet rs) throws SQLException {
        Student student = new Student();
