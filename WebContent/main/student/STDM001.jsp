@@ -21,6 +21,7 @@
             </div>
 
 			<div class="card-body">
+
 				<div class="text-end mb-3">
 					<%-- 学生登録画面に遷移する --%>
 					<a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
@@ -28,7 +29,7 @@
 
 
 			<div class="border p-3 rounded">
-				<form action="${pageContext.request.contextPath}/main/student/StudentListController" method="get" class="d-flex align-items-end flex-wrap gap-3">
+				<form action="${pageContext.request.contextPath}/main/student/studentlist" method="get" class="d-flex align-items-end flex-wrap gap-3">
 
 					<%-- 入学年度の選択 --%>
 					<div>
@@ -107,9 +108,8 @@
 							<td>${stu.no}</td>
 							<td>${stu.name}</td>
 							<td>${stu.classNum}</td>
-							<td>${stu.isAttend}</td>
 							<%-- 学生変更画面に遷移する --%>
-							<td>${stu.isAttend ? '在学' : ''}</td>
+							<td>${stu.attend ? '在学' : ''}</td>
 							<td><a href="${pageContext.request.contextPath}/main/student/STDM004? no=${stu.no}">変更</a></td>
 						</tr>
 					</c:forEach>
