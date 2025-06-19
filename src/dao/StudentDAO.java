@@ -13,6 +13,7 @@ import bean.Student;
 
 public class StudentDAO extends DAO {
 
+
    // 学生追加
    public void addStudent(Student student) throws SQLException {
        try (Connection con = getConnection()) {
@@ -30,7 +31,6 @@ public class StudentDAO extends DAO {
 		e.printStackTrace();
 	}
    }
-
 
 
    // 学生番号で取得
@@ -58,7 +58,7 @@ public class StudentDAO extends DAO {
        return student;
    }
 
-   // クラス番号を取得
+   // 全てのクラス番号を取得
    public List<Student> getAllClassNum() throws SQLException{
 	   List<Student> list = new ArrayList<>();
 	   try(Connection con = getConnection()){
@@ -76,26 +76,17 @@ public class StudentDAO extends DAO {
 	} return list;
    }
 
-
-/*
-   // 全学生取得
-   public List<Student> getAllStudents() throws SQLException {
-      List<Student> list = new ArrayList<>();
-      try(Connection con = getConnection()) {
-    	  String sql = "SELECT * FROM student";
-    	  PreparedStatement stmt = con.prepareStatement(sql);
-    	  ResultSet rs = stmt.executeQuery();
-    	  while (rs.next()) {
-             list.add(student);
-          }
-      } catch (Exception e) {
-		// TODO 自動生成された catch ブロック
-		e.printStackTrace();
-	  }
-	  return list
-   }
-   */
-
+   /*
+   //今年を基準に+-10年文の西暦
+	public List<Integer> getEntYearRange() {
+	    List<Integer> list = new ArrayList<>();
+	    int currentYear = java.time.Year.now().getValue();
+	    for (int i = currentYear - 10; i <= currentYear + 10; i++) {
+	        list.add(i);
+	    }
+	    return list;
+	}
+*/
 
    // 学生更新
    public void updateStudent(Student student) throws SQLException {

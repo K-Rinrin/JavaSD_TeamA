@@ -16,7 +16,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
-		req.getRequestDispatcher("main/student/STDM003.jsp").forward(req, resp);
+
 	}
 
 	@Override
