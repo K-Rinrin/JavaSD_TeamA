@@ -37,7 +37,7 @@
 
 
 
-				<%-- 成績管理 --%>
+				<%-- 成績管理リンク --%>
 				<div class="col-md-4">
 					<div class="card h-100 bg-success-subtle shadow-sm">
 						<div class="card-body  text-center">
