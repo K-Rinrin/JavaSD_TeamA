@@ -1,5 +1,5 @@
 
-<%-- 科目削除画面 --%>
+<%-- 科目削除画面  --%>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,39 +8,34 @@
 <c:param name="title" value="得点管理システム" />
 <c:param name="body">
 
-<div class="SBJM006">
+    <%-- 元のコンテナを活かし、Bootstrapのクラスで余白を追加 --%>
+    <div class="SBJM006">
 
+        <%-- ① 画面タイトル (イメージ図に合わせてボックススタイルに) --%>
+        <div class="p-3 mb-4 bg-light border">
+            <h2 class="p-2 mb-4 bg-body-secondary border fw-bold">科目情報削除</h2>
+        </div>
 
- <%-- ① 画面タイトル --%>
-            <h2>科目情報削除</h2>
+        <%-- 削除処理を実行するためのフォーム --%>
+        <form action="${pageContext.request.contextPath}/main/subject/SBJM006Execute" method="post">
 
-            <%-- 削除処理を実行するためのフォーム --%>
-            <form action="${pageContext.request.contextPath}/main/subject/SBJM006Execute" method="post">
+            <%-- ② 確認メッセージ (上下に余白を追加) --%>
+            <p class="my-4">
+                「<c:out value="${subject.name}"/>(<c:out value="${subject.cd}"/>)」を削除してもよろしいですか。
+            </p>
 
-                <%-- ② 確認メッセージ --%>
-                <%-- コントローラーから渡される科目オブジェクト(subject)の情報を表示 --%>
-                <p>
-                    「<c:out value="${subject.name}"/>(<c:out value="${subject.cd}"/>)」を削除してもよろしいですか。
-                </p>
+            <%-- 削除対象の科目コードをサーバーに送信するための隠しフィールド --%>
+            <input type="hidden" name="cd" value="<c:out value='${subject.cd}'/>">
 
-                <%-- 削除対象の科目コードをサーバーに送信するための隠しフィールド --%>
-                <input type="hidden" name="cd" value="${subject.cd}">
+            <%-- ③ 削除ボタン (Bootstrapのdangerボタンに) --%>
+            <input type="submit" value="削除" class="btn btn-danger">
+        </form>
 
-                <%-- ③ 削除ボタン --%>
-                <input type="submit" value="削除">
-            </form>
-
-            <%-- ④ 戻るリンク --%>
-            <%-- 科目管理一覧画面へ遷移する想定 --%>
+        <%-- ④ 戻るリンク (上のフォームとの間に余白を追加) --%>
+        <div class="mt-3">
             <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
+        </div>
 
-
-
-
-
-
-
-
-</div>
+    </div>
 </c:param>
 </c:import>
