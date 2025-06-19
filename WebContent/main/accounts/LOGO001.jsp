@@ -9,30 +9,33 @@
 
 	    <c:param name="body">
 
+			<%-- レイアウトの定義 --%>
+    		<div class="container mt-0">
+        		<div class="row justify-content-center">
+            		<div class="col-md-10 col-lg-8">
 
-		    <div class="container d-flex align-items-center justify-content-center" style="p-5;">
-		    	<div class="card-body p-4 p-md-5">
 
-		         	<%-- 画面タイトルの表示 --%>
-		            <h2 class="h3 card-title mb-4">ログアウト</h2>
+						<%-- 画面タイトルを表示する --%>
+		                <header class="bg-light p-3 rounded mb-4 py-2">
+		                    <h2 class="h3 card-title mb-0">ログアウト</h2>
+		                </header>
 
-		            <%-- 完了メッセージの表示 --%>
-		            <div class="alert alert-success text-center" role="alert">
-		            	ログアウトしました
+		                <%-- 完了メッセージを表示する --%>
+		                <div class="alert alert-success text-center py-1" role="alert">
+		                    ログアウトしました
+		                </div>
+
+		                <%-- ログイン画面へ遷移する --%>
+		                <div class="mt-4">
+		                    <a href="${pageContext.request.contextPath}/main/accounts/LOGI001">
+		                        ログイン
+		                    </a>
+		                </div>
+
 		            </div>
+		        </div>
+		    </div>
 
+		</c:param>
 
-		            <%-- ログイン画面へ遷移する --%>
-		            <div class="mt-4">
-		            	<a href="${pageContext.request.contextPath}/main/accounts/LOGI001">
-		                	ログイン
-		                </a>
-		            </div>
-
-
-				</div>
-			</div>
-
-
-	    </c:param>
 </c:import>
