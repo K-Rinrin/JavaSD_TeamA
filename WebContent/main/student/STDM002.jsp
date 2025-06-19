@@ -27,7 +27,7 @@
 						<select name="ent_year" class="form-select" required>
 							<option value="">--------</option>
 							<c:forEach var="ent" items="${entYearList}">
-							<option value="${ent.ent_year}">${ent.ent_year}</option>
+									<option value="${ent}" <c:if test="${ent == ent_year}">selected</c:if>>${ent}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -37,6 +37,9 @@
 					<div class="mb-3">
 						<label class="form-label">学生番号</label>
 						<input type="text" name="no"  value="${no}" placeholder="学生番号を入力してください" maxlength="10" required class="form-control">
+						<c:if test="${not empty error}">
+							<p class="text-danger mt-1">${error}</p>
+						</c:if>
 					</div>
 
 
@@ -52,8 +55,10 @@
 						<label class="form-label">クラス</label>
 						<select name="class_num" class="form-select" required>
 							<option value="">--------</option>
-							<c:forEach var="classNum" items="${classNum}">
-							<option value="${classNum.classNum}">${classNum.classNum}</option>
+							<c:forEach var="classNum" items="${classnum}">
+							<option value="${classNum.classNum}" <c:if test="${classNum.classNum == class_num}">selected</c:if>>
+								${classNum.classNum}
+							</option>
 							</c:forEach>
 						</select>
 					</div>

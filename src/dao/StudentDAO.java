@@ -76,7 +76,7 @@ public class StudentDAO extends DAO {
 	} return list;
    }
 
-   /*
+
    //今年を基準に+-10年文の西暦
 	public List<Integer> getEntYearRange() {
 	    List<Integer> list = new ArrayList<>();
@@ -86,7 +86,7 @@ public class StudentDAO extends DAO {
 	    }
 	    return list;
 	}
-*/
+
 
    // 学生更新
    public void updateStudent(Student student) throws SQLException {
@@ -104,6 +104,9 @@ public class StudentDAO extends DAO {
 		e.printStackTrace();
 	}
    }
+   
+   //重複チェック
+
 
 
 

@@ -1,5 +1,7 @@
 package student;
 
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +10,7 @@ import bean.Student;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/studentcreate"})//
+@WebServlet(urlPatterns={"/main/student/studentcreate"})
 public class StudentCreateController extends CommonServlet {
 
 	//学生登録
@@ -19,9 +21,9 @@ public class StudentCreateController extends CommonServlet {
 		//クラス一覧と今年を基準に+-10年文を渡す
 		StudentDAO dao = new StudentDAO();
 		List<Student> classnum = dao.getAllClassNum();
-		//List<Integer> entYearList = dao.getEntYearRange();
+		List<Integer> entYearList = dao.getEntYearRange();
 
-		//req.setAttribute("entYearList", entYearList);
+		req.setAttribute("entYearList", entYearList);
 		req.setAttribute("classnum", classnum);
 
 
