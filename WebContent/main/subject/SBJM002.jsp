@@ -13,9 +13,9 @@
         <div class="SBJM002">
 
             <%-- ① 画面タイトル。Bootstrapのクラスで装飾 --%>
-            <div class="p-3 mb-4 bg-light border">
+
                 <h2 class="p-2 mb-4 bg-body-secondary border fw-bold">科目情報登録</h2>
-            </div>
+
 
             <%-- 登録処理を実行するためのフォーム --%>
             <form action="${pageContext.request.contextPath}/main/subject/SBJM002Execute" method="post">
