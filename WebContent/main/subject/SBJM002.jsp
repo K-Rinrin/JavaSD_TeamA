@@ -18,7 +18,7 @@
             </div>
 
             <%-- 登録処理を実行するためのフォーム --%>
-            <form action="${pageContext.request.contextPath}/main/subject/SBJM002" method="post">
+            <form action="${pageContext.request.contextPath}/main/subject/SBJM002Execute" method="post">
                 <%-- 科目コード入力エリア。元のdiv.form-groupを水平フォームのrowに置き換え --%>
                 <div class="row mb-3">
                     <%-- ② 科目コード ラベル。Bootstrapのクラスを追加 --%>
