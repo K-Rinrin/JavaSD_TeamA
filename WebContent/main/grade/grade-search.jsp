@@ -94,7 +94,7 @@
 			<%-- ⑫ 学生番号入力欄 --%>
 			<div class="col">
 				<input type="text" name="f4" id="f4-input" value="${f4}" placeholder="学生番号を入力してください" maxlength="10"
-                 class="form-control ${not empty errors.f4 ? 'is-invalid' : ''}">
+                 class="form-control ${not empty errors.f4 ? 'is-invalid' : ''} required">
 				<c:if test="${not empty errors.f4}">
 
 					<div class="invalid-feedback d-block">${errors.f4}</div>
