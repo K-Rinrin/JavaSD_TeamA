@@ -19,15 +19,15 @@
 				<h2 class="h5 mb-0">学生情報登録</h2>
 			</div>
 			<div class="card-body">
-				<form action="${pageContext.request.contextPath}/main/student/STDM002" method="post">
+				<form action="${pageContext.request.contextPath}/main/student/studentcreateexecute" method="post">
 
 					<%-- 入学年度の選択 --%>
 					<div class="mb-3">
 						<label class="form-label">入学年度</label>
 						<select name="ent_year" class="form-select" required>
 							<option value="">--------</option>
-							<c:forEach var="stu" items="${student}">
-							<option value="${stu.ent_year}">${stu.ent_year}</option>
+							<c:forEach var="ent" items="${entYearList}">
+							<option value="${ent.ent_year}">${ent.ent_year}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -66,7 +66,7 @@
 
 				<div class="mt-3">
 					<%-- 学生一覧画面に遷移する --%>
-					<a href="${pageContext.request.contextPath}/main/student/STDM001">戻る</a>
+					<a href="${pageContext.request.contextPath}/main/student/studentlist">戻る</a>
 				</div>
 
 			</div>
