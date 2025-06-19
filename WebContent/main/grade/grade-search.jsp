@@ -34,7 +34,7 @@
 			<select name="f1" id="f1-select" class="form-select">
 				<option value="">-------</option>
 				<c:forEach var="year" items="${entYears}">
-					<option value="${year}" <c:if test="${f1 == year}">selected</c:if>>${year}</option>
+					<option value="${year.entYear}" <c:if test="${f1 == year.entYear}">selected</c:if>>${year.entYear}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -45,7 +45,7 @@
 			<select name="f2" id="f2-select" class="form-select">
 				<option value="">-------</option>
 				<c:forEach var="classItem" items="${classNums}">
-					<option value="${classItem.cd}" <c:if test="${f2 == classItem.cd}">selected</c:if>>${classItem.name}</option>
+					<option value="${classItem.class_num}" <c:if test="${f2 == classItem.class_num}">selected</c:if>>${classItem.class_num}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -78,6 +78,10 @@
 	</div>
 
 	<hr class="my-2">
+</form>
+
+
+<form action="" method="post">
 
 	<%-- 学生情報による検索セクション --%>
 	<div class="row align-items-center">
@@ -108,8 +112,7 @@
 		</div>
 	</div>
 </div>
-</div>
-
 </form>
 </div>
+
 
