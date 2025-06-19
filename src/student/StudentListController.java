@@ -33,7 +33,9 @@ public class StudentListController extends CommonServlet {
 		//ありならそれに応じた情報をDBから取得
 		StudentDAO dao = new StudentDAO();
 		List<Student> student = dao.findStudents(entYear, classNum, isAttend);
+		List<Student> allclass = dao.getAllClassNum();
 
+		req.setAttribute("allclass", allclass);
 		req.setAttribute("student", student);
 		req.setAttribute("entYear", entYear);
 		req.setAttribute("classNum", classNum);

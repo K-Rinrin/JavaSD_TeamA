@@ -56,8 +56,8 @@
 						<label class="form-label">クラス</label>
 						<select name="classNum" class="form-select" style="width: 180px;">
 							<option value="">----</option>
-							<c:forEach var="stu" items="${student}">
-								<option value="${stu.classNum}">${stu.classNum}</option>
+							<c:forEach var="cls" items="${allclass}">
+								<option value="${cls.classNum}">${cls.classNum}</option>
 							</c:forEach>
 						</select>
 					</div>
