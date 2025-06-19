@@ -78,6 +78,10 @@
 	</div>
 
 	<hr class="my-2">
+</form>
+
+
+<form action="" method="post">
 
 	<%-- 学生情報による検索セクション --%>
 	<div class="row align-items-center">
@@ -108,8 +112,9 @@
 		</div>
 	</div>
 </div>
-</div>
-
 </form>
 </div>
+
+
+
 
