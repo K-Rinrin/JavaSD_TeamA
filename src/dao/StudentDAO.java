@@ -77,6 +77,25 @@ public class StudentDAO extends DAO {
    }
 
 
+   //全ての入学年度
+   public List<Student> getAllEntYear() throws SQLException{
+	   List<Student> list = new ArrayList<>();
+	   try(Connection con = getConnection()){
+		   String sql = "select ent_year from student group by ent_year";
+		   PreparedStatement stmt = con.prepareStatement(sql);
+		   ResultSet rs = stmt.executeQuery();
+		   while (rs.next()) {
+			   Student student = new Student();
+			   student.setClassNum(rs.getString("ent_year"));
+	           list.add(student);
+	          }
+	   } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	} return list;
+   }
+
+
    //今年を基準に+-10年文の西暦
 	public List<Integer> getEntYearRange() {
 	    List<Integer> list = new ArrayList<>();
@@ -104,10 +123,6 @@ public class StudentDAO extends DAO {
 		e.printStackTrace();
 	}
    }
-   
-   //重複チェック
-
-
 
 
    // ★ 入学年度、クラス番号、在学状態で絞り込み
