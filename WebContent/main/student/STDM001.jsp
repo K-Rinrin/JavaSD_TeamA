@@ -29,7 +29,7 @@
 
 
 			<div class="border p-3 rounded">
-				<form action="${pageContext.request.contextPath}/main/student/studentlist" method="get" class="d-flex align-items-end flex-wrap gap-3">
+				<form action="${pageContext.request.contextPath}/main/student/STDM001" method="get" class="d-flex align-items-end flex-wrap gap-3">
 
 					<%-- 入学年度の選択 --%>
 					<div>
@@ -109,7 +109,7 @@
 							<td>${stu.name}</td>
 							<td>${stu.classNum}</td>
 							<%-- 学生変更画面に遷移する --%>
-							<td>${stu.attend ? '在学' : ''}</td>
+							<td>${stu.attend ? '○' : '×'}</td>
 							<td><a href="${pageContext.request.contextPath}/main/student/studentupdate?no=${stu.no}">変更</a></td>
 						</tr>
 					</c:forEach>
