@@ -1,5 +1,5 @@
 
-<%-- サイドバー --%>
+<%-- サイドバーの定義をする画面 --%>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,7 +17,7 @@
             <li class="mb-2"><a href="${pageContext.request.contextPath}/main/MMNU001">メニュー</a></li>
 
             <%-- 学生管理リンク --%>
-            <li class="mb-2"><a href="${pageContext.request.contextPath}/main/student/SBJM001">学生管理</a></li>
+            <li class="mb-2"><a href="${pageContext.request.contextPath}/main/student/STDM001">学生管理</a></li>
 
             <%-- 成績管理リンク --%>
             <li class="mb-2">

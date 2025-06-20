@@ -11,7 +11,7 @@ import bean.Teacher;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/studentlist"})//
+@WebServlet(urlPatterns = {"/main/student/STDM001"})
 public class StudentListController extends CommonServlet {
 
 	@Override
