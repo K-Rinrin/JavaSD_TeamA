@@ -2,18 +2,18 @@ package bean;
 
 public class ClassNum {
 	private String class_num;
-	private School schoool;
+	private School school;
 	public String getClass_num() {
 		return class_num;
 	}
 	public void setClass_num(String class_num) {
 		this.class_num = class_num;
 	}
-	public School getSchoool() {
-		return schoool;
+	public School getSchool() {
+		return school;
 	}
-	public void setSchoool(School schoool) {
-		this.schoool = schoool;
+	public void setSchool(School school) {
+		this.school = school;
 	}
 
 

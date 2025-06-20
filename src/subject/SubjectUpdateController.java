@@ -19,7 +19,6 @@ public class SubjectUpdateController extends CommonServlet {
 		// TODO 自動生成されたメソッド・スタブ
 		String cd = req.getParameter("cd");
 
-		// TODO 自動生成されたメソッド・スタブ
 		SubjectDAO dao = new SubjectDAO();
 		Subject subject = dao.getSubjectByCd(cd);
 

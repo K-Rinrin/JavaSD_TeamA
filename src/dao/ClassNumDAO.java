@@ -19,17 +19,22 @@ public class ClassNumDAO extends DAO {
    }
    // クラスの追加
    public void addClassNum(ClassNum classNum) throws SQLException {
-       String sql = "INSERT INTO class_num (class_num, school_cd) VALUES (?, ?)";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+       try (Connection con = getConnection()){
+    	   String sql = "INSERT INTO class_num (class_num, school_cd) VALUES (?, ?)";
+    	   PreparedStatement stmt = connection.prepareStatement(sql);
            stmt.setString(1, classNum.getClass_num());
-           stmt.setString(2, classNum.getSchoool().getCd());
+           stmt.setString(2, classNum.getSchool().getCd());
            stmt.executeUpdate();
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
    }
    // クラス番号で取得
    public ClassNum getClassNumById(String classNumStr) throws SQLException {
-       String sql = "SELECT * FROM class_num WHERE class_num = ?";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+       try (Connection con = getConnection()) {
+    	   String sql = "SELECT * FROM class_num WHERE class_num = ?";
+    	   PreparedStatement stmt = connection.prepareStatement(sql);
            stmt.setString(1, classNumStr);
            ResultSet rs = stmt.executeQuery();
            if (rs.next()) {
@@ -37,44 +42,63 @@ public class ClassNumDAO extends DAO {
                classNum.setClass_num(rs.getString("class_num"));
                School school = new School();
                school.setCd(rs.getString("school_cd"));
-               classNum.setSchoool(school);
+               classNum.setSchool(school);
                return classNum;
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        return null;
    }
-   // 全クラスの取得
-   public List<ClassNum> getAllClassNums() throws SQLException {
-       List<ClassNum> list = new ArrayList<>();
-       String sql = "SELECT * FROM class_num";
-       try (Statement stmt = connection.createStatement()) {
-           ResultSet rs = stmt.executeQuery(sql);
-           while (rs.next()) {
-               ClassNum classNum = new ClassNum();
-               classNum.setClass_num(rs.getString("class_num"));
-               School school = new School();
-               school.setCd(rs.getString("school_cd"));
-               classNum.setSchoool(school);
-               list.add(classNum);
-           }
-       }
-       return list;
-   }
+		// 全クラスの取得
+		public List<ClassNum> getAllClassNums() throws SQLException {
+			List<ClassNum> list = new ArrayList<>();
+			try (Connection con = getConnection();
+			     Statement stmt = con.createStatement()) {
+
+				String sql = "SELECT * FROM class_num";
+				ResultSet rs = stmt.executeQuery(sql);
+
+				while (rs.next()) {
+					ClassNum classNum = new ClassNum();
+					classNum.setClass_num(rs.getString("class_num"));
+
+					School school = new School();
+					school.setCd(rs.getString("school_cd"));
+					classNum.setSchool(school);
+
+					list.add(classNum);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+
    // クラスの更新
    public void updateClassNum(ClassNum classNum) throws SQLException {
-       String sql = "UPDATE class_num SET school_cd = ? WHERE class_num = ?";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-           stmt.setString(1, classNum.getSchoool().getCd());
+       try (Connection con = getConnection()) {
+           String sql = "UPDATE class_num SET school_cd = ? WHERE class_num = ?";
+    	   PreparedStatement stmt = connection.prepareStatement(sql);
+           stmt.setString(1, classNum.getSchool().getCd());
            stmt.setString(2, classNum.getClass_num());
            stmt.executeUpdate();
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
    }
    // クラスの削除
    public void deleteClassNum(String classNumStr) throws SQLException {
-       String sql = "DELETE FROM class_num WHERE class_num = ?";
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+       try (Connection con = getConnection()) {
+           String sql = "DELETE FROM class_num WHERE class_num = ?";
+    	   PreparedStatement stmt = connection.prepareStatement(sql);
            stmt.setString(1, classNumStr);
            stmt.executeUpdate();
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
    }
 }

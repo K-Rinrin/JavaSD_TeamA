@@ -16,7 +16,7 @@
 
 
 <div class="p-3 mb-4 rounded border">
-<form action="" method="post">
+<form action="${pageContext.request.contextPath}/main/grade/GRMR002" method="post">
 
 	<%-- 科目情報による検索セクション --%>
 	<div class="row align-items-center ">
@@ -34,7 +34,7 @@
 			<select name="f1" id="f1-select" class="form-select">
 				<option value="">-------</option>
 				<c:forEach var="year" items="${entYears}">
-					<option value="${year.entYear}" <c:if test="${f1 == year.entYear}">selected</c:if>>${year.entYear}</option>
+					<option value="${year}" <c:if test="${f1 == year}">selected</c:if>>${year}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -73,7 +73,7 @@
 		</div>
 	</c:if>
 
-
+	</div>
 	</div>
 	</div>
 
@@ -81,7 +81,7 @@
 </form>
 
 
-<form action="" method="post">
+<form action="${pageContext.request.contextPath}/main/grade/GRMR003" method="post">
 
 	<%-- 学生情報による検索セクション --%>
 	<div class="row align-items-center">

@@ -3,7 +3,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +61,9 @@ public class TestDAO extends DAO {
    // 全テスト取得
    public List<Test> getAllTests() throws SQLException {
        List<Test> list = new ArrayList<>();
-       try (Statement stmt = connection.createStatement()) {
+       try (Connection con = getConnection()) {
            String sql = "SELECT * FROM test";
+           PreparedStatement stmt = connection.prepareStatement(sql);
            ResultSet rs = stmt.executeQuery(sql);
            while (rs.next()) {
                Test test = new Test();
@@ -78,7 +78,10 @@ public class TestDAO extends DAO {
                test.setPoint(rs.getInt("point"));
                list.add(test);
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        return list;
    }
    // テスト更新
@@ -98,11 +101,13 @@ public class TestDAO extends DAO {
 	}
    }
    // テスト削除
-   public void deleteTest(int no) throws SQLException {
+   public void deleteTest(String studentNo, String subjectCd,int no) throws SQLException {
        try (Connection con = getConnection()) {
-           String sql = "DELETE FROM test WHERE no = ?";
+           String sql = "DELETE FROM test WHERE student_no = ? AND subject_cd = ? AND no = ?";
     	   PreparedStatement stmt = connection.prepareStatement(sql);
-           stmt.setInt(1, no);
+    	   stmt.setString(1, studentNo);
+           stmt.setString(2, subjectCd);
+           stmt.setInt(3, no);
            stmt.executeUpdate();
        } catch (Exception e) {
 		// TODO 自動生成された catch ブロック

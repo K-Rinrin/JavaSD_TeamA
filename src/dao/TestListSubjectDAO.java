@@ -17,10 +17,26 @@ public class TestListSubjectDAO extends DAO {
    }
    // クラス番号を指定して一覧を取得
    public List<TestListSubject> getTestListByClass(String classNum) throws SQLException {
-       String sql = "SELECT s.ent_year, s.no AS student_no, s.name AS student_name, sub.name AS subject_name,  t.point FROM test t JOIN student s ON t.student_no = s.no  JOIN  subject sub ON t.subject_cd = sub.cd  WHERE  s.class_num = ? ORDER BY s.no, sub.cd ";
        List<TestListSubject> result = new ArrayList<>();
        Map<String, TestListSubject> studentMap = new LinkedHashMap<>();
-       try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+       try (Connection con = getConnection()) {
+    	   String sql =
+    			    "SELECT " +
+    			    "s.ent_year, " +
+    			    "s.class_num, " +
+    			    "s.no AS student_no, " +
+    			    "s.name AS student_name, " +
+    			    "MAX(CASE WHEN t.no = 1 THEN t.point END) AS point_1, " +
+    			    "MAX(CASE WHEN t.no = 2 THEN t.point END) AS point_2 " +
+    			    "FROM test t " +
+    			    "JOIN student s ON t.student_no = s.no " +
+    			    "JOIN subject sub ON t.subject_cd = sub.cd " +
+    			    "WHERE s.ent_year = 2023 " +
+    			    "AND s.class_num = '131' " +
+    			    "AND sub.cd = 'A01' " +
+    			    "GROUP BY s.ent_year, s.class_num, s.no, s.name, sub.name " +
+    			    "ORDER BY s.no";;
+    	   PreparedStatement stmt = connection.prepareStatement(sql);
            stmt.setString(1, classNum);
            ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
@@ -37,7 +53,10 @@ public class TestListSubjectDAO extends DAO {
                // Map に科目名と点数を追加
                tls.getPoints().put(rs.getString("subject_name"), rs.getInt("point"));
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        result.addAll(studentMap.values());
        return result;
    }
