@@ -85,7 +85,7 @@
 		<p>${errorMsg}</p>
 	</c:if>
 
-	<form action="${pageContext.request.contextPath}/main/grade/testlist" method="post">
+	<form action="${pageContext.request.contextPath}/main/grade/GRMU001Execute" method="post">
 
 		<%-- 検索条件を保持 --%>
 		<input type="hidden" name="f1" value="${param.f1}">
