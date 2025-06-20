@@ -1,22 +1,18 @@
-
 <%-- ログイン画面 --%>
-
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../base.jsp">
 
-
     <%-- ページタイトルをbase.jspに渡す --%>
     <c:param name="title"> 得点管理システム</c:param>
-
 
     <%-- ページ本文の内容 --%>
     <c:param name="body">
 
-	    <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
-	        <div class="col-md-8 col-lg-6">
 
+	    <div class="container mt-1">
+            <%-- justify-content-center を追加して、カードを水平中央に配置 --%>
+	        <div class="col-md-8 col-lg-6 mx-auto">
 
 	            <div class="card shadow-sm">
 
@@ -25,17 +21,15 @@
 	                    <h2 class="h3 mb-0">ログイン</h2>
 	                </div>
 
-
 	                <div class="card-body p-4">
 	                    <form action="${pageContext.request.contextPath}/main/accounts/loginExecute" method="post">
 
 	                        <%-- システムエラーが発生した時のエラーメッセージを表示 --%>
 	                        <c:if test="${not empty error}">
-	                            <div class="alert alert-danger" role="alert">
-	                                <c:out value="${error}" />
-	                            </div>
-	                        </c:if>
 
+	                                <c:out value="${error}" />
+
+	                        </c:if>
 
 	                        <%-- ログインIDを入力してもらう（最大20文字・必須） --%>
 	                        <div class="form-floating mb-3">
@@ -66,7 +60,6 @@
 	                    </form>
 	                </div>
 	            </div>
-
 	        </div>
 	    </div>
 
@@ -84,7 +77,6 @@
             }
         });
     </script>
-
 
     </c:param>
 </c:import>
