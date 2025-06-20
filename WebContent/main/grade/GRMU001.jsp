@@ -16,7 +16,7 @@
 
 	<%-- 検索 --%>
 	<div class="p-3 mb-4 rounded border">
-	<form action="${pageContext.request.contextPath}/main/grade/testlist" method="get">
+	<form action="${pageContext.request.contextPath}/main/grade/GRMU001" method="get">
 
 		<div class="row g-3 align-items-end">
 
@@ -26,7 +26,7 @@
 				<select name="f1" id="f1_select" class="form-select">
 					<option value="">--------</option>
 					<c:forEach var="stu" items="${student}">
-						<option value="${stu.ent_year}">${stu.ent_year}</option>
+						<option value="${stu.entYear}">${stu.entYear}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -36,8 +36,8 @@
 				<label for="f2_select" class="form-label">クラス</label>
 				<select name="f2" id="f2_select" class="form-select">
 					<option value="">--------</option>
-					<c:forEach var="stu" items="${student}">
-						<option value="${stu.class_num}">${stu.class_num}</option>
+					<c:forEach var="classItem" items="${classNums}">
+						<option value="${classItem.class_num}">${classItem.class_num}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -47,7 +47,7 @@
 				<label for="f3_select" class="form-label">科目</label>
 				<select name="f3" id="f3_select" class="form-select">
 					<option value="">--------</option>
-					<c:forEach var="subject" items="${subject}">
+					<c:forEach var="subject" items="${subjects}">
 						<option value="${subject.cd}">${subject.name}</option>
 					</c:forEach>
 				</select>
@@ -58,9 +58,8 @@
 				<label for="f4_select" class="form-label">回数</label>
 				<select name="f4" id="f4_select" class="form-select">
 					<option value="">--------</option>
-					<c:forEach var="test" items="${test}">
-						<option value="${test.no}">${test.no}</option>
-					</c:forEach>
+					<option value="1">1</option>
+					<option value="2">2</option>
 				</select>
 			</div>
 
@@ -103,6 +102,7 @@
 				<th>学生番号</th>
 				<th>氏名</th>
 				<th>得点</th>
+				<th></th>
 			</tr>
 		</thead>
 
@@ -137,6 +137,12 @@
 				 <input type="number" name="point_${score.studentno}"
 				  value="${score.point}" min="0" max="100" required
 				  class="from-control" style="width: 120px;"/>
+				</td>
+
+				<%-- 削除チェックボックス --%>
+				<td>
+					<input type="checkbox" name="check_${score.studentno}"
+					value="on">
 				</td>
 
 			</tr>
