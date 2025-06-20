@@ -11,7 +11,7 @@
 
     <h2 class="p-2 mb-4 bg-body-secondary border fw-bold">科目情報登録</h2>
 
-    <form action="SubjectCreateExecute.action" method="post">
+    <form action="${pageContext.request.contextPath}/main/subject/SBJM002Execute" method="post">
 
         <%-- [修正] 横並び用の row, col-* クラスを削除し、シンプルな縦並びの構造に変更 --%>
 
