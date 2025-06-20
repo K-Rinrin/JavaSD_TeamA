@@ -58,9 +58,8 @@
 				<label for="f4_select" class="form-label">回数</label>
 				<select name="f4" id="f4_select" class="form-select">
 					<option value="">--------</option>
-					<c:forEach var="test" items="${test}">
-						<option value="${test.no}">${test.no}</option>
-					</c:forEach>
+					<option value="1">1</option>
+					<option value="2">2</option>
 				</select>
 			</div>
 
@@ -103,6 +102,7 @@
 				<th>学生番号</th>
 				<th>氏名</th>
 				<th>得点</th>
+				<th></th>
 			</tr>
 		</thead>
 
@@ -137,6 +137,12 @@
 				 <input type="number" name="point_${score.studentno}"
 				  value="${score.point}" min="0" max="100" required
 				  class="from-control" style="width: 120px;"/>
+				</td>
+
+				<%-- 削除チェックボックス --%>
+				<td>
+					<input type="checkbox" name="check_${score.studentno}"
+					value="on">
 				</td>
 
 			</tr>
