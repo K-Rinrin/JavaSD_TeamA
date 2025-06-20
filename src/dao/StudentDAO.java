@@ -64,6 +64,34 @@ public class StudentDAO extends DAO {
 
 
 
+	//全学生情報
+	public List<Student> getAllStudents() throws SQLException{
+		List<Student> list = new ArrayList<>();
+		try(Connection con = getConnection()){
+			String sql = "select * from student order by no";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Student student = new Student();
+				student.setNo(rs.getString("no"));
+				student.setName(rs.getString("name"));
+				student.setEntYear(rs.getInt("ent_year"));
+				student.setClassNum(rs.getString("class_num"));
+				student.setAttend(rs.getBoolean("is_attend"));
+				School school = new School();
+				school.setCd(rs.getString("school_cd"));
+				student.setSchool(school);
+				list.add(student);
+			}
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
 	// 学生番号で取得
 	public Student getStudentByNo(String no) throws SQLException {
 		Student student = null;
