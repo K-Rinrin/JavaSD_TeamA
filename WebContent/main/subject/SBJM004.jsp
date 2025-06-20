@@ -20,8 +20,8 @@
             <form action="${pageContext.request.contextPath}/main/subject/SBJM004Execute" method="post">
 
                 <%-- ②,③ 科目コード表示エリア (変更不可) --%>
-                <div class="row mb-3">
-                    <label for="subject-cd" class="col-md-2 col-form-label">科目コード</label>
+                <div class=" mb-3">
+                    <label for="subject-cd" class="form-label">科目コード</label>
                     <div class="col-md-10">
                         <%-- form-control-plaintextで、枠線なしのテキストとして表示 --%>
                         <input type="text" id="subject-cd" class="form-control-plaintext" readonly
@@ -32,28 +32,24 @@
                 </div>
 
                 <%-- ④,⑤ 科目名入力エリア (変更可能) --%>
-                <div class="row mb-4">
-                    <label for="subject-name" class="col-md-2 col-form-label">科目名</label>
+                <div class="mb-4">
+                    <label for="subject-name" class="form-label">科目名</label>
                     <div class="col-md-10">
                         <input type="text" id="subject-name" name="name" class="form-control" required
                                value="<c:out value='${subject.name}'/>">
                     </div>
                 </div>
 
-                <%-- ⑥ 変更ボタン --%>
-                <div class="row">
-                    <div class="col-md-10 offset-md-2">
-                        <input type="submit" value="変更" class="btn btn-primary">
-                    </div>
-                </div>
 
-            </form>
 
-            <%-- ⑦ 戻るリンク --%>
-            <div class="row mt-3">
-                <div class="col-md-10 offset-md-2">
-                     <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
-                </div>
+            <%-- ⑥ 変更ボタン (左揃え) --%>
+            <div class="mt-4"> <%-- 上のフォーム項目との間に余白を設ける --%>
+                <input type="submit" value="変更" class="btn btn-primary">
+            </div>
+
+            <%-- ⑦ 戻るリンク (左揃え) --%>
+            <div class="mt-2"> <%-- 変更ボタンとの間に少し余白を設ける --%>
+                <a href="${pageContext.request.contextPath}/main/subject/SBJM001">戻る</a>
             </div>
 
         </div>

@@ -27,7 +27,7 @@
             <%-- 【成功時】'error' がない場合 (デフォルト) --%>
             <c:otherwise>
                 <%-- ② 元の完了メッセージのコードをそのまま使用 --%>
-                <p class="alert alert-success" role="alert">
+                <p class="alert alert-success text-center" role="alert">
                     変更が完了しました
                 </p>
             </c:otherwise>

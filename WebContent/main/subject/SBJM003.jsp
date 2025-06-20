@@ -16,8 +16,8 @@
 
             <%-- ② 完了メッセージ --%>
             <%-- 元の p.message-success を、BootstrapのAlertコンポーネントに置き換え --%>
-            <div class="alert alert-success" role="alert">
-                登録が完了しました
+            <div class="alert alert-success text-center" role="alert">
+                           登録が完了しました
             </div>
 
             <%-- 元の div.actions を活かし、余白を追加 --%>

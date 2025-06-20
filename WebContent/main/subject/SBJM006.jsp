@@ -12,9 +12,9 @@
     <div class="SBJM006">
 
         <%-- ① 画面タイトル (イメージ図に合わせてボックススタイルに) --%>
-        <div class="p-3 mb-4 bg-light border">
+
             <h2 class="p-2 mb-4 bg-body-secondary border fw-bold">科目情報削除</h2>
-        </div>
+
 
         <%-- 削除処理を実行するためのフォーム --%>
         <form action="${pageContext.request.contextPath}/main/subject/SBJM006Execute" method="post">
