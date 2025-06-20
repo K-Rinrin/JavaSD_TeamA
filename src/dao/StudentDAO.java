@@ -119,7 +119,7 @@ public class StudentDAO extends DAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Student student = new Student();
-				student.setClassNum(rs.getString("ent_year"));
+				student.setEntYear(rs.getInt("ent_year"));
 				list.add(student);
 	          	}
 		} catch (Exception e) {

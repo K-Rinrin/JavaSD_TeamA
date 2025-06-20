@@ -10,7 +10,7 @@ import bean.Student;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/studentupdate"})//
+@WebServlet(urlPatterns={"/main/student/studentupdate"})
 public class StudentUpdateController extends CommonServlet {
 
 

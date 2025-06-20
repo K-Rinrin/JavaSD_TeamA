@@ -56,6 +56,7 @@
 					</div>
 
 					<%-- 在学中の有無について判定チェック --%>
+					<input type="hidden" name="isAttend" value="false">
 					<div class="form-check mb-4">
 						<input type="checkbox" name="isAttend" value="true" class="form-check-input" id="is_attend_check" ${student.attend ? 'checked' : ''}>
 						<label class="form-check-label" for="is_attend_check">在学中</label>

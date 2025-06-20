@@ -8,7 +8,7 @@ import bean.Student;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/studentupdateexecute"})//
+@WebServlet(urlPatterns={"/main/student/studentupdateexecute"})
 public class StudentUpdateExecuteController extends CommonServlet {
 
 
@@ -27,7 +27,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
 		//学生情報をもらう
 		String name= req.getParameter("name");
 		String classNum = req.getParameter("classNum");
-		Boolean isAttend = req.getParameter("isAttend") != null;
+		Boolean isAttend = Boolean.parseBoolean(req.getParameter("isAttend"));
 		String no = req.getParameter("no");
 
 		try{
