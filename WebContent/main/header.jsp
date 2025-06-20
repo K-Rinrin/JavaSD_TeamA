@@ -5,8 +5,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
-<header class="border-bottom" style="background-color: #e0ffff;">
+<%-- レイアウトの定義 --%>
+<header class="border-bottom" style="background-color: #dbedff;">
     <div class="container py-3">
         <div class="d-flex justify-content-between align-items-center">
 

@@ -9,12 +9,13 @@ import java.util.List;
 
 import bean.School;
 import bean.Student;
+import bean.Teacher;
 
 
 public class StudentDAO extends DAO {
 
 	 // ★ 入学年度、クラス番号、在学状態で絞り込み
-	public List<Student> findStudents(Integer entYear, String classNum, Boolean isAttend) throws SQLException {
+	public List<Student> findStudents(Integer entYear, String classNum, Boolean isAttend, Teacher school_cd) throws SQLException {
 		List<Student> list = new ArrayList<>();
 		try (Connection con = getConnection()) {
 			String sql = "SELECT * FROM student WHERE 1=1";
@@ -30,6 +31,10 @@ public class StudentDAO extends DAO {
 			if (isAttend != null) {
 				sql+= " AND is_attend = ?";
 				params.add(isAttend);
+			}
+			if (school_cd != null) {
+				sql += " AND school_cd = ?";
+				params.add(school_cd);
 			}
 			sql += "order by no";
 			PreparedStatement stmt = con.prepareStatement(sql);
