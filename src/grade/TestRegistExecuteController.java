@@ -15,13 +15,13 @@ public class TestRegistExecuteController extends CommonServlet {
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
-		req.getRequestDispatcher("/main/grade/GRMU001.jsp").forward(req, resp);
 
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+	   
 
 	}
 
