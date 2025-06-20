@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 //成績参照検索処理
 
@@ -17,7 +16,7 @@ import bean.ClassNum;
 import bean.Student;
 import bean.Subject;
 import dao.ClassNumDAO;
-import dao.StudentDAO2;
+import dao.StudentDAO;
 import dao.SubjectDAO;
 import tool.CommonServlet;
 
@@ -27,6 +26,11 @@ public class TestListController extends CommonServlet {
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+
+		int ent_year = Integer.parseInt(req.getParameter("f1"));
+		String class_num = req.getParameter("f2");
+		String subject_list = req.getParameter("f3");
+		//String kaisuu = req.getParameter("f4");
 
 		try {
 
@@ -74,16 +78,14 @@ public class TestListController extends CommonServlet {
 /*---------------------------------------------------------------------------------------------*/
 
 			// 全学生を取得する
-			StudentDAO2 stu_dao = new StudentDAO2();
+			StudentDAO stu_dao = new StudentDAO();
 			List<Student> stu_list = stu_dao.getAllStudents();
 
 			// 入学年度の重複を排除し、昇順にソート
-			List<Integer> entYears = stu_list.stream()
-			    .map(Student::getEntYear)
-			    .distinct()
-			    .sorted()                        // 昇順に並べる
-			    .collect(Collectors.toList());      // Listに変換
-		req.setAttribute("entYears", entYears);
+			List<Student> entYears = stu_dao.getAllEntYear();
+
+			// リクエストにセット
+			req.setAttribute("entYears", entYears);
 
 
 		req.getRequestDispatcher("/main/grade/GRMR001.jsp").forward(req, resp);

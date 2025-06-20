@@ -142,7 +142,7 @@ public class StudentDAO extends DAO {
 	public List<Student> getAllEntYear() throws SQLException{
 		List<Student> list = new ArrayList<>();
 		try(Connection con = getConnection()){
-			String sql = "select ent_year from student group by ent_year";
+			String sql = "select ent_year from student group by ent_year order by ent_yer";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
