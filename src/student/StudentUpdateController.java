@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Student;
+import bean.Teacher;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
@@ -18,21 +19,32 @@ public class StudentUpdateController extends CommonServlet {
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+		// セッションからログインユーザー情報を取得
+				Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
 
-		//更新する学生の学生番号をもらう
-		String no = req.getParameter("no");
+		        // ログインチェック
+		        if (teacher == null) {
+		            resp.sendRedirect(req.getContextPath() + "/main/accounts/login");
+		            return;
+		        }
 
-		//学生情報をもらう
-		StudentDAO dao = new StudentDAO();
-		Student student = dao.getStudentByNo(no);
-		//クラス番号の一覧をもらう
-		List<Student> allclass = dao.getAllClassNum();
+				//更新する学生の学生番号をもらう
+				String no = req.getParameter("no");
 
-		//学生情報をわたす
-		req.setAttribute("student", student);
-		req.setAttribute("allclass", allclass);
+				//学生情報をもらう
+				StudentDAO dao = new StudentDAO();
+				Student student = dao.getStudentByNo(no);
 
-		req.getRequestDispatcher("/main/student/STDM004.jsp").forward(req, resp);
+		        //クラス番号の一覧をもらう
+				List<String> allclass = dao.getAllClassNum(teacher);
+
+				//学生情報をわたす
+				req.setAttribute("student", student);
+				req.setAttribute("allclass", allclass);
+
+
+
+				req.getRequestDispatcher("/main/student/STDM004.jsp").forward(req, resp);
 
 	}
 
