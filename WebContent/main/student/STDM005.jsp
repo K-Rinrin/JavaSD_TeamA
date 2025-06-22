@@ -25,7 +25,7 @@
 
 				<div class="mt-4">
 					<%-- 学生一覧画面に遷移する --%>
-					<a href="${pageContext.request.contextPath}/main/student/studentlist">学生一覧</a>
+					<a href="${pageContext.request.contextPath}/main/student/STDM001">学生一覧</a>
 				</div>
 			</div>
 		</div>

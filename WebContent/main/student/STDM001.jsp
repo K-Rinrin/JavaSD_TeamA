@@ -28,8 +28,12 @@
 				</div>
 
 
-			<div class="border p-3 rounded">
+			<div class="border p-2 rounded">
 				<form action="${pageContext.request.contextPath}/main/student/STDM001" method="get" class="d-flex align-items-end flex-wrap gap-3">
+
+
+                    <input type="hidden" name="filter" value="true">
+
 
 					<%-- 入学年度の選択 --%>
 					<div>
@@ -37,7 +41,7 @@
 						<select name="entYear" class="form-select" style="width: 180px;">
 							<option value="">----</option>
 							<c:forEach var="ent" items="${allent}">
-								<option value="${ent.entYear}">${ent.entYear}</option>
+								<option value="${ent}">${ent}</option>
 							</c:forEach>
 						</select>
 
@@ -57,18 +61,16 @@
 						<select name="classNum" class="form-select" style="width: 180px;">
 							<option value="">----</option>
 							<c:forEach var="cls" items="${allclass}">
-								<option value="${cls.classNum}">${cls.classNum}</option>
+								<option value="${cls}">${cls}</option>
 							</c:forEach>
 						</select>
 					</div>
 
-
 					<%-- 在学中のON/OFF --%>
 					<div class="form-check mb-2">
-						<input type="checkbox" name="isAttend" class="form-check-input" id="is-attend-check">
+						<input type="checkbox" name="isAttend" value="true" class="form-check-input" id="is-attend-check">
 						<label class="form-check-label" for="is-attend-check">在学中</label>
 					</div>
-
 
 					<%-- 絞り込みボタン --%>
 					<div>
@@ -92,7 +94,7 @@
 			<%-- 検索結果の件数を表示 --%>
 			<div id="検索結果">検索結果: ${件数}件</div>
 
-				<table class="table table-striped table-hover mt-4">
+				<table class="table mt-4">
 					<thead><tr>
 						<th>入学年度</th>
 						<th>学生番号</th>
@@ -109,13 +111,26 @@
 							<td>${stu.name}</td>
 							<td>${stu.classNum}</td>
 							<%-- 学生変更画面に遷移する --%>
-							<td>${stu.attend ? '○' : '×'}</td>
-							<td><a href="${pageContext.request.contextPath}/main/student/studentupdate?no=${stu.no}">変更</a></td>
+							<td>
+							    <c:choose>
+							        <c:when test="${stu.attend}">
+							            <%-- 在学中の場合：○ --%>
+							            <span style="font-size: 1.5rem; color: green; font-weight: bold;">○</span>
+							        </c:when>
+							        <c:otherwise>
+							            <%-- 在学中でない場合：× --%>
+							            <span style="color: #999;">×</span>
+							        </c:otherwise>
+							    </c:choose>
+							</td>
+							<td><a href="${pageContext.request.contextPath}/main/student/studentupdate?no=${stu.no}">
+								変更</a></td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
 		</c:when>
+
 
 		<%-- studentリストが空の場合にメッセージを表示 --%>
 		<c:otherwise>
