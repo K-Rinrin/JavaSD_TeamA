@@ -14,50 +14,79 @@ import tool.CommonServlet;
 @WebServlet(urlPatterns = {"/main/student/STDM001"})
 public class StudentListController extends CommonServlet {
 
-	@Override
-	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-		//絞り込み条件（未入力ならNULL）
-		String entYearParam = req.getParameter("entYear");
-		Integer entYear = (entYearParam != null && !entYearParam.isEmpty()) ? Integer.parseInt(entYearParam) : null;
+        // セッションからログインユーザー情報を取得
+        Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
 
-		String classNum = req.getParameter("classNum");
-		if (classNum == null) classNum = "";
-
-		String isAttendParam = req.getParameter("isAttend");
-		Boolean isAttend = (isAttendParam != null) ? true : null;
-
-		Teacher school_cd = (Teacher) req.getSession().getAttribute("session_user");
+        // ログインチェック
+        if (teacher == null || teacher.getSchool() == null) {
+            resp.sendRedirect(req.getContextPath() + "/main/accounts/login"); // ログインページのURLは環境に合わせてください
+            return;
+        }
 
 
-		//絞り込み条件無しなら全部の情報
-		//ありならそれに応じた情報をDBから取得
-		StudentDAO dao = new StudentDAO();
-		List<Student> student = dao.findStudents(entYear, classNum, isAttend, school_cd);
-		List<Student> allclass = dao.getAllClassNum();
-		List<Student> allent = dao.getAllEntYear();
+        // パラメータ処理
+        String entYearParam = req.getParameter("entYear");
+        Integer entYear = (entYearParam != null && !entYearParam.isEmpty()) ? Integer.parseInt(entYearParam) : null;
 
-		req.setAttribute("allent", allent);
-		req.setAttribute("allclass", allclass);
-		req.setAttribute("student", student);
-		req.setAttribute("entYear", entYear);
-		req.setAttribute("classNum", classNum);
-		req.setAttribute("isAttend", isAttend);
-		req.setAttribute("件数", student.size());
+        String classNum = req.getParameter("classNum");
+        if (classNum != null && classNum.isEmpty()) {
+            classNum = null;
+        }
+
+        // 「絞込み」ボタンが押されたかどうかを判定
+        String filter = req.getParameter("filter");
+        Boolean isAttend = null; // デフォルトはnull（絞り込まない）
+
+        if (filter != null) {
+            // 絞り込みボタンが押された場合
+            String isAttendParam = req.getParameter("isAttend");
+            // チェックボックスがチェックされていればtrue, されていなければfalseを設定
+            isAttend = (isAttendParam != null);
+        }
+
+        // DAOをインスタンス化
+        StudentDAO dao = new StudentDAO();
+        // 検索条件を元に、ログイン中の学校の学生を取得
+        List<Student> student;
+
+        if (filter != null) {
+            // 絞り込みボタンが押された場合は、条件で検索
+             student = dao.findStudents(entYear, classNum, isAttend, teacher);
+        } else {
+            // 初回アクセス時は、ログイン中の学校の全学生を表示
+            student = dao.findStudents(null, null, null, teacher);
+        }
 
 
-		//学生一覧と条件をJSPに渡す
-		req.getRequestDispatcher("/main/student/STDM001.jsp").forward(req, resp);
 
 
+        List<String> classNumList = dao.getAllClassNum(teacher);
+        List<Integer> entYearList = dao.getAllEntYear(teacher);
 
-	}
+        req.setAttribute("allent", entYearList);
+        req.setAttribute("allclass", classNumList);
+        req.setAttribute("student", student);
+        req.setAttribute("件数", student.size());
 
-	@Override
+        // 検索条件の保持（任意）
+        req.setAttribute("entYear", entYear);
+        req.setAttribute("classNum", classNum);
+        // isAttendがnullでない場合のみセット（チェックボックスの状態復元用）
+        if (isAttend != null) {
+            req.setAttribute("isAttend", isAttend);
+        }
+
+
+        //学生一覧と条件をJSPに渡す
+        req.getRequestDispatcher("/main/student/STDM001.jsp").forward(req, resp);
+    }
+
+    @Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・ス
-
+		// postリクエストが来た場合もgetメソッドと同じ処理を行う
+		get(req, resp);
 	}
-
 }
