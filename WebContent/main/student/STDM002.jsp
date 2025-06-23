@@ -83,7 +83,7 @@
 
 
 					<%-- すべての入力が完了したら登録ボタンを押下する --%>
-					<button type="submit" name="end" class="btn btn-primary">登録</button>
+					<button type="submit" name="end" class="btn btn-secondary">登録して終了</button>
 
 				</form>
 
