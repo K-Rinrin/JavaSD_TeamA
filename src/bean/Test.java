@@ -18,11 +18,11 @@ public class Test {
 	public void setClassNum(String classNum) {
 		this.classNum = classNum;
 	}
-	public School getcShool() {
+	public School getSchool() {
 		return School;
 	}
-	public void setcShool(School cShool) {
-		this.School = cShool;
+	public void setSchool(School School) {
+		this.School = School;
 	}
 	public int getNo() {
 		return no;

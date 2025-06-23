@@ -75,7 +75,7 @@
 
 
 	<%-- 検索結果・点数登録 --%>
-	<c:if test="{not empty TestList}">
+	<c:if test="${not empty scorelist}">
 
 	<%--科目と回数の表示 --%>
 	<h2 class="mt-4 mb-3 ">科目：${subjectName}(${param.f4})</h2>
@@ -109,39 +109,27 @@
 		<c:forEach var="score" items="${scorelist}">
 			<tr>
 				<%-- 入学年度 --%>
-				<td>
-					<c:forEach var="stu" items="${student}">
-					 <c:if test="${stu.no == score.studentNo}">
-						${stu.intyear}
-					 </c:if>
-					</c:forEach>
-				</td>
+				<td>${score.student.entYear}</td>
 
 				<%-- クラス --%>
-				<td>${score.classnum}</td>
+				<td>${score.student.classNum}</td>
 
 				<%-- 学生番号 --%>
-				<td>${score.studentno}</td>
+				<td>${score.student.no}</td>
 
 				<%-- 氏名 --%>
-				<td>
-				 <c:forEach var="stu" items="${student}">
-				 <c:if test="${stu.no == score.studentno}">
-					${stu.name}
-				 </c:if>
-				 </c:forEach>
-				</td>
+				<td>${score.student.name}</td>
 
 				<%-- 点数入力欄 --%>
 				<td>
-				 <input type="number" name="point_${score.studentno}"
+				 <input type="number" name="point_${score.student.no}"
 				  value="${score.point}" min="0" max="100" required
 				  class="from-control" style="width: 120px;"/>
 				</td>
 
 				<%-- 削除チェックボックス --%>
 				<td>
-					<input type="checkbox" name="check_${score.studentno}"
+					<input type="checkbox" name="check_${score.student.no}"
 					value="on">
 				</td>
 
