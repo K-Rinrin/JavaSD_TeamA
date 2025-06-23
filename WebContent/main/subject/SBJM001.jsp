@@ -22,7 +22,11 @@
         <div class="list-group-item fw-bold">
             <div class="row align-items-center">
                 <%-- [修正] border-end を追加して右側に縦線を引く --%>
-                <div class="col-2 border-end">科目コード  </div>
+                <div class="col-2">科目　　コード  </div>
+
+
+                <%-- [修正] スペーサー用の空カラムを追加して距離を確保 --%>
+                <div class="col-4"></div>
 
                 <%-- [修正] ps-3 を追加して縦線との間に余白を設ける --%>
                 <div class="col ps-3">科目名</div>
