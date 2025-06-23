@@ -1,5 +1,8 @@
 package subject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.annotation.WebServlet;
 
 //科目登録処理
@@ -34,11 +37,9 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	        String name = req.getParameter("name");
 	     // ログイン中の先生（sessionの"user"）を取得
 	        Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
+	     // エラー情報をまとめる
+			Map<String, String> errors = new HashMap<>();
 
-
-//	        if (teacher == null) {
-//	            System.out.println("teacher is null (not logged in?)");
-//	        }
 
 
 
@@ -53,6 +54,18 @@ public class SubjectCreateExecuteController extends CommonServlet {
 	        // DAO を使って科目をDBに登録
 	        SubjectDAO dao = new SubjectDAO();
 	        dao.addSubject(subject);
+
+	     // ------------ エラー情報のチェック ------------
+
+			// 科目番号の重複チェック
+			if (cd == null || cd.isEmpty()) {
+				errors.put("no", "科目コードを入力してください");
+			} else if (dao.getSubjectByCd(cd) != null) {
+		        errors.put("no", "科目コードがが重複しています");
+		    }
+
+
+			 // ------------ エラー情報のチェック ------------
 
 
 
