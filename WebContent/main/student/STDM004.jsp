@@ -58,7 +58,7 @@
 						<%-- ラベルを先に配置 --%>
 						<label class="form-label mb-0 me-2" for="is_attend_check">在学中</label>
 						<%-- チェックボックスを次に配置 --%>
-						<input type="checkbox" name="is_attend" value="true" class="form-check-input" id="is_attend_check" ${student.attend ? 'checked' : ''}>
+						<input type="checkbox" name="isAttend" value="true" class="form-check-input" id="is_attend_check" ${student.attend ? 'checked' : ''}>
 					</div>
 
 					<!-- 学生変更完了画面に遷移する -->
