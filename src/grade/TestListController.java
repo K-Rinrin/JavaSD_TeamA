@@ -27,10 +27,17 @@ public class TestListController extends CommonServlet {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
+		req.getRequestDispatcher("/main/grade/GRMR001.jsp").forward(req, resp);
+
+		/*
+		 *
+		 *
+		 *
+		 */
+
 		int ent_year = Integer.parseInt(req.getParameter("f1"));
 		String class_num = req.getParameter("f2");
 		String subject_list = req.getParameter("f3");
-		//String kaisuu = req.getParameter("f4");
 
 		try {
 
@@ -96,6 +103,7 @@ public class TestListController extends CommonServlet {
 
 
 	}
+
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {

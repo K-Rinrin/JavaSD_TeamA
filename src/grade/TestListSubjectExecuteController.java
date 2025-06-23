@@ -8,31 +8,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.TestListSubject;
+import bean.TestListStudent;
 import dao.TestListSubjectDAO;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/main/grade/GRMR002" })
 
 public class TestListSubjectExecuteController extends CommonServlet {
 
+	//成績参照(科目)
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
+		//入学年度、科目、クラス、で検索した場合
+		int ent_year = Integer.parseInt(req.getParameter("f1"));
+		String class_num = req.getParameter("f2");
+		String subject_list = req.getParameter("f3");
+		try{
+			TestListSubjectDAO sub_dao = new TestListSubjectDAO(null);
+			List<TestListStudent> subject = sub_dao.getTestListByClass(ent_year, class_num, subject_list);
 
+			req.setAttribute(subject, subject);
+			req.getRequestDispatcher("/main/grade/GRMR001.jsp").forward(req, resp);
+			}catch (Exception e) {
+				// TODO: handle exception
+				req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
+			}
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
-//		全クラスを取得するDAO
-//		クラス番号を取得する
-		TestListSubjectDAO cn_dao = new TestListSubjectDAO(null);
-		List<TestListSubject> testSub_list = cn_dao.getTestListByClass(null);
-		req.setAttribute("results", testSub_list);
-		req.getRequestDispatcher("/main/grade/GRMR001.jsp").forward(req, resp);
-
-
 	}
 
 }
