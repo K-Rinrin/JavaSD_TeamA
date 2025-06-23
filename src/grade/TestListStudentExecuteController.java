@@ -23,7 +23,7 @@ public class TestListStudentExecuteController extends CommonServlet {
 		//学生番号で検索した場合
 		String stu_num = req.getParameter("no");
 		try{
-			TestListStudentDAO stu_dao = new TestListStudentDAO(null);
+			TestListStudentDAO stu_dao = new TestListStudentDAO();
 			List<TestListStudent> student = stu_dao.getTestListByStudentNo(stu_num);
 
 			req.setAttribute(student, student);
