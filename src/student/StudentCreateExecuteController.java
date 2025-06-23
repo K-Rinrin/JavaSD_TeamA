@@ -1,5 +1,8 @@
 package student;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,85 +15,106 @@ import tool.CommonServlet;
 @WebServlet(urlPatterns={"/main/student/studentcreateexecute"})
 public class StudentCreateExecuteController extends CommonServlet {
 
-	// getメソッドは直接使われない想定
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 不正なアクセスの場合は登録画面にリダイレクト
-		resp.sendRedirect(req.getContextPath() + "/main/student/STDM002");
+		resp.sendRedirect(req.getContextPath() + "/main/student/STDM002.jsp");
 	}
+
+
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
 
-		//学生登録
+
+		StudentDAO dao = new StudentDAO();
+		// エラー情報をまとめる
+		Map<String, String> errors = new HashMap<>();
+
+
+
+		//登録に必要な情報をもらう
+		String entYearStr = req.getParameter("ent_year");
+		String no = req.getParameter("no");
+		String name = req.getParameter("name");
+		String classNum = req.getParameter("class_num");
+		Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
+
+
+
 		try{
-			StudentDAO dao = new StudentDAO();
-
-			//登録に必要な情報をもらう
-			String entYearStr = req.getParameter("ent_year");
-			String no = req.getParameter("no");
-			String name = req.getParameter("name");
-			String classNum = req.getParameter("class_num");
-			Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
-			Boolean isAttend = true;
-
-
-
-            // ログイン情報が不正な場合はエラーとして処理を中断
+            // ログイン情報が不正な場合はシステムエラー
             if (teacher == null || teacher.getSchool() == null) {
-                req.setAttribute("error", "ログイン情報が不正です。再度ログインしてください。");
-                // プルダウン用のデータを念のため取得
-                req.setAttribute("entYearList", dao.getEntYearRange());
-                req.getRequestDispatcher("/main/student/STDM002.jsp").forward(req, resp);
+                req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
                 return;
             }
 
-            // ent_yearが選択されているかチェック
+
+
+
+            // ------------ エラー情報のチェック ------------
+
+            // 1. 入学年度のチェック
+            Integer entYear = null;
             if (entYearStr == null || entYearStr.isEmpty()) {
-                req.setAttribute("error", "入学年度を選択してください。");
-                // 入力データを復元
-                req.setAttribute("no", no);
-                req.setAttribute("name", name);
-                req.setAttribute("class_num", classNum);
-                // プルダウン用のデータを再取得
-                req.setAttribute("classnum", dao.getAllClassNum(teacher));
-                req.setAttribute("entYearList", dao.getEntYearRange());
-                req.getRequestDispatcher("/main/student/STDM002.jsp").forward(req, resp);
-                return;
+                errors.put("ent_year", "入学年度を選択してください");
+            } else {
+                entYear = Integer.parseInt(entYearStr);
             }
-            int entYear = Integer.parseInt(entYearStr);
 
-
-			//重複チェック
-			if (dao.getStudentByNo(no) != null) {
-		        req.setAttribute("error", "この学生番号はすでに登録されています。");
-
-		        // 入力済みデータと一覧データを再セット
-		        req.setAttribute("ent_year", entYear);
-		        req.setAttribute("no", no);
-		        req.setAttribute("name", name);
-		        req.setAttribute("class_num", classNum);
-
-		        req.setAttribute("classnum", dao.getAllClassNum(teacher));
-		        req.setAttribute("entYearList", dao.getEntYearRange());
-
-		        req.getRequestDispatcher("/main/student/STDM002.jsp").forward(req, resp);
-                return;
+			// 2. 学生番号の重複チェック
+			if (no == null || no.isEmpty()) {
+				errors.put("no", "学生番号を入力してください");
+			} else if (dao.getStudentByNo(no) != null) {
+		        errors.put("no", "学生番号が重複しています");
 		    }
 
-			//DAOに渡す
+
+			 // ------------ エラー情報のチェック ------------
+
+
+
+
+
+
+            // エラーが1つでもあれば、登録画面に戻す
+			if (!errors.isEmpty()) {
+				// 入力された値をリクエストにセットして画面に復元
+				req.setAttribute("ent_year", entYearStr);
+				req.setAttribute("no", no);
+				req.setAttribute("name", name);
+				req.setAttribute("class_num", classNum);
+
+				// エラーメッセージのMapをリクエストにセット
+				req.setAttribute("errors", errors);
+
+				// プルダウン用のリストを再取得してリクエストにセット
+                req.setAttribute("classnum", dao.getAllClassNum(teacher));
+                req.setAttribute("entYearList", dao.getEntYearRange());
+
+
+				req.getRequestDispatcher("/main/student/STDM002.jsp").forward(req, resp);
+
+				return;
+			}
+
+
+
+			// エラーがなければ登録処理を実行
 			Student stu = new Student();
 			stu.setNo(no);
 			stu.setName(name);
 			stu.setEntYear(entYear);
 			stu.setClassNum(classNum);
-			stu.setAttend(isAttend);
-			stu.setSchool(teacher.getSchool()); // 先生の所属学校
+			stu.setAttend(true);
+			stu.setSchool(teacher.getSchool());
 
 			dao.addStudent(stu);
 
+
+
 			req.getRequestDispatcher("/main/student/STDM003.jsp").forward(req, resp);
+
 
 		}catch (Exception e) {
 			e.printStackTrace();
