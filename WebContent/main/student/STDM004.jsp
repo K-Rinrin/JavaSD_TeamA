@@ -46,7 +46,7 @@
 					<%-- ログインユーザの学校コードに該当する「クラス番号テーブル」の「クラス番号」を表示 --%>
 					<div class="mb-3">
 						<label class="form-label">クラス</label>
-						<select name="class_num" class="form-select" required>
+						<select name="classNum" class="form-select" required>
 						<option value="">----</option>
 							<c:forEach var="cls" items="${allclass}">
 								<option value="${cls}" ${cls == student.classNum ? 'selected' : ''}>${cls}</option>
