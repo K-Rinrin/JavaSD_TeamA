@@ -10,7 +10,7 @@ import bean.Teacher;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/main/student/studentcreate"})
+@WebServlet(urlPatterns={"/main/student/STDM002"})
 public class StudentCreateController extends CommonServlet {
 
 	//学生登録画面表示

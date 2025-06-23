@@ -26,7 +26,7 @@
             <div class="card-body">
                 <div class="text-end mb-3">
                     <%-- 学生登録画面に遷移する --%>
-                    <a href="${pageContext.request.contextPath}/main/student/studentcreate">新規登録</a>
+                    <a href="${pageContext.request.contextPath}/main/student/STDM002">新規登録</a>
                 </div>
 
 
