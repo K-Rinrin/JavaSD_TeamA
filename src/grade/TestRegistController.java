@@ -15,7 +15,7 @@ import bean.Student;
 import bean.Subject;
 import bean.Test;
 import dao.ClassNumDAO;
-import dao.StudentDAO2;
+import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.CommonServlet;
@@ -31,7 +31,7 @@ public class TestRegistController extends CommonServlet {
 
 
             // 入学年度一覧（学生情報から取得）
-            StudentDAO2 stu_dao = new StudentDAO2();
+            StudentDAO stu_dao = new StudentDAO();
             List<Student> stu_list = stu_dao.getAllStudents();
 
             // 重複しない入学年度のみ抽出

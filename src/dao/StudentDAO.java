@@ -102,6 +102,29 @@ public class StudentDAO extends DAO {
 			return student;
 		}
 
+		// 全学生取得
+		   public List<Student> getAllStudents() throws SQLException {
+		      List<Student> list = new ArrayList<>();
+		      try(Connection con = getConnection()) {
+		    	  String sql = "SELECT * FROM student";
+		    	  PreparedStatement stmt = con.prepareStatement(sql);
+		    	  ResultSet rs = stmt.executeQuery();
+		    	  while (rs.next()) {
+		    		  Student student = new Student();
+		              student.setNo(rs.getString("no"));
+		              student.setName(rs.getString("name"));
+		              student.setEntYear(rs.getInt("ent_year"));
+		              student.setClassNum(rs.getString("class_num"));
+		              student.setAttend(rs.getBoolean("is_attend"));
+		             list.add(student);
+		          }
+		      } catch (Exception e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			  }
+			  return list;
+		   }
+
 
 
 
