@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.TestListStudent;
+import bean.TestListSubject;
 import dao.TestListSubjectDAO;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/main/grade/GRMR002" })
@@ -25,10 +25,10 @@ public class TestListSubjectExecuteController extends CommonServlet {
 		String class_num = req.getParameter("f2");
 		String subject_list = req.getParameter("f3");
 		try{
-			TestListSubjectDAO sub_dao = new TestListSubjectDAO(null);
-			List<TestListStudent> subject = sub_dao.getTestListByClass(ent_year, class_num, subject_list);
+			TestListSubjectDAO sub_dao = new TestListSubjectDAO();
+			List<TestListSubject> results = sub_dao.getTestListByClass(ent_year, class_num, subject_list);
 
-			req.setAttribute(subject, subject);
+			req.setAttribute("results", results);
 			req.getRequestDispatcher("/main/grade/GRMR001.jsp").forward(req, resp);
 			}catch (Exception e) {
 				// TODO: handle exception
