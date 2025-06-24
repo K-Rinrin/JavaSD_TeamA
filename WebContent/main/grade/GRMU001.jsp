@@ -123,7 +123,8 @@
 				<%-- 点数入力欄 --%>
 				<td>
 				 <input type="number" name="point_${score.student.no}"
-				  value="${score.point}" min="0" max="100" required
+				  value="<c:out value='${score.point}' defauit=''/>"
+				   min="0" max="100" required
 				  class="from-control" style="width: 120px;"/>
 				</td>
 
