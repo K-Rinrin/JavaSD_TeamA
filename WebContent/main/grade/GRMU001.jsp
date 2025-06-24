@@ -26,7 +26,10 @@
 				<select name="f1" id="f1_select" class="form-select">
 					<option value="">--------</option>
 					<c:forEach var="stu" items="${student}">
-						<option value="${stu.entYear}">${stu.entYear}</option>
+						<option value="${stu.entYear}"
+						<c:if test=${stu.entYear == param.f1}>selected</c:if>>
+						${stu.entYear}
+						</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -37,7 +40,9 @@
 				<select name="f2" id="f2_select" class="form-select">
 					<option value="">--------</option>
 					<c:forEach var="classItem" items="${classNums}">
-						<option value="${classItem.class_num}">${classItem.class_num}</option>
+						<option value="${classItem.class_num}"
+						<c:if test=${classItem.class_num == param.f2}>selected</c:if>>
+						${classItem.class_num}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -48,7 +53,9 @@
 				<select name="f3" id="f3_select" class="form-select">
 					<option value="">--------</option>
 					<c:forEach var="subject" items="${subjects}">
-						<option value="${subject.cd}">${subject.name}</option>
+						<option value="${subject.cd}"
+						<c:if test=${subject.cd == param.f3}>selected</c:if>>
+						${subject.name}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -58,8 +65,8 @@
 				<label for="f4_select" class="form-label">回数</label>
 				<select name="f4" id="f4_select" class="form-select">
 					<option value="">--------</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
+					<option value="1" <c:if test=${param.f4 == '1'}>selected</c:if>>1</option>
+					<option value="2" <c:if test=${param.f4 == '2'}>selected</c:if>>2</option>
 				</select>
 			</div>
 
@@ -138,8 +145,22 @@
 		</c:forEach>
 		</table>
 
+		<%-- ボタン --%>
 
-		<button type="submit" class="btn btn-secondary mt-3">登録して終了</button>
+		<button type="submit" name="action" value="end"
+		class="btn btn-secondary mt-3">登録して終了</button>
+
+		<button type="submit" name="action" value="again"
+		class="btn btn-secondary mt-3">登録して再度入力</button>
+
+		<%-- サーブレット (例)
+		String action = request.getParameter("action");
+		if ("end".equals(action)) {
+			// 登録して終了の処理
+		} else if ("again".equals(action)) {
+   			// 登録して再度入力の処理
+		}
+		 --%>
 
 	</form>
 	</c:if>
