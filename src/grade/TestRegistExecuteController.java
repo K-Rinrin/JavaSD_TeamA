@@ -74,23 +74,28 @@ public class TestRegistExecuteController extends CommonServlet {
                     if (paramName.startsWith("point_")) {
                         String studentNo = paramName.substring("point_".length());
                         String pointStr = entry.getValue()[0];
-                        int point;
 
-                        // 点数のチェック（数値 & 範囲）
-                        try {
-                            point = Integer.parseInt(pointStr);
-                            if (point < 0 || point > 100) {
-                                errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-                                        + "学生番号 " + studentNo + " の得点（" + pointStr + "）は0～100で入力してください。";
-                                allSuccess = false;
-                                continue;
-                            }
-                        } catch (NumberFormatException e) {
-                            errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-                                    + "学生番号 " + studentNo + " の得点（" + pointStr + "）は数値で入力してください。";
-                            allSuccess = false;
-                            continue;
-                        }
+		                 // 入力されていない場合はスキップ
+		                 if (pointStr == null || pointStr.trim().isEmpty()) {
+		                     continue; // 入力されてない学生は登録・更新・削除しない
+		                 }
+
+		                 int point;
+		                 try {
+		                     point = Integer.parseInt(pointStr);
+		                     if (point < 0 || point > 100) {
+		                         errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
+		                                 + "学生番号 " + studentNo + " の得点（" + pointStr + "）は0～100で入力してください。";
+		                         allSuccess = false;
+		                         continue;
+		                     }
+		                 } catch (NumberFormatException e) {
+		                     errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
+		                             + "学生番号 " + studentNo + " の得点（" + pointStr + "）は数値で入力してください。";
+		                     allSuccess = false;
+		                     continue;
+		                 }
+
 
                         // 削除チェックがオンかどうか
                         boolean deleteChecked = req.getParameter("check_" + studentNo) != null;

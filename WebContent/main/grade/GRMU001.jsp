@@ -124,7 +124,7 @@
 				<td>
 				 <input type="number" name="point_${score.student.no}"
 				  value="<c:out value='${score.point}' default=''/>"
-				   min="0" max="100" required
+				   min="0" max="100"
 				  class="from-control" style="width: 120px;"/>
 				</td>
 
