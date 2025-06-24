@@ -17,8 +17,6 @@ public class StudentCreateExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// 不正なアクセスの場合は登録画面にリダイレクト
-		resp.sendRedirect(req.getContextPath() + "/main/student/STDM002.jsp");
 	}
 
 
