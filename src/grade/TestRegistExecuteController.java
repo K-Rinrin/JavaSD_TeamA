@@ -181,7 +181,15 @@ public class TestRegistExecuteController extends CommonServlet {
         req.setAttribute("f3", f3);
         req.setAttribute("f4", f4);
 
-        // 処理後、GETにフォワードして結果を画面に反映
+     // 最後にこのブロックでフォワード先を分岐
+        String action = req.getParameter("action");
+
+        if ("again".equals(action) || !allSuccess) {
+            resp.sendRedirect(req.getContextPath() + "/main/grade/GRMU001");
+        } else {
         req.getRequestDispatcher("/main/grade/GRMU002.jsp").forward(req, resp);
+        	}
+
+
     }
 }
