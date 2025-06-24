@@ -24,9 +24,9 @@ public class TestListStudentExecuteController extends CommonServlet {
 		String stu_num = req.getParameter("no");
 		try{
 			TestListStudentDAO stu_dao = new TestListStudentDAO();
-			List<TestListStudent> student = stu_dao.getTestListByStudentNo(stu_num);
+			List<TestListStudent> results = stu_dao.getTestListByStudentNo(stu_num);
 
-			req.setAttribute(student, student);
+			req.setAttribute("results", results);
 			req.getRequestDispatcher("/main/grade/GRMR003.jsp").forward(req, resp);
 		}catch (Exception e) {
 			// TODO: handle exception

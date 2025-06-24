@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Student;
 import bean.TestListStudent;
 
 
@@ -23,7 +22,7 @@ public class TestListStudentDAO extends DAO {
                     "WHERE t.student_no = ? " +
                     "ORDER BY t.subject_cd, t.num";
     	   	PreparedStatement stmt = con.prepareStatement(sql);
-    	   	stmt.setString(1,     );
+    	   	stmt.setString(1, studentNo);
 			ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
                TestListStudent test = new TestListStudent();
@@ -33,7 +32,10 @@ public class TestListStudentDAO extends DAO {
                test.setPoint(rs.getInt("point"));
                list.add(test);
            }
-       }
+       } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	}
        return list;
    }
 }
