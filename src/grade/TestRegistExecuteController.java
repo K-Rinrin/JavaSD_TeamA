@@ -98,6 +98,7 @@ public class TestRegistExecuteController extends CommonServlet {
                         // Testオブジェクト生成
                         Student student = new Student();
                         student.setNo(studentNo);
+                        student.setClassNum(classNum);
 
                         School school = new School();
                         school.setCd(schoolCd);
