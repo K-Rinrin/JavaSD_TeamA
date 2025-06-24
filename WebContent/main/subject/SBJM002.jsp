@@ -35,7 +35,7 @@
 	        </div>
 
 
-
+			<%-- 登録ボタン --%>
 	        <div class="mt-4">
 	            <button type="submit" class="btn btn-primary">登録</button>
 	            <div class="mt-2">

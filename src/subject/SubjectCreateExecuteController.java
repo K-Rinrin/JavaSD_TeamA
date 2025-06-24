@@ -38,7 +38,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
 
 
 
-            // エラー情報をまとめる
+            // エラー情報まとめ
             Map<String, String> errors = new HashMap<>();
 
 
