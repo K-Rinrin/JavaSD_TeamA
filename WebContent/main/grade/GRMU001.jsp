@@ -37,7 +37,7 @@
 				<select name="f2" id="f2_select" class="form-select">
 					<option value="">--------</option>
 					<c:forEach var="classItem" items="${classNums}">
-						<option value="${classItem.classNum}">${classItem.classNum}</option>
+						<option value="${classItem.class_num}">${classItem.class_num}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -78,7 +78,7 @@
 	<c:if test="${not empty scorelist}">
 
 	<%--科目と回数の表示 --%>
-	<p class="mt-4 mb-3 ">科目：${subjectName}(${param.f4}回)</p>
+	<h2 class="mt-4 mb-3 ">科目：${subjectName}(${param.f4})</h2>
 
 	<%-- エラーメッセージある場合 --%>
 	<c:if test="${not empty errorMsg }">
@@ -123,7 +123,7 @@
 				<%-- 点数入力欄 --%>
 				<td>
 				 <input type="number" name="point_${score.student.no}"
-				  value="${score.point}" min="0" max="100"
+				  value="${score.point}" min="0" max="100" required
 				  class="from-control" style="width: 120px;"/>
 				</td>
 
