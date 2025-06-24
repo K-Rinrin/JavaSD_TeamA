@@ -27,7 +27,7 @@
 					<option value="">--------</option>
 					<c:forEach var="stu" items="${student}">
 						<option value="${stu.entYear}"
-						<c:if test=${stu.entYear == param.f1}>selected</c:if>>
+						<c:if test="${stu.entYear == param.f1}">selected</c:if>>
 						${stu.entYear}
 						</option>
 					</c:forEach>
@@ -41,7 +41,7 @@
 					<option value="">--------</option>
 					<c:forEach var="classItem" items="${classNums}">
 						<option value="${classItem.class_num}"
-						<c:if test=${classItem.class_num == param.f2}>selected</c:if>>
+						<c:if test="${classItem.class_num == param.f2}">selected</c:if>>
 						${classItem.class_num}</option>
 					</c:forEach>
 				</select>
@@ -54,7 +54,7 @@
 					<option value="">--------</option>
 					<c:forEach var="subject" items="${subjects}">
 						<option value="${subject.cd}"
-						<c:if test=${subject.cd == param.f3}>selected</c:if>>
+						<c:if test="${subject.cd == param.f3}">selected</c:if>>
 						${subject.name}</option>
 					</c:forEach>
 				</select>
@@ -65,8 +65,8 @@
 				<label for="f4_select" class="form-label">回数</label>
 				<select name="f4" id="f4_select" class="form-select">
 					<option value="">--------</option>
-					<option value="1" <c:if test=${param.f4 == '1'}>selected</c:if>>1</option>
-					<option value="2" <c:if test=${param.f4 == '2'}>selected</c:if>>2</option>
+					<option value="1" <c:if test="${param.f4 == '1'}">selected</c:if>>1</option>
+					<option value="2" <c:if test="${param.f4 == '2'}">selected</c:if>>2</option>
 				</select>
 			</div>
 
