@@ -37,7 +37,7 @@
 				<select name="f2" id="f2_select" class="form-select">
 					<option value="">--------</option>
 					<c:forEach var="classItem" items="${classNums}">
-						<option value="${classItem.class_num}">${classItem.class_num}</option>
+						<option value="${classItem.classNum}">${classItem.classNum}</option>
 					</c:forEach>
 				</select>
 			</div>
