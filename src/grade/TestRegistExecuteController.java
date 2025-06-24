@@ -58,6 +58,7 @@ public class TestRegistExecuteController extends CommonServlet {
             if (f1 == null || f1.isEmpty() || f2 == null || f2.isEmpty()
                     || f3 == null || f3.isEmpty() || f4 == null || f4.isEmpty()) {
                 allSuccess = false;
+                errorMsg = "入学年度、クラス、科目、回数をすべて選択してください。";
             }
 
             if (allSuccess) {
@@ -75,26 +76,26 @@ public class TestRegistExecuteController extends CommonServlet {
                         String studentNo = paramName.substring("point_".length());
                         String pointStr = entry.getValue()[0];
 
-		                 // 入力されていない場合はスキップ
-		                 if (pointStr == null || pointStr.trim().isEmpty()) {
-		                     continue; // 入力されてない学生は登録・更新・削除しない
-		                 }
+	                 // 入力されていない場合はスキップ
+	                 if (pointStr == null || pointStr.trim().isEmpty()) {
+	                     continue; // 入力されてない学生は登録・更新・削除しない
+	                 }
 
-		                 int point;
-		                 try {
-		                     point = Integer.parseInt(pointStr);
-		                     if (point < 0 || point > 100) {
-		                         errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-		                                 + "学生番号 " + studentNo + " の得点（" + pointStr + "）は0～100で入力してください。";
-		                         allSuccess = false;
-		                         continue;
-		                     }
-		                 } catch (NumberFormatException e) {
-		                     errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-		                             + "学生番号 " + studentNo + " の得点（" + pointStr + "）は数値で入力してください。";
-		                     allSuccess = false;
-		                     continue;
-		                 }
+	                 int point;
+	                 try {
+	                     point = Integer.parseInt(pointStr);
+	                     if (point < 0 || point > 100) {
+	                         errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
+	                                 + "学生番号 " + studentNo + " の得点（" + pointStr + "）は0～100で入力してください。";
+	                         allSuccess = false;
+	                         continue;
+	                     }
+	                 } catch (NumberFormatException e) {
+	                     errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
+	                             + "学生番号 " + studentNo + " の得点（" + pointStr + "）は数値で入力してください。";
+	                     allSuccess = false;
+	                     continue;
+	                 }
 
 
                         // 削除チェックがオンかどうか
@@ -171,6 +172,7 @@ public class TestRegistExecuteController extends CommonServlet {
             errorMsg = "成績の登録中にエラーが発生しました。";
             e.printStackTrace();
         }
+
 
         // メッセージと検索条件をリクエストに保持
         req.setAttribute("errorMsg", errorMsg);
