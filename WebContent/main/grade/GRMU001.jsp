@@ -78,7 +78,7 @@
 	<c:if test="${not empty scorelist}">
 
 	<%--科目と回数の表示 --%>
-	<h2 class="mt-4 mb-3 ">科目：${subjectName}(${param.f4})</h2>
+	<p class="mt-4 mb-3 ">科目：${subjectName}(${param.f4}回)</p>
 
 	<%-- エラーメッセージある場合 --%>
 	<c:if test="${not empty errorMsg }">
