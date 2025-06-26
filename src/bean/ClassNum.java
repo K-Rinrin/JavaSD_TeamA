@@ -1,5 +1,8 @@
 package bean;
 
+//クラス番号
+//学校情報
+
 public class ClassNum {
 	private String class_num;
 	private School school;

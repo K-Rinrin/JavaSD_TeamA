@@ -1,5 +1,12 @@
 package bean;
 
+//学生番号
+//学生名
+//入学年度
+//クラス番号
+//在学しているか
+//学校情報
+
 public class Student {
 	private String no;
 	private String name;

@@ -1,11 +1,10 @@
 package subject;
 
+//科目一覧画面表示
+
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
-
-//科目一覧画面表示
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

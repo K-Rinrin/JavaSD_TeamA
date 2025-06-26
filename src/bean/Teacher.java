@@ -1,5 +1,10 @@
 package bean;
 
+//先生番号
+//パスワード
+//先生名
+//学校情報
+
 public class Teacher {
 	private String id;
 	private String password;

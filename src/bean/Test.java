@@ -1,5 +1,11 @@
 package bean;
 
+//学生情報
+//クラス情報
+//学校情報
+//テスト回数
+//テスト点数
+
 public class Test {
 	private Student student;
 	private String classNum;

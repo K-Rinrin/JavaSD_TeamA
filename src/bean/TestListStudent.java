@@ -1,5 +1,10 @@
 package bean;
 
+//科目名
+//科目番号
+//num=?
+//テスト点数
+
 public class TestListStudent {
 	private String subjectName;
 	private String subjectCd;

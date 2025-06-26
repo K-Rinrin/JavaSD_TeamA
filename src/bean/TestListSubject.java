@@ -1,5 +1,10 @@
 package bean;
 
+//入学年度
+//学生番号
+//学生名
+//テスト点数
+
 import java.util.Map;
 
 public class TestListSubject {
