@@ -1,9 +1,8 @@
 package subject;
 
-import javax.servlet.annotation.WebServlet;
-
 //科目更新処理
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

@@ -1,5 +1,9 @@
 package bean;
 
+//科目番号
+//科目名
+//学校情報
+
 public class Subject {
 	private String cd;
 	private String name;

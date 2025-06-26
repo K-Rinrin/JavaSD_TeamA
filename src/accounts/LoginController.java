@@ -1,6 +1,6 @@
 package accounts;
 
-//ログイン画面表示c
+//ログイン画面表示
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

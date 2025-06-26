@@ -1,5 +1,7 @@
 package subject;
 
+//科目追加処理
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,5 +1,8 @@
 package bean;
 
+//学校番号
+//学校名
+
 public class School {
 
 	private String cd;
