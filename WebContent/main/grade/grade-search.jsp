@@ -16,7 +16,7 @@
 
 
 <div class="p-3 mb-4 rounded border">
-<form action="${pageContext.request.contextPath}/main/grade/GRMR002" method="post">
+<form action="${pageContext.request.contextPath}/main/grade/GRMR002" method="get">
 
 	<%-- 科目情報による検索セクション --%>
 	<div class="row align-items-center ">
@@ -81,7 +81,7 @@
 </form>
 
 
-<form action="${pageContext.request.contextPath}/main/grade/GRMR003" method="post">
+<form action="${pageContext.request.contextPath}/main/grade/GRMR003" method="get">
 
 	<%-- 学生情報による検索セクション --%>
 	<div class="row align-items-center">
