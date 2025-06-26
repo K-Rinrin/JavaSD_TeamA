@@ -88,9 +88,14 @@
 	<p class="mt-4 mb-3 ">科目：${subjectName}(${param.f4}回)</p>
 
 	<%-- エラーメッセージある場合 --%>
-	<c:if test="${not empty errorMsg }">
-		<p>${errorMsg}</p>
+	<c:if test="${not empty errorMsg}">
+		<ul class="text-danger">
+			<c:forEach var="msg" items="${errorMsg}">
+				<li>${msg}</li>
+			</c:forEach>
+		</ul>
 	</c:if>
+
 
 	<form action="${pageContext.request.contextPath}/main/grade/GRMU001Execute" method="post">
 
