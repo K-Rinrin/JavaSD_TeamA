@@ -45,7 +45,7 @@
 			<select name="f2" id="f2-select" class="form-select">
 				<option value="">-------</option>
 				<c:forEach var="classItem" items="${classNums}">
-					<option value="${classItem.class_num}" <c:if test="${f2 == classItem.class_num}">selected</c:if>>${classItem.class_num}</option>
+					<option value="${classItem}" <c:if test="${f2 == classItem}">selected</c:if>>${classItem}</option>
 				</c:forEach>
 			</select>
 		</div>
