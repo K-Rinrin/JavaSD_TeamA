@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import bean.TestListStudent;
@@ -48,6 +49,7 @@ public class TestListStudentExecuteController extends CommonServlet {
 		try{
 			TestListStudentDAO stu_dao = new TestListStudentDAO();
 			List<TestListStudent> results = stu_dao.getTestListByStudentNo(stu_num);
+			Student student = studao.getStudentByNo(stu_num);
 
 			req.setAttribute("results", results);
 			req.getRequestDispatcher("/main/grade/GRMR003.jsp").forward(req, resp);
