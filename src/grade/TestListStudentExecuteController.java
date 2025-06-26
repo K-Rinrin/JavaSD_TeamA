@@ -42,7 +42,8 @@ public class TestListStudentExecuteController extends CommonServlet {
 
 
 		//学生番号で検索した場合
-		String stu_num = req.getParameter("no");
+
+		String stu_num = req.getParameter("f4");
 		try{
 			TestListStudentDAO stu_dao = new TestListStudentDAO();
 			List<TestListStudent> results = stu_dao.getTestListByStudentNo(stu_num);
