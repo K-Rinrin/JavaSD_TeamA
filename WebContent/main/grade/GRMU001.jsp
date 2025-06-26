@@ -129,10 +129,11 @@
 
 				<%-- 点数入力欄 --%>
 				<td>
-				 <input type="number" name="point_${score.student.no}"
+				 <input type="text" name="point_${score.student.no}"
 				  value="<c:out value='${score.point}' default=''/>"
 				   min="0" max="100"
 				  class="from-control" style="width: 120px;"/>
+
 					<c:if test="${not empty errors.point}">
 						<p class="text-warning mt-1">${errors.point}</p>
 					</c:if>
