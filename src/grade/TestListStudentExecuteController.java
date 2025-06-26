@@ -52,6 +52,7 @@ public class TestListStudentExecuteController extends CommonServlet {
 			Student student = studao.getStudentByNo(stu_num);
 
 			req.setAttribute("results", results);
+			req.setAttribute("student", student);
 			req.getRequestDispatcher("/main/grade/GRMR003.jsp").forward(req, resp);
 		}catch (Exception e) {
 			// TODO: handle exception
