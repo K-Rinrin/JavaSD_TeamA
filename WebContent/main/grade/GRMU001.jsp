@@ -109,7 +109,7 @@
 				<th>学生番号</th>
 				<th>氏名</th>
 				<th>得点</th>
-				<th></th>
+				<th>削除</th>
 			</tr>
 		</thead>
 
