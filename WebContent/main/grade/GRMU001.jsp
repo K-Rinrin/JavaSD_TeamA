@@ -81,20 +81,24 @@
 
 
 
+	<%-- エラーメッセージがある場合、検索結果の有無に関わらず表示する --%>
+	<c:if test="${not empty errorMsg}">
+		<c:forEach var="msg" items="${errorMsg}">
+			<p class="text-warning mt-1">${msg}</p>
+		</c:forEach>
+	</c:if>
+
+
+
 	<%-- 検索結果・点数登録 --%>
 	<c:if test="${not empty scorelist}">
 
-	<%--科目と回数の表示 --%>
-	<p class="mt-4 mb-3 ">科目：${subjectName}(${param.f4}回)</p>
+		<%--科目と回数の表示 --%>
+		<p class="mt-4 mb-3 ">科目：${subjectName}(${param.f4}回)</p>
 
-	<%-- エラーメッセージある場合 --%>
-	<c:if test="${not empty errorMsg}">
-		<ul class="text-danger">
-			<c:forEach var="msg" items="${errorMsg}">
-				<li>${msg}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+
+
+
 
 
 	<form action="${pageContext.request.contextPath}/main/grade/GRMU001Execute" method="post">
