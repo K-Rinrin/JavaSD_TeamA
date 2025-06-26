@@ -86,13 +86,13 @@ public class TestRegistExecuteController extends CommonServlet {
 	                     point = Integer.parseInt(pointStr);
 	                     if (point < 0 || point > 100) {
 	                         errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-	                                 + "学生番号 " + studentNo + " の得点（" + pointStr + "）は0～100で入力してください。";
+	                                 +"0～100の範囲で入力してください。";
 	                         allSuccess = false;
 	                         continue;
 	                     }
 	                 } catch (NumberFormatException e) {
 	                     errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-	                             + "学生番号 " + studentNo + " の得点（" + pointStr + "）は数値で入力してください。";
+                                 +"0～100の範囲で入力してください。";
 	                     allSuccess = false;
 	                     continue;
 	                 }
@@ -121,30 +121,16 @@ public class TestRegistExecuteController extends CommonServlet {
                         // 削除処理
                         if (deleteChecked) {
                             if (testDao.deleteTest(studentNo, subjectCd, schoolCd, testNo)) {
-                                processedCount++;
-                            } else {
-                                allSuccess = false;
-                                errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-                                        + "学生番号 " + studentNo + " の削除に失敗しました。";
+
                             }
 
                         // 登録・更新処理
                         } else {
                             if (testDao.testExists(studentNo, subjectCd, schoolCd, testNo)) {
                                 if (testDao.updateTest(test, subject)) {
-                                    processedCount++;
-                                } else {
-                                    allSuccess = false;
-                                    errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-                                            + "学生番号 " + studentNo + " の得点更新に失敗しました。";
                                 }
                             } else {
                                 if (testDao.insertTest(test, subject, student)) {
-                                    processedCount++;
-                                } else {
-                                    allSuccess = false;
-                                    errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-                                            + "学生番号 " + studentNo + " の成績登録に失敗しました。";
                                 }
                             }
                         }
@@ -152,25 +138,10 @@ public class TestRegistExecuteController extends CommonServlet {
                 }
             }
 
-            // 最終メッセージ決定
-            if (!allSuccess) {
-                if (errorMsg == null) {
-                    errorMsg = "成績の登録または削除に失敗しました。";
-                }
-            } else {
-                if (processedCount > 0) {
-                    errorMsg = "成績の登録が完了しました。";
-                } else {
-                    errorMsg = "変更された成績はありませんでした。";
-                }
-            }
 
-        } catch (NumberFormatException e) {
-            errorMsg = "検索条件の値が不正です。";
-            e.printStackTrace();
+
         } catch (Exception e) {
-            errorMsg = "成績の登録中にエラーが発生しました。";
-            e.printStackTrace();
+
         }
 
 

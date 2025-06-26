@@ -39,6 +39,9 @@ public class TestRegistController extends CommonServlet {
             for (Student s : stu_list) {
                 entYearMap.putIfAbsent(s.getEntYear(), s);
             }
+//            エラー情報をまとめる
+            List<String> errorMsgs = new ArrayList<>();
+
 
             List<Student> filteredEntYears = new ArrayList<>(entYearMap.values());
             filteredEntYears.sort(Comparator.comparing(Student::getEntYear));
@@ -110,10 +113,6 @@ public class TestRegistController extends CommonServlet {
                         }
                     }
 
-                    // 成績が見つからなかった場合のメッセージ
-                    if (scorelist.isEmpty()) {
-                        errorMsg = "指定された条件のテスト結果は見つかりませんでした。";
-                    }
 
                     // 検索条件をJSPに渡す
                     req.setAttribute("f1", f1);
@@ -121,27 +120,25 @@ public class TestRegistController extends CommonServlet {
                     req.setAttribute("f3", f3);
                     req.setAttribute("f4", f4);
 
-                } catch (NumberFormatException e) {
-                    errorMsg = "入力された値が不正です。";
-                    e.printStackTrace();
                 } catch (Exception e) {
-                    errorMsg = "データの取得中にエラーが発生しました。";
-                    e.printStackTrace();
                 }
+            // いずれか1つでも未入力ならエラーを追加
+            } else if
+            	(f1 == null || f1.isEmpty() ||
+                f2 == null || f2.isEmpty() ||
+                f3 == null || f3.isEmpty() ||
+                f4 == null || f4.isEmpty()) {
 
-            } else if (req.getQueryString() != null && !req.getQueryString().isEmpty()) {
-                // 条件が一部しか入力されていない場合
-                errorMsg = "入学年度、クラス、科目、回数すべてを選択してください。";
+                errorMsgs.add("入学年度、クラス、科目、回数すべてを選択してください。");
             }
 
             // 最終的な結果のセットと画面遷移
             req.setAttribute("scorelist", scorelist);
-            req.setAttribute("errorMsg", errorMsg);
+            req.setAttribute("errorMsg", errorMsgs);
             req.setAttribute("subjectName", subjectName);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("errorMsg", "初期データの取得中にエラーが発生しました。");
+
         }
 
         // 成績登録画面にフォワード
