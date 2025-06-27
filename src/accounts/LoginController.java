@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-// このアノテーションにより、/accounts/login へのリクエストがこのサーブレットにマッピングされます。
+//アノテーション
 @WebServlet(urlPatterns = { "/main/accounts/LOGI001" })
 public class LoginController extends CommonServlet {
 
@@ -21,8 +21,6 @@ public class LoginController extends CommonServlet {
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// ログイン実行処理を行う /accounts/loginexecute へリダイレクト
-//		resp.sendRedirect(req.getContextPath() + "/accounts/loginExecute");
 
 	}
 }

@@ -138,15 +138,17 @@
 
 				<%-- 点数入力欄 --%>
 				<td>
-				 <input type="text" name="point_${score.student.no}"
-				  value="<c:out value='${score.point}' default=''/>"
-				   min="0" max="100"
-				  class="from-control" style="width: 120px;"/>
+				  <input type="text" name="point_${score.student.no}"
+				         value="<c:out value='${score.point}' default=''/>"
+				         min="0" max="100"
+				         class="form-control" style="width: 120px;" />
 
-					<c:if test="${not empty errors.point}">
-						<p class="text-warning mt-1">${errors.point}</p>
-					</c:if>
+				  <%-- 学生番号に対応するエラーがある場合だけ表示 --%>
+				  <c:if test="${not empty inputErrors[score.student.no]}">
+				    <p class="text-danger small mt-1">${inputErrors[score.student.no]}</p>
+				  </c:if>
 				</td>
+
 
 				<%-- 削除チェックボックス --%>
 				<td>

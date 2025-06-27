@@ -11,28 +11,28 @@ import bean.Teacher;
 import dao.TeacherDAO;
 import tool.CommonServlet;
 
-// このアノテーションにより、/accounts/loginExecute へのリクエストがこのサーブレットにマッピングされます。
+//アノテーション
 @WebServlet(urlPatterns = { "/main/accounts/loginExecute" })
 public class LoginExecuteController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO: 必要に応じてGETリクエストの処理を実装する
+
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// 現在のセッションを取得します。セッションが存在しない場合は新しく作成されます。
+		// 現在のセッションを取得。セッションが存在しない場合は新しく生成される。
 		HttpSession session = req.getSession();
 
-		// リクエストパラメータからログインIDとパスワードを取得します。
+		// ログインIDとパスワードを取得
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
-		// TeacherDAOのインスタンスを生成し、データベースから教員情報を取得します。
+		// TeacherDAOのインスタンスを生成し、データベースから教員情報を取得
 		TeacherDAO dao = new TeacherDAO(null);
 
 		try {
-			Teacher teacher = dao.login(id, password); // ログインIDとパスワードで教員情報を検索します。
+			Teacher teacher = dao.login(id, password); // ログインIDとパスワードで教員情報を検索
 
 			// 取得した教員情報がnullでない場合（認証成功）
 			if (teacher != null) {
@@ -54,7 +54,6 @@ public class LoginExecuteController extends CommonServlet {
 
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			// エラー画面 (ERRO001.jsp) にフォワード
 			req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
 		}

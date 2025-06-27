@@ -1,5 +1,6 @@
 package grade;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
@@ -41,8 +42,8 @@ public class TestRegistExecuteController extends CommonServlet {
 
         // 各種フラグ・メッセージ
         String errorMsg = null;
+        Map<String, String> inputErrors = new HashMap<>();
         boolean allSuccess = true;
-        int processedCount = 0; // 登録/更新/削除した件数
 
         // 学校コードの取得（先生の所属から）
         String schoolCd = null;
@@ -81,21 +82,23 @@ public class TestRegistExecuteController extends CommonServlet {
 	                     continue; // 入力されてない学生は登録・更新・削除しない
 	                 }
 
+
+	                 // 入力チェック
 	                 int point;
+
 	                 try {
 	                     point = Integer.parseInt(pointStr);
 	                     if (point < 0 || point > 100) {
-	                         errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-	                                 +"0～100の範囲で入力してください。";
 	                         allSuccess = false;
+	                         inputErrors.put(studentNo, "0～100の範囲で入力してください。");
 	                         continue;
 	                     }
 	                 } catch (NumberFormatException e) {
-	                     errorMsg = (errorMsg == null ? "" : errorMsg + "<br>")
-                                 +"0～100の範囲で入力してください。";
 	                     allSuccess = false;
+	                     inputErrors.put(studentNo, "0～100の範囲で入力してください。");
 	                     continue;
 	                 }
+
 
 
                         // 削除チェックがオンかどうか
@@ -114,7 +117,7 @@ public class TestRegistExecuteController extends CommonServlet {
 
                         Test test = new Test();
                         test.setStudent(student);
-                        test.setSchool(school); // Bean側に合わせて setSchool 使用
+                        test.setSchool(school);
                         test.setNo(testNo);
                         test.setPoint(point);
 
@@ -146,6 +149,7 @@ public class TestRegistExecuteController extends CommonServlet {
 
 
         // メッセージと検索条件をリクエストに保持
+        req.setAttribute("inputErrors", inputErrors);
         req.setAttribute("errorMsg", errorMsg);
         req.setAttribute("f1", f1);
         req.setAttribute("f2", f2);
@@ -156,8 +160,9 @@ public class TestRegistExecuteController extends CommonServlet {
         String action = req.getParameter("action");
 
         if ("again".equals(action) || !allSuccess) {
-            resp.sendRedirect(req.getContextPath() + "/main/grade/GRMU001");
-        } else {
+//            prepareGradeList(req, f1, f2, f3, Integer.parseInt(f4));
+            req.getRequestDispatcher("/main/grade/GRMU001.jsp").forward(req, resp);
+        }	 else {
         req.getRequestDispatcher("/main/grade/GRMU002.jsp").forward(req, resp);
         	}
 
