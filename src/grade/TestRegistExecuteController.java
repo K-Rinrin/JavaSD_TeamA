@@ -89,6 +89,7 @@ public class TestRegistExecuteController extends CommonServlet {
             String schoolCd = teacher.getSchool().getCd();
             int testNo = Integer.parseInt(f4);
             String subjectCd = f3;
+            String classNum = f2;
 
             try {
                 for (Map.Entry<String, String[]> entry : req.getParameterMap().entrySet()) {
@@ -109,6 +110,7 @@ public class TestRegistExecuteController extends CommonServlet {
 
                         Student student = new Student();
                         student.setNo(studentNo);
+                        student.setClassNum(classNum);
                         Subject subject = new Subject();
                         subject.setCd(subjectCd);
                         School school = teacher.getSchool();
@@ -117,6 +119,7 @@ public class TestRegistExecuteController extends CommonServlet {
                         test.setSchool(school);
                         test.setNo(testNo);
                         test.setPoint(Integer.parseInt(pointStr));
+                        test.setClassNum(classNum);
 
                         if (testDao.testExists(studentNo, subjectCd, schoolCd, testNo)) {
                             testDao.updateTest(test, subject);
