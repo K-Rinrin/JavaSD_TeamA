@@ -18,9 +18,8 @@
 		<%-- 結果表示エリア --%>
 		<div class="mt-4">
 
-			<c:if test="${not empty subject }">
+			<c:if test="${not empty subject}">
 				<div class="mb-3 fw-bold">
-					<%--科目情報 --%>
 					科目：${subject.name}
 				</div>
 			</c:if>
