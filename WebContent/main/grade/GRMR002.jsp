@@ -31,7 +31,7 @@
 		<c:when test="${not empty results}">
 
 		<%-- 成績一覧テーブル --%>
-		<table class="result-table">
+		<table class="table table-borderd aligin-meddle">
 
 		<thead class="table-light">
 		<tr>
