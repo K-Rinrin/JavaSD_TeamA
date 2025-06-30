@@ -47,8 +47,9 @@ public class TestListSubjectDAO extends DAO {
 	                    points.put(1, rs.getInt("point_1"));
 	                    points.put(2, rs.getInt("point_2"));
 	                    tls.setPoints(points);
-
 	                    list.add(tls);
+	                    System.out.println("points: " + tls.getPoints());
+
 	                }
 
 	    } catch (Exception e) {
