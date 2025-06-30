@@ -19,7 +19,7 @@ public class TestListStudentDAO extends DAO {
     	   String sql = "SELECT "
     	   				+ "s.name AS subject_name, "
     	   				+ "t.subject_cd, "
-    	   				+ "t.no, "
+    	   				+ "t.no AS num, "
     	   				+ "t.point " +
     	   				"FROM test t " +
     	   				"JOIN subject s ON t.subject_cd = s.cd " +

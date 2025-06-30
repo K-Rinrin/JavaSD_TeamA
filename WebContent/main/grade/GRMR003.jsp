@@ -20,9 +20,9 @@
 	<%-- 結果表示エリア --%>
 	<div class="mt-4">
 
-		<c:if test="${not empty subject }">
+		<c:if test="${not empty student}">
 			<div class="mb-3 fw-bold">
-			氏名：${student.name}（${student.no}）
+				氏名：${student.name}（${student.no}）
 			</div>
 		</c:if>
 
