@@ -48,16 +48,14 @@
 		<tbody>
 
 		<c:forEach var="test" items="${results}">
-		<tr>
-			<%-- 成績情報 --%>
-			<td>${test.student.entYear}</td>
-			<td>${test.student.classNum}</td>
-			<td>${test.student.no}</td>
-			<td>${test.student.name}</td>
-			<%-- 点数 (Map<Integer, Integer>形式を想定) --%>
-			<td><c:out value="${test.points[1]}" default="-" /></td>
-			<td><c:out value="${test.points[2]}" default="-" /></td>
-		</tr>
+			<tr>
+				<td>${test.entYear}</td>
+				<td>${param.f2}</td>
+				<td>${test.studentNo}</td>
+				<td>${test.studentName}</td>
+				<td><c:out value="${test.points[1]}" default="-" /></td>
+				<td><c:out value="${test.points[2]}" default="-" /></td>
+			</tr>
 		</c:forEach>
 		</tbody>
 

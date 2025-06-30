@@ -42,10 +42,14 @@ public class TestListStudentExecuteController extends CommonServlet {
 
 
 
+
 		//学生番号で検索した場合
 
 		String stu_num = req.getParameter("f4");
-		req.setAttribute("f4", stu_num);
+		if (stu_num != null) {
+		    stu_num = stu_num.trim();
+			req.setAttribute("f4", stu_num);
+		}
 		try{
 			TestListStudentDAO stu_dao = new TestListStudentDAO();
 			List<TestListStudent> results = stu_dao.getTestListByStudentNo(stu_num);
@@ -58,6 +62,7 @@ public class TestListStudentExecuteController extends CommonServlet {
 			// TODO: handle exception
 			req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
 		}
+
 
 	}
 

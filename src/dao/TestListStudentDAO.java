@@ -16,11 +16,15 @@ public class TestListStudentDAO extends DAO {
        List<TestListStudent> list = new ArrayList<>();
 
        try (Connection con = getConnection()) {
-    	   String sql = "SELECT s.name AS subject_name, t.subject_cd, t.num, t.point " +
-                    "FROM test t " +
-                    "JOIN subject s ON t.subject_cd = s.cd " +
-                    "WHERE t.student_no = ? " +
-                    "ORDER BY t.subject_cd, t.num";
+    	   String sql = "SELECT "
+    	   				+ "s.name AS subject_name, "
+    	   				+ "t.subject_cd, "
+    	   				+ "t.no, "
+    	   				+ "t.point " +
+    	   				"FROM test t " +
+    	   				"JOIN subject s ON t.subject_cd = s.cd " +
+    	   				"WHERE t.student_no = ? " +
+    	   				"ORDER BY t.subject_cd, t.no";
     	   	PreparedStatement stmt = con.prepareStatement(sql);
     	   	stmt.setString(1, studentNo);
 			ResultSet rs = stmt.executeQuery();

@@ -49,8 +49,8 @@
 			<c:forEach var="test" items="${results}">
 			<tr>
 				<%-- 成績情報 --%>
-				<td>${test.subject.name}</td>
-				<td>${test.subject.cd}</td>
+				<td>${test.subjectName}</td>
+				<td>${test.subjectCd}</td>
 				<td>${test.num}</td>
 				<td>${test.point}</td>
 			</tr>
