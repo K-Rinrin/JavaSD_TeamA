@@ -44,8 +44,15 @@ public class TestListSubjectDAO extends DAO {
 	                    tls.setStudentName(rs.getString("student_name"));
 
 	                    LinkedHashMap<Integer, Integer> points = new LinkedHashMap<>();
-	                    points.put(1, rs.getInt("point_1"));
-	                    points.put(2, rs.getInt("point_2"));
+	                    int point1 = rs.getInt("point_1");
+	                    if (!rs.wasNull()) {
+	                        points.put(1, point1);
+	                    }
+
+	                    int point2 = rs.getInt("point_2");
+	                    if (!rs.wasNull()) {
+	                        points.put(2, point2);
+	                    }
 	                    tls.setPoints(points);
 
 	                    list.add(tls);
