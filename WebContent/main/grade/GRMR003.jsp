@@ -36,7 +36,7 @@
 
 		<thead class="table-light">
 		<tr>
-			<%-- ③～⑥ ヘッダー --%>
+			<%-- ヘッダー --%>
 			<th>科目名</th>
 			<th>科目コード</th>
 			<th>回数</th>
@@ -48,10 +48,10 @@
 
 			<c:forEach var="test" items="${results}">
 			<tr>
-				<%-- ⑦～⑩ 成績情報 --%>
+				<%-- 成績情報 --%>
 				<td>${test.subject.name}</td>
 				<td>${test.subject.cd}</td>
-				<td>${test.testNum}</td>
+				<td>${test.num}</td>
 				<td>${test.point}</td>
 			</tr>
 			</c:forEach>

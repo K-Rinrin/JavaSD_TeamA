@@ -89,7 +89,7 @@ public class TestListSubjectExecuteController extends CommonServlet {
             req.getRequestDispatcher("/main/grade/GRMR002.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(); // ログにエラーを出す（開発中のみ）
-            req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
+//            req.getRequestDispatcher("/main/ERRO001.jsp").forward(req, resp);
         }
     }
 	@Override
