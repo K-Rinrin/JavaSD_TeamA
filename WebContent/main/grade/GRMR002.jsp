@@ -52,11 +52,39 @@
 				<td>${param.f2}</td>
 				<td>${test.studentNo}</td>
 				<td>${test.studentName}</td>
-				<td><c:out value="${test.points[1]}" default="-" /></td>
-				<td><c:out value="${test.points[2]}" default="-" /></td>
+				<td>
+
+					 ${test.points['1']}
+
+				</td>
+				<td>
+
+					 ${test.points['2']}
+
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>
+		<%-- // ResultSet rs からデータを取得していると仮定
+
+Map<String, Integer> points = new HashMap<>();
+
+while (rs.next()) {
+
+    // ... 他の学生情報などを取得 ...
+
+    int testNo = rs.getInt("test_no"); // DBから取得したテスト回が数値の場合
+
+    int point = rs.getInt("point");
+
+    // ★★★ 数値のキーを文字列に変換してMapに入れる ★★★
+
+    points.put(String.valueOf(testNo), point);
+
+}
+
+test.setPoints(points);
+  --%>
 
 		</table>
 		</c:when>
