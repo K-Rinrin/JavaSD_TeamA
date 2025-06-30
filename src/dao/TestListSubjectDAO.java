@@ -49,7 +49,10 @@ public class TestListSubjectDAO extends DAO {
 	                    tls.setPoints(points);
 
 	                    list.add(tls);
+	                    System.out.println("points: " + tls.getPoints());
+
 	                }
+
 
 	    } catch (Exception e) {
 			// TODO 自動生成された catch ブロック
