@@ -69,6 +69,10 @@ public class TestListSubjectExecuteController extends CommonServlet {
 
             req.setAttribute("results", results);
 
+            Subject subject = subdao.getSubjectByCd(subject_cd);
+            req.setAttribute("subject", subject);
+
+
             // 検索条件の保持
             req.setAttribute("f1", f1);
             req.setAttribute("f2", class_num);
