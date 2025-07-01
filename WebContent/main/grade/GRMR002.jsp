@@ -52,15 +52,25 @@
 				<td>${param.f2}</td>
 				<td>${test.studentNo}</td>
 				<td>${test.studentName}</td>
-				<td>
-
-					 ${test.points[1]}
-
+				<td class="text-center py-2">
+					<c:forEach var="pointEntry" items="${test.points}">
+						<c:choose>
+							<c:when test="${pointEntry.key == 1}">
+								<c:out value="${pointEntry.value}" default="-"/>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					${point1}
 				</td>
-				<td>
-
-					 ${test.points[2]}
-
+				<td class="text-center py-2">
+					<c:forEach var="pointEntry" items="${test.points}">
+						<c:choose>
+							<c:when test="${pointEntry.key == 2}">
+								<c:out value="${pointEntry.value}" default="-"/>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					${point2}
 				</td>
 			</tr>
 		</c:forEach>
