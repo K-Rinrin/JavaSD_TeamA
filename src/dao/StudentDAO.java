@@ -75,12 +75,13 @@ public class StudentDAO extends DAO {
 
 
 		// 学生番号で取得
-		public Student getStudentByNo(String no) throws SQLException {
+		public Student getStudentByNo(String no,String schoolCd) throws SQLException {
 			Student student = null;
 			try (Connection con = getConnection()) {
-				String sql = "SELECT * FROM student WHERE no = ?";
+				String sql = "SELECT * FROM student WHERE no = ? AND school_cd = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setString(1, no);
+		        stmt.setString(2, schoolCd);
 				ResultSet rs = stmt.executeQuery();
 				if (rs.next()) {
 					student = new Student();
