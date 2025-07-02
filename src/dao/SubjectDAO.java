@@ -75,12 +75,14 @@ public class SubjectDAO extends DAO {
 	}
 
    // 科目の更新
-   public void updateSubject(Subject subject) throws SQLException {
+	// 科目の更新
+	public void updateSubject(Subject subject) throws SQLException {
 	    try (Connection con = getConnection()) {
-	    	String sql = "UPDATE subject SET name = ? WHERE cd = ?";
+	        String sql = "UPDATE subject SET name = ? WHERE cd = ? AND school_cd = ?";
 	        PreparedStatement stmt = con.prepareStatement(sql);
-	        stmt.setString(1, subject.getName());       // 正しくnameをセット
-	        stmt.setString(2, subject.getCd());         // WHERE条件にcdを使う
+	        stmt.setString(1, subject.getName());
+	        stmt.setString(2, subject.getCd());
+	        stmt.setString(3, subject.getSchool().getCd()); // Subjectオブジェクトから学校コードを取得
 	        stmt.executeUpdate();
 	    } catch (Exception e) {
 	        e.printStackTrace();
