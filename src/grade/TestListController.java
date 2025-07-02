@@ -38,11 +38,6 @@ public class TestListController extends CommonServlet {
 
 		req.getRequestDispatcher("/main/grade/GRMR001.jsp").forward(req, resp);
 
-		/*
-		 *
-		 *
-		 *
-		 */
 	}
 
 

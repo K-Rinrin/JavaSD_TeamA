@@ -61,16 +61,19 @@ public class TestDAO extends DAO {
                     + "S.ENT_YEAR, "
                     + "S.CLASS_NUM, "
                     + "T.POINT, "
-                    + "T.SUBJECT_CD, " // TESTテーブルのSUBJECT_CDも取得
-                    + "T.NO AS TEST_NO, " // TESTテーブルのNO（回数）も取得
-                    + "S.SCHOOL_CD AS SCHOOL_CD, " // STUDENTテーブルからSCHOOL_CDも取得
-                    + "SUB.NAME AS SUBJECT_NAME " // SUBJECTテーブルから科目名も取得
+                    + "T.SUBJECT_CD, "
+                    + "T.NO AS TEST_NO, "
+                    + "S.SCHOOL_CD AS SCHOOL_CD, "
+                    + "SUB.NAME AS SUBJECT_NAME "
                     + "FROM STUDENT S "
                     + "LEFT JOIN TEST T ON S.NO = T.STUDENT_NO "
-                    + "AND T.SUBJECT_CD = ? AND T.NO = ? "
-                    + "JOIN SCHOOL SCH ON S.SCHOOL_CD = SCH.CD " // SCHOOLテーブルと結合
-                    + "LEFT JOIN SUBJECT SUB ON T.SUBJECT_CD = SUB.CD " // SUBJECTテーブルと結合
-                    + "WHERE S.ENT_YEAR = ? AND S.CLASS_NUM = ? AND S.SCHOOL_CD = ? "
+                    + "AND T.SUBJECT_CD = ? "
+                    + "AND T.NO = ? "
+                    + "AND T.SCHOOL_CD = S.SCHOOL_CD " // 学生の学校とテストの学校が一致
+                    + "LEFT JOIN SUBJECT SUB ON T.SUBJECT_CD = SUB.CD AND SUB.SCHOOL_CD = S.SCHOOL_CD " // 科目の学校も学生の学校と一致
+                    + "WHERE S.ENT_YEAR = ? "
+                    + "AND S.CLASS_NUM = ? "
+                    + "AND S.SCHOOL_CD = ? "
                     + "ORDER BY S.NO";
 
             st = con.prepareStatement(sql);
@@ -92,8 +95,7 @@ public class TestDAO extends DAO {
                 stu.setName(rs.getString("STUDENT_NAME"));
                 stu.setEntYear(rs.getInt("ENT_YEAR"));
                 stu.setClassNum(rs.getString("CLASS_NUM"));
-                // Studentオブジェクトに学校コードもセットできるようであればセット
-                // stu.setSchoolCd(rs.getString("SCHOOL_CD")); // StudentクラスにschoolCdプロパティが必要
+                school.setCd(rs.getString("SCHOOL_CD"));
 
                 sub.setCd(rs.getString("SUBJECT_CD")); // TestのSubjectCDをセット
                 sub.setName(rs.getString("SUBJECT_NAME")); // TestのSubjectNameをセット

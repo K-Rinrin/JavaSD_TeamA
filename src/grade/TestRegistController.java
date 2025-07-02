@@ -67,6 +67,7 @@ public class TestRegistController extends CommonServlet {
 
                         TestDAO testDao = new TestDAO();
                         List<Test> scorelist = testDao.searchTests(entYear, classNum, subjectCd, testNo,schoolCd);
+                        System.out.println(scorelist);
                         req.setAttribute("scorelist", scorelist);
 
                         // 検索結果が0件の場合のメッセージ
