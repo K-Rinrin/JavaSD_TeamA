@@ -33,7 +33,7 @@ public class TestListStudentExecuteController extends CommonServlet {
 
 		List<Integer> entYears = studao.getAllEntYear(teacher);
 		List<String> classNums = studao.getAllClassNum(teacher);
-		List<Subject> subjects = subdao.getAllSubjects();
+		List<Subject> subjects = subdao.getAllSubjectsBySchool(teacher.getSchool().getCd());
 
 		//データを渡す
 		req.setAttribute("entYears", entYears);

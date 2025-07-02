@@ -10,8 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-//フィルターを適用するURLの範囲を指定
-// * は任意の文字列　＝＞　すべてのURLに対して適用
+
 @WebFilter(urlPatterns = { "/*" })
 public class EncodingFilter implements Filter {
 

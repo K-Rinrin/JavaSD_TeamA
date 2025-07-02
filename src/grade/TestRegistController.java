@@ -35,7 +35,7 @@ public class TestRegistController extends CommonServlet {
             req.setAttribute("classNums", stu_dao.getAllClassNum(teacher));
 
             SubjectDAO sub_dao = new SubjectDAO();
-            List<Subject> sub_list = sub_dao.getAllSubjects();
+            List<Subject> sub_list = sub_dao.getAllSubjectsBySchool(teacher.getSchool().getCd());
             sub_list.sort(Comparator.comparing(Subject::getCd));
             req.setAttribute("subjects", sub_list);
 
@@ -73,7 +73,7 @@ public class TestRegistController extends CommonServlet {
                             req.setAttribute("errorMsg", "指定された条件に一致する学生情報が見つかりませんでした。");
                         }
 
-                        Subject subject = sub_dao.getSubjectByCd(subjectCd);
+                        Subject subject = sub_dao.getSubjectByCd(subjectCd,teacher.getSchool().getCd());
                         if (subject != null) {
                             req.setAttribute("subjectName", subject.getName());
                         }

@@ -33,7 +33,7 @@ public class TestListSubjectExecuteController extends CommonServlet {
 
         List<Integer> entYears = studao.getAllEntYear(teacher);
         List<String> classNums = studao.getAllClassNum(teacher);
-        List<Subject> subjects = subdao.getAllSubjects();
+        List<Subject> subjects = subdao.getAllSubjectsBySchool(teacher.getSchool().getCd());
 
         // JSP に渡すデータをセット
         req.setAttribute("entYears", entYears);
@@ -69,7 +69,7 @@ public class TestListSubjectExecuteController extends CommonServlet {
 
             req.setAttribute("results", results);
 
-            Subject subject = subdao.getSubjectByCd(subject_cd);
+            Subject subject = subdao.getSubjectByCd(subject_cd,teacher.getSchool().getCd());
             req.setAttribute("subject", subject);
 
 

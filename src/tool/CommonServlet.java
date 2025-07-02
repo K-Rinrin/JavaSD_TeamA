@@ -23,9 +23,6 @@ public abstract class CommonServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			e.printStackTrace(out);
 
-			// 本番用エラー表示
-			// e.printStackTrace();
-			// resp.sendRedirect("/shop/error");
 		}
 	}
 
@@ -38,9 +35,7 @@ public abstract class CommonServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			e.printStackTrace(out);
 
-			// 本番用エラー表示
-			// e.printStackTrace();
-			// resp.sendRedirect("/shop/error");
+
 		}
 	}
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Subject;
+import bean.Teacher;
 import dao.SubjectDAO;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/main/subject/SBJM001" })
@@ -17,9 +18,10 @@ public class SubjectListController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
 
 		SubjectDAO dao = new SubjectDAO();
-		List<Subject> list = dao.getAllSubjects();
+		List<Subject> list = dao.getAllSubjectsBySchool(teacher.getSchool().getCd());
 		req.setAttribute("subjects", list);
 		// JSPに処理を渡す
 			req.getRequestDispatcher("/main/subject/SBJM001.jsp").forward(req, resp);

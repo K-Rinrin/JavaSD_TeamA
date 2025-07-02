@@ -58,7 +58,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
                 errors.put("cd", "科目コードを入力してください");
             } else {
                 // 科目番号の重複チェック
-                Subject subjectExists = dao.getSubjectByCd(cd);
+                Subject subjectExists = dao.getSubjectByCd(cd, teacher.getSchool().getCd());
 
 
                 if (subjectExists != null && subjectExists.getCd() != null &&

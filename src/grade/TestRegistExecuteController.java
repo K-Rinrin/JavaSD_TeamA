@@ -30,13 +30,14 @@ public class TestRegistExecuteController extends CommonServlet {
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
 
-    	// --- 1. 準備 ---
+
         String f1 = req.getParameter("f1"); // 入学年度
         String f2 = req.getParameter("f2"); // クラス
         String f3 = req.getParameter("f3"); // 科目コード
         String f4 = req.getParameter("f4"); // 回数
         String action = req.getParameter("action");
         Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
+        String schoolCd = teacher.getSchool().getCd();
 
         Map<String, String> inputErrors = new HashMap<>();
         String errorMsg = null;
@@ -44,7 +45,7 @@ public class TestRegistExecuteController extends CommonServlet {
 
 
 
-        // --- 2. バリデーション (入力値チェック) ---
+
         try {
             // (1) 検索条件の必須チェック
             if (f1 == null || f1.isEmpty() || f2 == null || f2.isEmpty()
@@ -83,10 +84,9 @@ public class TestRegistExecuteController extends CommonServlet {
         }
 
 
-        // --- 3. DB操作 (バリデーションがすべて成功した場合のみ) ---
+
         if (allSuccess) {
             TestDAO testDao = new TestDAO();
-            String schoolCd = teacher.getSchool().getCd();
             int testNo = Integer.parseInt(f4);
             String subjectCd = f3;
             String classNum = f2;
@@ -135,8 +135,8 @@ public class TestRegistExecuteController extends CommonServlet {
             }
         }
 
-        // --- 4. 画面遷移 ---
-        // 遷移前に必要な情報をリクエストにセット
+
+        // 必要な情報をリクエストにセット
         req.setAttribute("inputErrors", inputErrors);
         req.setAttribute("errorMsg", errorMsg);
         req.setAttribute("f1", f1);
@@ -156,8 +156,7 @@ public class TestRegistExecuteController extends CommonServlet {
             // セレクトボックス用のリストをセット
             req.setAttribute("student", stuDao.getAllEntYear(teacher));
             req.setAttribute("classNums", stuDao.getAllClassNum(teacher));
-            req.setAttribute("subjects", subDao.getAllSubjects());
-
+            req.setAttribute("subjects", subDao.getAllSubjectsBySchool(schoolCd));
             // 成績一覧を再取得してセット（検索条件が揃っている場合）
             if (f1 != null && !f1.isEmpty() && f2 != null && !f2.isEmpty()
                 && f3 != null && !f3.isEmpty() && f4 != null && !f4.isEmpty()) {
@@ -165,7 +164,7 @@ public class TestRegistExecuteController extends CommonServlet {
                 List<Test> scorelist = testDao.searchTests(Integer.parseInt(f1), f2, f3, Integer.parseInt(f4));
                 req.setAttribute("scorelist", scorelist);
 
-                Subject subject = subDao.getSubjectByCd(f3);
+                Subject subject = subDao.getSubjectByCd(f3,teacher.getSchool().getCd());
                 if (subject != null) {
                     req.setAttribute("subjectName", subject.getName());
                 }

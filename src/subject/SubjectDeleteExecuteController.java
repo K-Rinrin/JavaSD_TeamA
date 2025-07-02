@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Teacher;
 import dao.SubjectDAO;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/main/subject/SBJM006Execute" })
@@ -24,10 +25,12 @@ public class SubjectDeleteExecuteController extends CommonServlet {
 		try {
 
 			String cd = req.getParameter("cd");
+            Teacher teacher = (Teacher) req.getSession().getAttribute("session_user");
+
 
 			// DAO を使って科目を削除
 			SubjectDAO dao = new SubjectDAO();
-			dao.deleteSubject(cd);
+			dao.deleteSubject(cd, teacher.getSchool().getCd());
 
 
 

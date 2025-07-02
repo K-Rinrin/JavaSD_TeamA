@@ -28,11 +28,12 @@ public class SubjectDAO extends DAO {
 	}
    }
    // 科目コードで取得
-   public Subject getSubjectByCd(String cd) throws SQLException {
-       String sql = "SELECT * FROM subject WHERE cd = ?";
+   public Subject getSubjectByCd(String cd,String schoolCd) throws SQLException {
+       String sql = "SELECT * FROM subject WHERE cd = ? AND school_cd = ?";
        try (Connection con = getConnection()) {
     	   PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, cd);
+           stmt.setString(2, schoolCd);
            ResultSet rs = stmt.executeQuery();
            Subject subject = new Subject();
            School school = new School();
@@ -50,27 +51,29 @@ public class SubjectDAO extends DAO {
        return null;
    }
    // 全科目の取得
-   public List<Subject> getAllSubjects() throws SQLException {
-       List<Subject> list = new ArrayList<>();
-       try (Connection con = getConnection()) {
-    	   String sql = "SELECT * FROM subject ORDER BY cd";
-    	   PreparedStatement stmt = con.prepareStatement(sql);
-           ResultSet rs = stmt.executeQuery();
-           while (rs.next()) {
-               Subject subject = new Subject();
-               School school = new School();
-               subject.setCd(rs.getString("cd"));
-               subject.setName(rs.getString("name"));
-               school.setCd(rs.getString("school_cd"));
-               subject.setSchool(school);
-               list.add(subject);
-           }
-       } catch (Exception e) {
-		// TODO 自動生成された catch ブロック
-		e.printStackTrace();
+	// 指定した学校の科目だけを取得
+	public List<Subject> getAllSubjectsBySchool(String schoolCd) throws SQLException {
+	    List<Subject> list = new ArrayList<>();
+	    try (Connection con = getConnection()) {
+	        String sql = "SELECT * FROM subject WHERE school_cd = ? ORDER BY cd";
+	        PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setString(1, schoolCd);
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            Subject subject = new Subject();
+	            School school = new School();
+	            subject.setCd(rs.getString("cd"));
+	            subject.setName(rs.getString("name"));
+	            school.setCd(rs.getString("school_cd"));
+	            subject.setSchool(school);
+	            list.add(subject);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
 	}
-       return list;
-   }
+
    // 科目の更新
    public void updateSubject(Subject subject) throws SQLException {
 	    try (Connection con = getConnection()) {
@@ -85,15 +88,17 @@ public class SubjectDAO extends DAO {
 	}
 
    // 科目の削除
-   public void deleteSubject(String cd) throws SQLException {
-       String sql = "DELETE FROM subject WHERE cd = ?";
-       try (Connection con = getConnection()) {
-    	   PreparedStatement stmt = con.prepareStatement(sql);
-           stmt.setString(1, cd);
-           stmt.executeUpdate();
-       } catch (Exception e) {
-		// TODO 自動生成された catch ブロック
-		e.printStackTrace();
+   public void deleteSubject(String cd, String schoolCd) throws SQLException {
+	    String sql = "DELETE FROM subject WHERE cd = ? AND school_cd = ?";
+	    try (Connection con = getConnection()) {
+	        PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setString(1, cd);
+	        stmt.setString(2, schoolCd); // ← セッションユーザーの学校コード
+	        stmt.executeUpdate();
+	    } catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
-   }
+
 }
