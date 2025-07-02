@@ -30,17 +30,17 @@
                 </div>
 
 
-                <div class="border p-2 rounded">
+                <div class="border p-2 rounded mb-4">
                     <form action="${pageContext.request.contextPath}/main/student/STDM001" method="get" class="d-flex align-items-end flex-wrap gap-3">
                         <input type="hidden" name="filter" value="true">
 
 
 
                         <%-- 入学年度の選択 --%>
-                        <div>
+                        <div class="position-relative">
                             <label for="entYear-select" class="form-label">入学年度</label>
                             <%-- エラーがあればis-invalidクラスを付与 --%>
-                            <select name="entYear" id="entYear-select" class="form-select ${not empty errors.entYear ? 'is-invalid' : ''}" style="width: 180px;">
+                            <select name="entYear" id="entYear-select" class="form-select" style="width: 180px;">
                                 <option value="">----</option>
                                 <c:forEach var="ent" items="${allent}">
                                     <%-- 検索後の値保持 --%>
@@ -49,9 +49,9 @@
                             </select>
                             <%-- バリデーションエラーメッセージの表示 --%>
                             <c:if test="${not empty errors.entYear}">
-                                <div class="invalid-feedback d-block">
+                                <p class="text-warning mt-1">
                                     ${errors.entYear}
-                                </div>
+                                </p>
                             </c:if>
                         </div>
 
