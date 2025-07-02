@@ -68,7 +68,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
             }
 
 
-            // ------------ エラー情報のチェック ------------
+            // ------------ エラー情報のチェック -------------
 
 
 
