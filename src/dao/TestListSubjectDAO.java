@@ -14,7 +14,7 @@ import bean.TestListSubject;
 public class TestListSubjectDAO extends DAO {
 
     // クラス番号を指定して一覧を取得
-    public List<TestListSubject> getTestListByClass(int ent_year, String classNum, String subject) throws SQLException {
+    public List<TestListSubject> getTestListByClass(int ent_year, String classNum, String subject,String schoolCd) throws SQLException {
         List<TestListSubject> list = new ArrayList<>();
 
         try (Connection con = getConnection()) {
@@ -31,13 +31,15 @@ public class TestListSubjectDAO extends DAO {
                 "JOIN subject sub ON t.subject_cd = sub.cd " +
                 "WHERE s.ent_year = ? " +
                 "AND s.class_num = ? " +
-                "AND sub.cd = ? " +
+                "AND sub.cd = ? "+
+                "AND s.school_cd = ?" +
                 "GROUP BY s.ent_year, s.class_num, s.no, s.name " +
                 "ORDER BY s.no";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, ent_year);
             stmt.setString(2, classNum);
             stmt.setString(3, subject);
+            stmt.setString(4, schoolCd);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 TestListSubject tls = new TestListSubject();

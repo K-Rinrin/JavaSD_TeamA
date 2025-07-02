@@ -161,7 +161,7 @@ public class TestRegistExecuteController extends CommonServlet {
             if (f1 != null && !f1.isEmpty() && f2 != null && !f2.isEmpty()
                 && f3 != null && !f3.isEmpty() && f4 != null && !f4.isEmpty()) {
 
-                List<Test> scorelist = testDao.searchTests(Integer.parseInt(f1), f2, f3, Integer.parseInt(f4));
+                List<Test> scorelist = testDao.searchTests(Integer.parseInt(f1), f2, f3, Integer.parseInt(f4),schoolCd);
                 req.setAttribute("scorelist", scorelist);
 
                 Subject subject = subDao.getSubjectByCd(f3,teacher.getSchool().getCd());

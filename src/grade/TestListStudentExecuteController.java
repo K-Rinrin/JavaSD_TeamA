@@ -52,7 +52,7 @@ public class TestListStudentExecuteController extends CommonServlet {
 		}
 		try{
 			TestListStudentDAO stu_dao = new TestListStudentDAO();
-			List<TestListStudent> results = stu_dao.getTestListByStudentNo(stu_num);
+			List<TestListStudent> results = stu_dao.getTestListByStudentNo(stu_num,teacher.getSchool().getCd());
 			Student student = studao.getStudentByNo(stu_num);
 
 			req.setAttribute("results", results);

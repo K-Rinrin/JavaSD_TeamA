@@ -44,6 +44,7 @@ public class TestListSubjectExecuteController extends CommonServlet {
         String f1 = req.getParameter("f1");
         String class_num = req.getParameter("f2");
         String subject_cd = req.getParameter("f3");
+        String schoolCd = teacher.getSchool().getCd();
 
         // 未入力チェック
         if (f1 == null || f1.isEmpty() || class_num == null || class_num.isEmpty() || subject_cd == null || subject_cd.isEmpty()) {
@@ -65,7 +66,7 @@ public class TestListSubjectExecuteController extends CommonServlet {
             int ent_year = Integer.parseInt(f1);
 
             TestListSubjectDAO sub_dao = new TestListSubjectDAO();
-            List<TestListSubject> results = sub_dao.getTestListByClass(ent_year, class_num, subject_cd);
+            List<TestListSubject> results = sub_dao.getTestListByClass(ent_year, class_num, subject_cd,schoolCd);
 
             req.setAttribute("results", results);
 

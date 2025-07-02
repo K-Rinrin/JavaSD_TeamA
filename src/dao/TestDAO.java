@@ -15,40 +15,39 @@ import bean.Test;
 public class TestDAO extends DAO {
 
     // 全件取得
-    public List<Test> getAllTests() throws Exception {
-        List<Test> list = new ArrayList<>();
-        try(Connection con = getConnection()) {
-        	String sql = "SELECT * FROM TEST";
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+	//指定した学校の成績だけを取得
+	public List<Test> getTestsBySchool(String schoolCd) throws SQLException {
+	    List<Test> list = new ArrayList<>();
+	    try (Connection con = getConnection()) {
+	        String sql = "SELECT * FROM TEST WHERE SCHOOL_CD = ?";
+	        PreparedStatement st = con.prepareStatement(sql);
+	        st.setString(1, schoolCd);
+	        ResultSet rs = st.executeQuery();
 
-            while (rs.next()) {
-                Test test = new Test();
-                Student stu = new Student();
-                School sch = new School();
+	        while (rs.next()) {
+	            Test test = new Test();
+	            Student stu = new Student();
+	            School sch = new School();
 
-                stu.setNo(rs.getString("STUDENT_NO"));
-                test.setStudent(stu);
+	            stu.setNo(rs.getString("STUDENT_NO"));
+	            test.setStudent(stu);
 
-                test.setClassNum(rs.getString("CLASS_NUM"));
-                test.setNo(rs.getInt("NO"));
-                test.setPoint(rs.getInt("POINT"));
-                sch.setCd(rs.getString("SCHOOL_CD"));
-                test.setSchool(sch); // typoに合わせるなら setcShool
+	            test.setClassNum(rs.getString("CLASS_NUM"));
+	            test.setNo(rs.getInt("NO"));
+	            test.setPoint(rs.getInt("POINT"));
+	            sch.setCd(rs.getString("SCHOOL_CD"));
+	            test.setSchool(sch);
 
-                list.add(test);
-            }
+	            list.add(test);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
 
-            rs.close();
-            st.close();
-            con.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return list;
-    }
 
-    public List<Test> searchTests(int entYear, String classNum, String subjectCd, int testNo) throws Exception {
+    public List<Test> searchTests(int entYear, String classNum, String subjectCd, int testNo,String schoolCd) throws Exception {
         List<Test> list = new ArrayList<>();
         Connection con = null; // ローカル変数として宣言
         PreparedStatement st = null; // ローカル変数として宣言
@@ -71,7 +70,7 @@ public class TestDAO extends DAO {
                     + "AND T.SUBJECT_CD = ? AND T.NO = ? "
                     + "JOIN SCHOOL SCH ON S.SCHOOL_CD = SCH.CD " // SCHOOLテーブルと結合
                     + "LEFT JOIN SUBJECT SUB ON T.SUBJECT_CD = SUB.CD " // SUBJECTテーブルと結合
-                    + "WHERE S.ENT_YEAR = ? AND S.CLASS_NUM = ? "
+                    + "WHERE S.ENT_YEAR = ? AND S.CLASS_NUM = ? AND S.SCHOOL_CD = ? "
                     + "ORDER BY S.NO";
 
             st = con.prepareStatement(sql);
@@ -79,6 +78,7 @@ public class TestDAO extends DAO {
             st.setInt(2, testNo);
             st.setInt(3, entYear);
             st.setString(4, classNum);
+            st.setString(5, schoolCd);
 
             rs = st.executeQuery();
 
@@ -152,16 +152,14 @@ public class TestDAO extends DAO {
     public boolean deleteTest(String studentNo, String subjectCd, String schoolCd, int testNo) throws SQLException {
         try (Connection con = getConnection()) {
             // TESTテーブルにSCHOOL_CDカラムがある場合、WHERE句に追加
-            // String sql = "DELETE FROM TEST WHERE STUDENT_NO=? AND SUBJECT_CD=? AND NO=? AND SCHOOL_CD=?";
-            String sql = "DELETE FROM TEST WHERE STUDENT_NO=? AND SUBJECT_CD=? AND NO=?"; // SCHOOL_CDを含めない場合
+            String sql = "DELETE FROM TEST WHERE STUDENT_NO=? AND SUBJECT_CD=? AND NO=? AND SCHOOL_CD=?";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, studentNo);
             st.setString(2, subjectCd);
             st.setInt(3, testNo);
-            // if (schoolCd != null) {
-            //     st.setString(4, schoolCd); // SCHOOL_CDを含める場合
-            // }
+            st.setString(4, schoolCd);
+
 
             int count = st.executeUpdate(); // 削除された行数を取得
             return count > 0; // 1行以上削除されれば成功

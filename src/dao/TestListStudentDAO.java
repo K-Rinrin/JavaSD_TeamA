@@ -12,7 +12,7 @@ import bean.TestListStudent;
 public class TestListStudentDAO extends DAO {
 
    // ある学生のすべてのテスト結果（科目ごと）を取得
-   public List<TestListStudent> getTestListByStudentNo(String studentNo) throws SQLException {
+   public List<TestListStudent> getTestListByStudentNo(String studentNo,String schoolCd) throws SQLException {
        List<TestListStudent> list = new ArrayList<>();
 
        try (Connection con = getConnection()) {
@@ -23,10 +23,11 @@ public class TestListStudentDAO extends DAO {
     	   				+ "t.point " +
     	   				"FROM test t " +
     	   				"JOIN subject s ON t.subject_cd = s.cd " +
-    	   				"WHERE t.student_no = ? " +
+    	   				"WHERE t.student_no = ? AND t.school_cd = ?" +
     	   				"ORDER BY t.subject_cd, t.no";
     	   	PreparedStatement stmt = con.prepareStatement(sql);
     	   	stmt.setString(1, studentNo);
+    	   	stmt.setString(2, schoolCd);
 			ResultSet rs = stmt.executeQuery();
            while (rs.next()) {
                TestListStudent test = new TestListStudent();
