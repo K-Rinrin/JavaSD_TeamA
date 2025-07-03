@@ -33,7 +33,7 @@ public class StudentUpdateController extends CommonServlet {
 
 				//学生情報をもらう
 				StudentDAO dao = new StudentDAO();
-				Student student = dao.getStudentByNo(no);
+				Student student = dao.getStudentByNo(no,teacher.getSchool().getCd());
 
 		        //クラス番号の一覧をもらう
 				List<String> allclass = dao.getAllClassNum(teacher);

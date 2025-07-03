@@ -63,7 +63,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 			// 2. 学生番号の重複チェック
 			if (no == null || no.isEmpty()) {
 				errors.put("no", "学生番号を入力してください");
-			} else if (dao.getStudentByNo(no) != null) {
+			} else if (dao.getStudentByNo(no, teacher.getSchool().getCd()) != null) {
 		        errors.put("no", "学生番号が重複しています");
 		    }
 
