@@ -66,12 +66,10 @@ public class TestListStudentExecuteController extends CommonServlet {
         // 学生番号が入力されている場合のみ、成績検索処理を実行
         if (!stu_num.isEmpty()) {
             try {
-                // ★修正点1: 学生番号と教師の学校コードで学生を検索
-                //    これにより、自分の学校にいない学生はここで null になる
+
                 Student student = studao.getStudentByNo(stu_num, teacher.getSchool().getCd());
 
                 // 学生情報が見つかった場合のみ、JSPにセット
-                // 見つからなければ student は null のまま、JSP側で名前は表示されない
                 req.setAttribute("student", student);
 
                 // 成績リストを格納する変数
@@ -80,13 +78,11 @@ public class TestListStudentExecuteController extends CommonServlet {
                 // 自分の学校に学生が存在する場合のみ、成績データを検索
                 if (student != null) {
                     TestListStudentDAO stu_dao = new TestListStudentDAO();
-                    // ★修正点2: TestListStudentDAO にも学校コードを渡す
                     results = stu_dao.getTestListByStudentNo(stu_num, teacher.getSchool().getCd());
                 }
 
                 // results は成績がある場合はリスト、ない場合は null または空リストになる
-                // JSPのC:if test="${not empty results}" で制御
-                req.setAttribute("results", results);
+             req.setAttribute("results", results);
 
                 req.getRequestDispatcher("/main/grade/GRMR003.jsp").forward(req, resp);
 
