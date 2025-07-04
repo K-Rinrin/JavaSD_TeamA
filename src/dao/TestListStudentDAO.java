@@ -44,7 +44,7 @@ public class TestListStudentDAO extends DAO {
                 test.setPoint(rs.getInt("POINT"));
 
                 // test.setStudentNo(rs.getString("STUDENT_NO"));
-                // test.setStudentName(rs.getString("STUDENT_NAME"));a
+                // test.setStudentName(rs.getString("STUDENT_NAME"));
 
                 list.add(test);
             }
